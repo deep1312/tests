@@ -1,0 +1,18 @@
+postgres:
+  host: localhost
+  port: 5433
+  database: "pg_monitoring"
+  user: "postgres"
+  password: "postgres"
+
+  min_connections: 1
+  max_connections: 10
+  connect_timeout: 5
+
+credential_encryption_key: "+Ts4d9+3nXkUETr0VESktXBPstD+P9HIr0KW53i1fhs="
+
+collector:
+  poll_interval_sec: 30
+  max_parallel_checks: 5
+  circuit_breaker_threshold: 3
+  circuit_breaker_backoff_sec: 300

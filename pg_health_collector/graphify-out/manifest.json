@@ -1,0 +1,167 @@
+{
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\__init__.py": {
+    "mtime": 1782830350.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\collectors\\__init__.py": {
+    "mtime": 1782830354.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\collectors\\base.py": {
+    "mtime": 1782830354.0,
+    "ast_hash": "e9b3532f8b01d3056d0316ee692613a0",
+    "semantic_hash": "e9b3532f8b01d3056d0316ee692613a0"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\core\\__init__.py": {
+    "mtime": 1782830354.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\core\\config.py": {
+    "mtime": 1782830354.0,
+    "ast_hash": "fc80463348f6c486b6f74e803d3dbfc8",
+    "semantic_hash": "fc80463348f6c486b6f74e803d3dbfc8"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\core\\logger.py": {
+    "mtime": 1782830354.0,
+    "ast_hash": "beba688ce349eae895c1ab9e4def7147",
+    "semantic_hash": "beba688ce349eae895c1ab9e4def7147"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\db\\__init__.py": {
+    "mtime": 1782830354.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\db\\connection.py": {
+    "mtime": 1782830352.0,
+    "ast_hash": "027acbfa423f5131a304f7cfe5e59073",
+    "semantic_hash": "027acbfa423f5131a304f7cfe5e59073"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\db\\executor.py": {
+    "mtime": 1782830354.0,
+    "ast_hash": "e7923cf5360bfaaad6d28a441cbc01f9",
+    "semantic_hash": "e7923cf5360bfaaad6d28a441cbc01f9"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\main.py": {
+    "mtime": 1782992229.1714306,
+    "ast_hash": "145805d3b700b559f9398ac2314daf65",
+    "semantic_hash": "145805d3b700b559f9398ac2314daf65"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\apply_scheduler_analytics_schema_updates.sql": {
+    "mtime": 1782981932.1566348,
+    "ast_hash": "d1fa2c3f9178eaac103358630afc8437",
+    "semantic_hash": "d1fa2c3f9178eaac103358630afc8437"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\get_or_create_open_incident.sql": {
+    "mtime": 1782830356.0,
+    "ast_hash": "8d7c6d46006a1b03c49ed41d3eb7aefc",
+    "semantic_hash": "8d7c6d46006a1b03c49ed41d3eb7aefc"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\increment_mapping_failure.sql": {
+    "mtime": 1782830356.0,
+    "ast_hash": "590596cbfb879e86e95945016d823279",
+    "semantic_hash": "590596cbfb879e86e95945016d823279"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\insert_alert.sql": {
+    "mtime": 1782830356.0,
+    "ast_hash": "b96d60bfb70a4dcf520795880f78bedc",
+    "semantic_hash": "b96d60bfb70a4dcf520795880f78bedc"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\insert_check_run.sql": {
+    "mtime": 1782982243.4064,
+    "ast_hash": "e2b0daf39c99c4648d5915246191f1a1",
+    "semantic_hash": "e2b0daf39c99c4648d5915246191f1a1"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\insert_metrics.sql": {
+    "mtime": 1782830356.0,
+    "ast_hash": "9698c3f49c8f968e88b28b00fe2a7e39",
+    "semantic_hash": "9698c3f49c8f968e88b28b00fe2a7e39"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\insert_monitoring_log.sql": {
+    "mtime": 1782830356.0,
+    "ast_hash": "dcc1d6bafe89d1c744e0bee3729aa446",
+    "semantic_hash": "dcc1d6bafe89d1c744e0bee3729aa446"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\reset_mapping_failure.sql": {
+    "mtime": 1782830356.0,
+    "ast_hash": "131930cda957aa840f7b406a9862d06a",
+    "semantic_hash": "131930cda957aa840f7b406a9862d06a"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\resolve_incident.sql": {
+    "mtime": 1782830356.0,
+    "ast_hash": "91aac1b2a6b6c03f5f290068a72ee9fa",
+    "semantic_hash": "91aac1b2a6b6c03f5f290068a72ee9fa"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\select_active_checks.sql": {
+    "mtime": 1782985078.8595853,
+    "ast_hash": "1e4598d1a03d7c208d40e0bb72287365",
+    "semantic_hash": "1e4598d1a03d7c208d40e0bb72287365"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\select_active_table_count_tables.sql": {
+    "mtime": 1782830358.0,
+    "ast_hash": "41d875047e0cc067d00b745697b188b8",
+    "semantic_hash": "41d875047e0cc067d00b745697b188b8"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\select_check_thresholds.sql": {
+    "mtime": 1782830358.0,
+    "ast_hash": "970f2444679d40f728316b85cde70796",
+    "semantic_hash": "970f2444679d40f728316b85cde70796"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\stale_in_progress_cleanup.sql": {
+    "mtime": 1782992211.8190064,
+    "ast_hash": "f55f06d871a453968e62bdd5740415b1",
+    "semantic_hash": "f55f06d871a453968e62bdd5740415b1"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\internal\\update_check_run.sql": {
+    "mtime": 1782830358.0,
+    "ast_hash": "c3b2a3031ce8507ab2a1c0891e8aaa49",
+    "semantic_hash": "c3b2a3031ce8507ab2a1c0891e8aaa49"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\queries\\metadata_ddl.sql": {
+    "mtime": 1782830352.0,
+    "ast_hash": "997c2f843e32c863c2b14bb2070ea1e4",
+    "semantic_hash": "997c2f843e32c863c2b14bb2070ea1e4"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\services\\__init__.py": {
+    "mtime": 1782830352.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\services\\collector_service.py": {
+    "mtime": 1782992249.2693236,
+    "ast_hash": "b5702203a332c848b694bd8e55eacbc1",
+    "semantic_hash": "b5702203a332c848b694bd8e55eacbc1"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\utils\\__init__.py": {
+    "mtime": 1782830352.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\app\\utils\\file_loader.py": {
+    "mtime": 1782830352.0,
+    "ast_hash": "2d3329f96899b3ebd10e938789b3f8f9",
+    "semantic_hash": "2d3329f96899b3ebd10e938789b3f8f9"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\CHANGES.md": {
+    "mtime": 1782987960.5840132,
+    "ast_hash": "109452356aaedd2ff3dfd335fa3046fe",
+    "semantic_hash": "109452356aaedd2ff3dfd335fa3046fe"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\COLLECTOR_DESIGN.md": {
+    "mtime": 1782992314.3280149,
+    "ast_hash": "bffe576727e6ec78d32795e1086fe675",
+    "semantic_hash": "bffe576727e6ec78d32795e1086fe675"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\README.md": {
+    "mtime": 1782830330.0,
+    "ast_hash": "404eb85423abca1d8de2ed21a70c8ced",
+    "semantic_hash": "404eb85423abca1d8de2ed21a70c8ced"
+  },
+  "C:\\projects\\PG Insides\\pg_health_collector\\configs\\config.yaml": {
+    "mtime": 1782992274.5232887,
+    "ast_hash": "c6d4fa4eaa26aa23e854c5bf7512b509",
+    "semantic_hash": "c6d4fa4eaa26aa23e854c5bf7512b509"
+  }
+}

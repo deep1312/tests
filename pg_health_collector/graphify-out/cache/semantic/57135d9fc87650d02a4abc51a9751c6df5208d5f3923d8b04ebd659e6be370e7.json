@@ -1,0 +1,1 @@
+{"nodes": [{"id": "sql_insert_alert", "label": "insert_alert.sql", "file_type": "sql", "source_file": "app/queries/internal/insert_alert.sql"}], "edges": [], "hyperedges": []}

@@ -1,0 +1,3622 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "id": "init",
+      "community": 12,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "collectors/__init__.py",
+      "source_location": "L1",
+      "id": "collectors_init",
+      "community": 9,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "base.py",
+      "file_type": "code",
+      "source_file": "collectors/base.py",
+      "source_location": "L1",
+      "id": "collectors_base",
+      "community": 5,
+      "norm_label": "base.py"
+    },
+    {
+      "label": "_decrypt_password()",
+      "file_type": "code",
+      "source_file": "collectors/base.py",
+      "source_location": "L17",
+      "id": "collectors_base_decrypt_password",
+      "community": 5,
+      "norm_label": "_decrypt_password()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "collectors/base.py",
+      "source_location": "L17",
+      "id": "collectors_base_py_str",
+      "community": 5,
+      "norm_label": "str"
+    },
+    {
+      "label": "execute_check_query()",
+      "file_type": "code",
+      "source_file": "collectors/base.py",
+      "source_location": "L29",
+      "id": "collectors_base_execute_check_query",
+      "community": 5,
+      "norm_label": "execute_check_query()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "collectors/base.py",
+      "source_location": "L29",
+      "id": "collectors_base_py_any",
+      "community": 5,
+      "norm_label": "any"
+    },
+    {
+      "label": "evaluate_threshold()",
+      "file_type": "code",
+      "source_file": "collectors/base.py",
+      "source_location": "L71",
+      "id": "collectors_base_evaluate_threshold",
+      "community": 5,
+      "norm_label": "evaluate_threshold()"
+    },
+    {
+      "label": "bool",
+      "file_type": "code",
+      "source_file": "collectors/base.py",
+      "source_location": "L71",
+      "id": "collectors_base_py_bool",
+      "community": 5,
+      "norm_label": "bool"
+    },
+    {
+      "label": "Decrypt a base64-encoded AES-256-GCM encrypted password.",
+      "file_type": "rationale",
+      "source_file": "collectors/base.py",
+      "source_location": "L18",
+      "id": "collectors_base_rationale_18",
+      "community": 5,
+      "norm_label": "decrypt a base64-encoded aes-256-gcm encrypted password."
+    },
+    {
+      "label": "Execute check query_text on target postgres server and return rows.",
+      "file_type": "rationale",
+      "source_file": "collectors/base.py",
+      "source_location": "L30",
+      "id": "collectors_base_rationale_30",
+      "community": 5,
+      "norm_label": "execute check query_text on target postgres server and return rows."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "core/__init__.py",
+      "source_location": "L1",
+      "id": "core_init",
+      "community": 10,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "config.py",
+      "file_type": "code",
+      "source_file": "core/config.py",
+      "source_location": "L1",
+      "id": "core_config",
+      "community": 2,
+      "norm_label": "config.py"
+    },
+    {
+      "label": "load_config()",
+      "file_type": "code",
+      "source_file": "core/config.py",
+      "source_location": "L7",
+      "id": "core_config_load_config",
+      "community": 2,
+      "norm_label": "load_config()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "core/config.py",
+      "source_location": "L7",
+      "id": "core_config_py_str",
+      "community": 2,
+      "norm_label": "str"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "core/config.py",
+      "source_location": "L7",
+      "id": "core_config_py_any",
+      "community": 2,
+      "norm_label": "any"
+    },
+    {
+      "label": "logger.py",
+      "file_type": "code",
+      "source_file": "core/logger.py",
+      "source_location": "L1",
+      "id": "core_logger",
+      "community": 6,
+      "norm_label": "logger.py"
+    },
+    {
+      "label": "ErrorOnlyFilter",
+      "file_type": "code",
+      "source_file": "core/logger.py",
+      "source_location": "L6",
+      "id": "core_logger_erroronlyfilter",
+      "community": 6,
+      "norm_label": "erroronlyfilter"
+    },
+    {
+      "label": ".filter()",
+      "file_type": "code",
+      "source_file": "core/logger.py",
+      "source_location": "L7",
+      "id": "core_logger_erroronlyfilter_filter",
+      "community": 6,
+      "norm_label": ".filter()"
+    },
+    {
+      "label": "LogRecord",
+      "file_type": "code",
+      "source_file": "core/logger.py",
+      "source_location": "L7",
+      "id": "logrecord",
+      "community": 6,
+      "norm_label": "logrecord"
+    },
+    {
+      "label": "bool",
+      "file_type": "code",
+      "source_file": "core/logger.py",
+      "source_location": "L7",
+      "id": "core_logger_py_bool",
+      "community": 6,
+      "norm_label": "bool"
+    },
+    {
+      "label": "configure_logging()",
+      "file_type": "code",
+      "source_file": "core/logger.py",
+      "source_location": "L11",
+      "id": "core_logger_configure_logging",
+      "community": 6,
+      "norm_label": "configure_logging()"
+    },
+    {
+      "label": "int",
+      "file_type": "code",
+      "source_file": "core/logger.py",
+      "source_location": "L11",
+      "id": "core_logger_py_int",
+      "community": 6,
+      "norm_label": "int"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "db/__init__.py",
+      "source_location": "L1",
+      "id": "db_init",
+      "community": 11,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "connection.py",
+      "file_type": "code",
+      "source_file": "db/connection.py",
+      "source_location": "L1",
+      "id": "db_connection",
+      "community": 7,
+      "norm_label": "connection.py"
+    },
+    {
+      "label": "PostgresConnectionManager",
+      "file_type": "code",
+      "source_file": "db/connection.py",
+      "source_location": "L11",
+      "id": "db_connection_postgresconnectionmanager",
+      "community": 7,
+      "norm_label": "postgresconnectionmanager"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "db/connection.py",
+      "source_location": "L12",
+      "id": "db_connection_postgresconnectionmanager_init",
+      "community": 7,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".initialize_pool()",
+      "file_type": "code",
+      "source_file": "db/connection.py",
+      "source_location": "L19",
+      "id": "db_connection_postgresconnectionmanager_initialize_pool",
+      "community": 7,
+      "norm_label": ".initialize_pool()"
+    },
+    {
+      "label": ".get_connection()",
+      "file_type": "code",
+      "source_file": "db/connection.py",
+      "source_location": "L38",
+      "id": "db_connection_postgresconnectionmanager_get_connection",
+      "community": 7,
+      "norm_label": ".get_connection()"
+    },
+    {
+      "label": ".close_all()",
+      "file_type": "code",
+      "source_file": "db/connection.py",
+      "source_location": "L53",
+      "id": "db_connection_postgresconnectionmanager_close_all",
+      "community": 7,
+      "norm_label": ".close_all()"
+    },
+    {
+      "label": "db_config comes fully from config.yaml",
+      "file_type": "rationale",
+      "source_file": "db/connection.py",
+      "source_location": "L13",
+      "id": "db_connection_rationale_13",
+      "community": 7,
+      "norm_label": "db_config comes fully from config.yaml"
+    },
+    {
+      "label": "executor.py",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L1",
+      "id": "db_executor",
+      "community": 4,
+      "norm_label": "executor.py"
+    },
+    {
+      "label": "QueryExecutor",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L8",
+      "id": "db_executor_queryexecutor",
+      "community": 4,
+      "norm_label": "queryexecutor"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L9",
+      "id": "db_executor_queryexecutor_init",
+      "community": 4,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "._get_sql()",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L14",
+      "id": "db_executor_queryexecutor_get_sql",
+      "community": 4,
+      "norm_label": "._get_sql()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L14",
+      "id": "db_executor_py_str",
+      "community": 4,
+      "norm_label": "str"
+    },
+    {
+      "label": "int",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L14",
+      "id": "db_executor_py_int",
+      "community": 4,
+      "norm_label": "int"
+    },
+    {
+      "label": "._adapt_postgres_placeholders()",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L22",
+      "id": "db_executor_queryexecutor_adapt_postgres_placeholders",
+      "community": 4,
+      "norm_label": "._adapt_postgres_placeholders()"
+    },
+    {
+      "label": "._map_params()",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L29",
+      "id": "db_executor_queryexecutor_map_params",
+      "community": 4,
+      "norm_label": "._map_params()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L29",
+      "id": "db_executor_py_any",
+      "community": 4,
+      "norm_label": "any"
+    },
+    {
+      "label": ".fetch_all()",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L35",
+      "id": "db_executor_queryexecutor_fetch_all",
+      "community": 4,
+      "norm_label": ".fetch_all()"
+    },
+    {
+      "label": ".fetch_one()",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L45",
+      "id": "db_executor_queryexecutor_fetch_one",
+      "community": 4,
+      "norm_label": ".fetch_one()"
+    },
+    {
+      "label": ".execute()",
+      "file_type": "code",
+      "source_file": "db/executor.py",
+      "source_location": "L57",
+      "id": "db_executor_queryexecutor_execute",
+      "community": 4,
+      "norm_label": ".execute()"
+    },
+    {
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "main.py",
+      "source_location": "L1",
+      "id": "main",
+      "community": 2,
+      "norm_label": "main.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "main.py",
+      "source_location": "L12",
+      "id": "main_main",
+      "community": 2,
+      "norm_label": "main()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "services/__init__.py",
+      "source_location": "L1",
+      "id": "services_init",
+      "community": 13,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "collector_service.py",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L1",
+      "id": "services_collector_service",
+      "community": 0,
+      "norm_label": "collector_service.py"
+    },
+    {
+      "label": "_to_jsonable()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L22",
+      "id": "services_collector_service_to_jsonable",
+      "community": 0,
+      "norm_label": "_to_jsonable()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L22",
+      "id": "services_collector_service_py_any",
+      "community": 0,
+      "norm_label": "any"
+    },
+    {
+      "label": "CollectorMetadataService",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L34",
+      "id": "services_collector_service_collectormetadataservice",
+      "community": 0,
+      "norm_label": "collectormetadataservice"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L49",
+      "id": "services_collector_service_collectormetadataservice_init",
+      "community": 4,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "QueryExecutor",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L49",
+      "id": "queryexecutor",
+      "community": 4,
+      "norm_label": "queryexecutor"
+    },
+    {
+      "label": ".get_active_checks()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L52",
+      "id": "services_collector_service_collectormetadataservice_get_active_checks",
+      "community": 0,
+      "norm_label": ".get_active_checks()"
+    },
+    {
+      "label": ".get_thresholds()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L55",
+      "id": "services_collector_service_collectormetadataservice_get_thresholds",
+      "community": 0,
+      "norm_label": ".get_thresholds()"
+    },
+    {
+      "label": "int",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L55",
+      "id": "services_collector_service_py_int",
+      "community": 0,
+      "norm_label": "int"
+    },
+    {
+      "label": ".create_check_run()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L58",
+      "id": "services_collector_service_collectormetadataservice_create_check_run",
+      "community": 0,
+      "norm_label": ".create_check_run()"
+    },
+    {
+      "label": ".complete_check_run()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L63",
+      "id": "services_collector_service_collectormetadataservice_complete_check_run",
+      "community": 0,
+      "norm_label": ".complete_check_run()"
+    },
+    {
+      "label": ".insert_metric()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L77",
+      "id": "services_collector_service_collectormetadataservice_insert_metric",
+      "community": 0,
+      "norm_label": ".insert_metric()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L77",
+      "id": "services_collector_service_py_str",
+      "community": 0,
+      "norm_label": "str"
+    },
+    {
+      "label": ".insert_monitoring_log()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L91",
+      "id": "services_collector_service_collectormetadataservice_insert_monitoring_log",
+      "community": 0,
+      "norm_label": ".insert_monitoring_log()"
+    },
+    {
+      "label": ".get_or_create_open_incident()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L112",
+      "id": "services_collector_service_collectormetadataservice_get_or_create_open_incident",
+      "community": 0,
+      "norm_label": ".get_or_create_open_incident()"
+    },
+    {
+      "label": ".resolve_incident()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L117",
+      "id": "services_collector_service_collectormetadataservice_resolve_incident",
+      "community": 0,
+      "norm_label": ".resolve_incident()"
+    },
+    {
+      "label": ".insert_alert()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L122",
+      "id": "services_collector_service_collectormetadataservice_insert_alert",
+      "community": 0,
+      "norm_label": ".insert_alert()"
+    },
+    {
+      "label": ".cleanup_stale_in_progress()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L147",
+      "id": "services_collector_service_collectormetadataservice_cleanup_stale_in_progress",
+      "community": 0,
+      "norm_label": ".cleanup_stale_in_progress()"
+    },
+    {
+      "label": ".get_active_table_count_tables()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L150",
+      "id": "services_collector_service_collectormetadataservice_get_active_table_count_tables",
+      "community": 0,
+      "norm_label": ".get_active_table_count_tables()"
+    },
+    {
+      "label": ".reset_mapping_failure()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L153",
+      "id": "services_collector_service_collectormetadataservice_reset_mapping_failure",
+      "community": 0,
+      "norm_label": ".reset_mapping_failure()"
+    },
+    {
+      "label": ".increment_mapping_failure()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L156",
+      "id": "services_collector_service_collectormetadataservice_increment_mapping_failure",
+      "community": 0,
+      "norm_label": ".increment_mapping_failure()"
+    },
+    {
+      "label": "CollectorRuntimeService",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L168",
+      "id": "services_collector_service_collectorruntimeservice",
+      "community": 0,
+      "norm_label": "collectorruntimeservice"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L169",
+      "id": "services_collector_service_collectorruntimeservice_init",
+      "community": 0,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "._sleep_until_next_boundary()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L188",
+      "id": "services_collector_service_collectorruntimeservice_sleep_until_next_boundary",
+      "community": 0,
+      "norm_label": "._sleep_until_next_boundary()"
+    },
+    {
+      "label": ".run_forever()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L198",
+      "id": "services_collector_service_collectorruntimeservice_run_forever",
+      "community": 0,
+      "norm_label": ".run_forever()"
+    },
+    {
+      "label": ".run_once()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L213",
+      "id": "services_collector_service_collectorruntimeservice_run_once",
+      "community": 0,
+      "norm_label": ".run_once()"
+    },
+    {
+      "label": "datetime",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L213",
+      "id": "datetime",
+      "community": 0,
+      "norm_label": "datetime"
+    },
+    {
+      "label": "._run_single_check()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L263",
+      "id": "services_collector_service_collectorruntimeservice_run_single_check",
+      "community": 0,
+      "norm_label": "._run_single_check()"
+    },
+    {
+      "label": "._execute_check()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L273",
+      "id": "services_collector_service_collectorruntimeservice_execute_check",
+      "community": 0,
+      "norm_label": "._execute_check()"
+    },
+    {
+      "label": "._on_check_future_done()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L363",
+      "id": "services_collector_service_collectorruntimeservice_on_check_future_done",
+      "community": 0,
+      "norm_label": "._on_check_future_done()"
+    },
+    {
+      "label": ".shutdown()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L369",
+      "id": "services_collector_service_collectorruntimeservice_shutdown",
+      "community": 0,
+      "norm_label": ".shutdown()"
+    },
+    {
+      "label": "._persist_results()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L372",
+      "id": "services_collector_service_collectorruntimeservice_persist_results",
+      "community": 0,
+      "norm_label": "._persist_results()"
+    },
+    {
+      "label": "._persist_row_metrics()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L386",
+      "id": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "community": 0,
+      "norm_label": "._persist_row_metrics()"
+    },
+    {
+      "label": "._evaluate_and_alert()",
+      "file_type": "code",
+      "source_file": "services/collector_service.py",
+      "source_location": "L415",
+      "id": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "community": 0,
+      "norm_label": "._evaluate_and_alert()"
+    },
+    {
+      "label": "Sleep until the next poll_interval_sec boundary (e.g., :00 or :30 for 30s interv",
+      "file_type": "rationale",
+      "source_file": "services/collector_service.py",
+      "source_location": "L189",
+      "id": "services_collector_service_rationale_189",
+      "community": 0,
+      "norm_label": "sleep until the next poll_interval_sec boundary (e.g., :00 or :30 for 30s interv"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "utils/__init__.py",
+      "source_location": "L1",
+      "id": "utils_init",
+      "community": 14,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "file_loader.py",
+      "file_type": "code",
+      "source_file": "utils/file_loader.py",
+      "source_location": "L1",
+      "id": "utils_file_loader",
+      "community": 8,
+      "norm_label": "file_loader.py"
+    },
+    {
+      "label": "load_sql_file()",
+      "file_type": "code",
+      "source_file": "utils/file_loader.py",
+      "source_location": "L4",
+      "id": "utils_file_loader_load_sql_file",
+      "community": 8,
+      "norm_label": "load_sql_file()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "utils/file_loader.py",
+      "source_location": "L4",
+      "id": "utils_file_loader_py_str",
+      "community": 8,
+      "norm_label": "str"
+    },
+    {
+      "label": "Load an SQL file and return its text.",
+      "file_type": "rationale",
+      "source_file": "utils/file_loader.py",
+      "source_location": "L5",
+      "id": "utils_file_loader_rationale_5",
+      "community": 8,
+      "norm_label": "load an sql file and return its text."
+    },
+    {
+      "label": "ErrorOnlyFilter",
+      "file_type": "code",
+      "source_file": "app/core/logger.py",
+      "id": "core_logger_ErrorOnlyFilter",
+      "community": 6,
+      "norm_label": "erroronlyfilter"
+    },
+    {
+      "label": "PostgresConnectionManager",
+      "file_type": "code",
+      "source_file": "app/db/connection.py",
+      "id": "db_connection_PostgresConnectionManager",
+      "community": 2,
+      "norm_label": "postgresconnectionmanager"
+    },
+    {
+      "label": "QueryExecutor",
+      "file_type": "code",
+      "source_file": "app/db/executor.py",
+      "id": "db_executor_QueryExecutor",
+      "community": 2,
+      "norm_label": "queryexecutor"
+    },
+    {
+      "label": "apply_scheduler_analytics_schema_updates.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/apply_scheduler_analytics_schema_updates.sql",
+      "id": "sql_apply_scheduler_analytics_schema_updates",
+      "community": 2,
+      "norm_label": "apply_scheduler_analytics_schema_updates.sql"
+    },
+    {
+      "label": "get_or_create_open_incident.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/get_or_create_open_incident.sql",
+      "id": "sql_get_or_create_open_incident",
+      "community": 2,
+      "norm_label": "get_or_create_open_incident.sql"
+    },
+    {
+      "label": "increment_mapping_failure.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/increment_mapping_failure.sql",
+      "id": "sql_increment_mapping_failure",
+      "community": 2,
+      "norm_label": "increment_mapping_failure.sql"
+    },
+    {
+      "label": "insert_alert.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/insert_alert.sql",
+      "id": "sql_insert_alert",
+      "community": 2,
+      "norm_label": "insert_alert.sql"
+    },
+    {
+      "label": "insert_check_run.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/insert_check_run.sql",
+      "id": "sql_insert_check_run",
+      "community": 2,
+      "norm_label": "insert_check_run.sql"
+    },
+    {
+      "label": "insert_metrics.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/insert_metrics.sql",
+      "id": "sql_insert_metrics",
+      "community": 2,
+      "norm_label": "insert_metrics.sql"
+    },
+    {
+      "label": "insert_monitoring_log.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/insert_monitoring_log.sql",
+      "id": "sql_insert_monitoring_log",
+      "community": 2,
+      "norm_label": "insert_monitoring_log.sql"
+    },
+    {
+      "label": "reset_mapping_failure.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/reset_mapping_failure.sql",
+      "id": "sql_reset_mapping_failure",
+      "community": 2,
+      "norm_label": "reset_mapping_failure.sql"
+    },
+    {
+      "label": "resolve_incident.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/resolve_incident.sql",
+      "id": "sql_resolve_incident",
+      "community": 2,
+      "norm_label": "resolve_incident.sql"
+    },
+    {
+      "label": "select_active_checks.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/select_active_checks.sql",
+      "id": "sql_select_active_checks",
+      "community": 2,
+      "norm_label": "select_active_checks.sql"
+    },
+    {
+      "label": "select_active_table_count_tables.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/select_active_table_count_tables.sql",
+      "id": "sql_select_active_table_count_tables",
+      "community": 2,
+      "norm_label": "select_active_table_count_tables.sql"
+    },
+    {
+      "label": "select_check_thresholds.sql",
+      "file_type": "concept",
+      "source_file": "app/queries/internal/select_check_thresholds.sql",
+      "id": "sql_select_check_thresholds",
+      "community": 2,
+      "norm_label": "select_check_thresholds.sql"
+    },
+    {
+      "label": "CollectorMetadataService",
+      "file_type": "code",
+      "source_file": "app/services/collector_service.py",
+      "id": "collector_service.CollectorMetadataService",
+      "community": 1,
+      "norm_label": "collectormetadataservice"
+    },
+    {
+      "label": "CollectorRuntimeService",
+      "file_type": "code",
+      "source_file": "app/services/collector_service.py",
+      "id": "collector_service.CollectorRuntimeService",
+      "community": 1,
+      "norm_label": "collectorruntimeservice"
+    },
+    {
+      "label": "_to_jsonable",
+      "file_type": "code",
+      "source_file": "app/services/collector_service.py",
+      "id": "collector_service._to_jsonable",
+      "community": 1,
+      "norm_label": "_to_jsonable"
+    },
+    {
+      "label": "CHECK_STATUS_SUCCESS",
+      "file_type": "code",
+      "source_file": "app/services/collector_service.py",
+      "id": "collector_service.CHECK_STATUS_SUCCESS",
+      "community": 1,
+      "norm_label": "check_status_success"
+    },
+    {
+      "label": "CHECK_STATUS_FAILED",
+      "file_type": "code",
+      "source_file": "app/services/collector_service.py",
+      "id": "collector_service.CHECK_STATUS_FAILED",
+      "community": 1,
+      "norm_label": "check_status_failed"
+    },
+    {
+      "label": "CHECK_STATUS_TIMEOUT",
+      "file_type": "code",
+      "source_file": "app/services/collector_service.py",
+      "id": "collector_service.CHECK_STATUS_TIMEOUT",
+      "community": 1,
+      "norm_label": "check_status_timeout"
+    },
+    {
+      "label": "CHECK_STATUS_IN_PROGRESS",
+      "file_type": "code",
+      "source_file": "app/services/collector_service.py",
+      "id": "collector_service.CHECK_STATUS_IN_PROGRESS",
+      "community": 1,
+      "norm_label": "check_status_in_progress"
+    },
+    {
+      "label": "load_sql_file",
+      "file_type": "code",
+      "source_file": "app/utils/file_loader.py",
+      "id": "file_loader.load_sql_file",
+      "community": 1,
+      "norm_label": "load_sql_file"
+    },
+    {
+      "label": "stale_in_progress_cleanup.sql",
+      "file_type": "code",
+      "source_file": "app/queries/internal/stale_in_progress_cleanup.sql",
+      "id": "sql.stale_in_progress_cleanup",
+      "community": 1,
+      "norm_label": "stale_in_progress_cleanup.sql"
+    },
+    {
+      "label": "update_check_run.sql",
+      "file_type": "code",
+      "source_file": "app/queries/internal/update_check_run.sql",
+      "id": "sql.update_check_run",
+      "community": 1,
+      "norm_label": "update_check_run.sql"
+    },
+    {
+      "label": "metadata_ddl.sql",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "ddl.metadata_ddl",
+      "community": 3,
+      "norm_label": "metadata_ddl.sql"
+    },
+    {
+      "label": "alerts Schema",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "schema.alerts",
+      "community": 3,
+      "norm_label": "alerts schema"
+    },
+    {
+      "label": "config Schema",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "schema.config",
+      "community": 3,
+      "norm_label": "config schema"
+    },
+    {
+      "label": "monitoring Schema",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "schema.monitoring",
+      "community": 3,
+      "norm_label": "monitoring schema"
+    },
+    {
+      "label": "alerts.alerts",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.alerts.alerts",
+      "community": 3,
+      "norm_label": "alerts.alerts"
+    },
+    {
+      "label": "alerts.incidents",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.alerts.incidents",
+      "community": 3,
+      "norm_label": "alerts.incidents"
+    },
+    {
+      "label": "config.check_thresholds",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.config.check_thresholds",
+      "community": 3,
+      "norm_label": "config.check_thresholds"
+    },
+    {
+      "label": "config.checks_master",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.config.checks_master",
+      "community": 3,
+      "norm_label": "config.checks_master"
+    },
+    {
+      "label": "config.server_checks_mapping",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.config.server_checks_mapping",
+      "community": 3,
+      "norm_label": "config.server_checks_mapping"
+    },
+    {
+      "label": "config.servers",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.config.servers",
+      "community": 3,
+      "norm_label": "config.servers"
+    },
+    {
+      "label": "monitoring.check_runs",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.monitoring.check_runs",
+      "community": 1,
+      "norm_label": "monitoring.check_runs"
+    },
+    {
+      "label": "monitoring.monitoring_logs",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.monitoring.monitoring_logs",
+      "community": 3,
+      "norm_label": "monitoring.monitoring_logs"
+    },
+    {
+      "label": "monitoring.monitoring_metrics",
+      "file_type": "code",
+      "source_file": "app/queries/metadata_ddl.sql",
+      "id": "table.monitoring.monitoring_metrics",
+      "community": 3,
+      "norm_label": "monitoring.monitoring_metrics"
+    },
+    {
+      "label": "config.yaml",
+      "file_type": "code",
+      "source_file": "configs/config.yaml",
+      "id": "config.yaml",
+      "community": 1,
+      "norm_label": "config.yaml"
+    },
+    {
+      "label": "Non-blocking Collector Cycle",
+      "file_type": "document",
+      "source_file": "CHANGES.md",
+      "id": "design.NonBlockingCycle",
+      "community": 1,
+      "norm_label": "non-blocking collector cycle"
+    },
+    {
+      "label": "cycle_started_at Timestamp",
+      "file_type": "document",
+      "source_file": "CHANGES.md",
+      "id": "design.CycleStartedAt",
+      "community": 1,
+      "norm_label": "cycle_started_at timestamp"
+    },
+    {
+      "label": "Microsecond Drift Elimination",
+      "file_type": "document",
+      "source_file": "CHANGES.md",
+      "id": "design.MicrosecondDriftFix",
+      "community": 1,
+      "norm_label": "microsecond drift elimination"
+    },
+    {
+      "label": "Check Run Lifecycle Tracking",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "design.CheckRunLifecycle",
+      "community": 1,
+      "norm_label": "check run lifecycle tracking"
+    },
+    {
+      "label": "Circuit Breaker Pattern",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "design.CircuitBreaker",
+      "community": 1,
+      "norm_label": "circuit breaker pattern"
+    },
+    {
+      "label": "Threshold Evaluation and Alerting",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "design.ThresholdEvaluation",
+      "community": 3,
+      "norm_label": "threshold evaluation and alerting"
+    },
+    {
+      "label": "Startup Sequence",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "design.StartupSequence",
+      "community": 1,
+      "norm_label": "startup sequence"
+    },
+    {
+      "label": "Scheduler Loop",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "design.SchedulerLoop",
+      "community": 1,
+      "norm_label": "scheduler loop"
+    },
+    {
+      "label": "Query Boundaries (config/monitoring/alerts)",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "design.QueryBoundaries",
+      "community": 3,
+      "norm_label": "query boundaries (config/monitoring/alerts)"
+    },
+    {
+      "label": "Check Run Status Values (1-4)",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "design.CheckStatusValues",
+      "community": 1,
+      "norm_label": "check run status values (1-4)"
+    },
+    {
+      "label": "Metadata DB (pg_monitoring)",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "concept.DatabaseMetadata",
+      "community": 3,
+      "norm_label": "metadata db (pg_monitoring)"
+    },
+    {
+      "label": "Target PostgreSQL Servers",
+      "file_type": "document",
+      "source_file": "COLLECTOR_DESIGN.md",
+      "id": "concept.TargetServers",
+      "community": 1,
+      "norm_label": "target postgresql servers"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "collectors_base",
+      "target": "collectors_base_decrypt_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "collectors_base",
+      "target": "collectors_base_evaluate_threshold",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "collectors_base",
+      "target": "collectors_base_execute_check_query",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "collectors_base_decrypt_password",
+      "target": "collectors_base_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/collectors/base.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "collectors_base_execute_check_query",
+      "target": "collectors_base_decrypt_password"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "collectors_base_rationale_18",
+      "target": "collectors_base_decrypt_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "collectors_base_evaluate_threshold",
+      "target": "collectors_base_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "collectors_base_execute_check_query",
+      "target": "collectors_base_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "collectors_base_execute_check_query",
+      "target": "collectors_base_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "app/collectors/base.py",
+      "weight": 0.7,
+      "source": "collectors_base_execute_check_query",
+      "target": "db_connection_PostgresConnectionManager"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "collectors_base_rationale_30",
+      "target": "collectors_base_execute_check_query",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/collector_service.py",
+      "source_location": "L306",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "collectors_base_execute_check_query"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "collectors_base_evaluate_threshold",
+      "target": "collectors_base_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "collectors/base.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "collectors_base_evaluate_threshold",
+      "target": "collectors_base_py_bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/collector_service.py",
+      "source_location": "L429",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "target": "collectors_base_evaluate_threshold"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/config.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "core_config",
+      "target": "core_config_load_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "core/config.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "core_config_load_config",
+      "target": "core_config_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "core/config.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "core_config_load_config",
+      "target": "core_config_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "core_config_load_config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "core_logger",
+      "target": "core_logger_configure_logging",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "core_logger",
+      "target": "core_logger_erroronlyfilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "core_logger",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "core_logger_configure_logging",
+      "target": "core_logger_erroronlyfilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "core_logger_erroronlyfilter",
+      "target": "core_logger_erroronlyfilter_filter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "core_logger_erroronlyfilter_filter",
+      "target": "core_logger_py_bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "core_logger_erroronlyfilter_filter",
+      "target": "logrecord",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/core/logger.py",
+      "weight": 1.0,
+      "source": "core_logger_configure_logging",
+      "target": "core_logger_ErrorOnlyFilter"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "core/logger.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "core_logger_configure_logging",
+      "target": "core_logger_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "core_logger_configure_logging"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/connection.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "db_connection",
+      "target": "db_connection_postgresconnectionmanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/connection.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "db_connection_postgresconnectionmanager",
+      "target": "db_connection_postgresconnectionmanager_close_all",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/connection.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "db_connection_postgresconnectionmanager",
+      "target": "db_connection_postgresconnectionmanager_get_connection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/connection.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "db_connection_postgresconnectionmanager",
+      "target": "db_connection_postgresconnectionmanager_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/connection.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "db_connection_postgresconnectionmanager",
+      "target": "db_connection_postgresconnectionmanager_initialize_pool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "db_connection_postgresconnectionmanager"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "db/connection.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "db_connection_rationale_13",
+      "target": "db_connection_postgresconnectionmanager_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "db_executor",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "datetime",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor",
+      "target": "db_executor_queryexecutor_adapt_postgres_placeholders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor",
+      "target": "db_executor_queryexecutor_execute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor",
+      "target": "db_executor_queryexecutor_fetch_all",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor",
+      "target": "db_executor_queryexecutor_fetch_one",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor",
+      "target": "db_executor_queryexecutor_get_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor",
+      "target": "db_executor_queryexecutor_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor",
+      "target": "db_executor_queryexecutor_map_params",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "queryexecutor",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "services_collector_service_py_any",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "services_collector_service_py_int",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "services_collector_service_py_str",
+      "target": "db_executor_queryexecutor",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_execute",
+      "target": "db_executor_queryexecutor_get_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_all",
+      "target": "db_executor_queryexecutor_get_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_one",
+      "target": "db_executor_queryexecutor_get_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_get_sql",
+      "target": "db_executor_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_get_sql",
+      "target": "db_executor_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_get_sql",
+      "target": "db_executor_queryexecutor_adapt_postgres_placeholders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "db/executor.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_get_sql",
+      "target": "utils_file_loader_load_sql_file"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_adapt_postgres_placeholders",
+      "target": "db_executor_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_execute",
+      "target": "db_executor_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_all",
+      "target": "db_executor_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_one",
+      "target": "db_executor_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_adapt_postgres_placeholders",
+      "target": "db_executor_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_map_params",
+      "target": "db_executor_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_execute",
+      "target": "db_executor_queryexecutor_map_params",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_all",
+      "target": "db_executor_queryexecutor_map_params",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_one",
+      "target": "db_executor_queryexecutor_map_params",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_map_params",
+      "target": "db_executor_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_execute",
+      "target": "db_executor_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_all",
+      "target": "db_executor_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_one",
+      "target": "db_executor_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_all",
+      "target": "db_executor_queryexecutor_execute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "db/executor.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "db_executor_queryexecutor_fetch_one",
+      "target": "db_executor_queryexecutor_execute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "main",
+      "target": "main_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "db_connection_PostgresConnectionManager"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "db_executor_QueryExecutor"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "services_collector_service_collectormetadataservice"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "services_collector_service_collectorruntimeservice"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "weight": 1.0,
+      "source": "main_main",
+      "target": "sql_apply_scheduler_analytics_schema_updates"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_collector_service",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_collector_service",
+      "target": "services_collector_service_collectormetadataservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "services_collector_service",
+      "target": "services_collector_service_collectorruntimeservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_collector_service",
+      "target": "services_collector_service_to_jsonable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L373",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "services_collector_service_to_jsonable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L394",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "target": "services_collector_service_to_jsonable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_collector_service_to_jsonable",
+      "target": "services_collector_service_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L415",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "target": "services_collector_service_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L273",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "services_collector_service_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L386",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "target": "services_collector_service_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_single_check",
+      "target": "services_collector_service_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_cleanup_stale_in_progress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_complete_check_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_create_check_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_get_active_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_get_active_table_count_tables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_get_or_create_open_incident",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_get_thresholds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_increment_mapping_failure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_insert_alert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_insert_metric",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_insert_monitoring_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_reset_mapping_failure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice",
+      "target": "services_collector_service_collectormetadataservice_resolve_incident",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_init",
+      "target": "services_collector_service_collectormetadataservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_init",
+      "target": "queryexecutor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L214",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_once",
+      "target": "services_collector_service_collectormetadataservice_get_active_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_get_thresholds",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L382",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "services_collector_service_collectormetadataservice_get_thresholds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_complete_check_run",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_create_check_run",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_get_or_create_open_incident",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_increment_mapping_failure",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_insert_alert",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_insert_metric",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_insert_monitoring_log",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_reset_mapping_failure",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_resolve_incident",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_init",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L213",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_once",
+      "target": "services_collector_service_py_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L279",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_collectormetadataservice_create_check_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L338",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_collectormetadataservice_complete_check_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_insert_metric",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L399",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "target": "services_collector_service_collectormetadataservice_insert_metric",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "services_collector_service_collectormetadataservice_insert_alert",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L415",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L273",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_init",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L386",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_single_check",
+      "target": "services_collector_service_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L374",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "services_collector_service_collectormetadataservice_insert_monitoring_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L443",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "target": "services_collector_service_collectormetadataservice_get_or_create_open_incident",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L460",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "target": "services_collector_service_collectormetadataservice_resolve_incident",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L348",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_collectormetadataservice_resolve_incident",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L449",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "target": "services_collector_service_collectormetadataservice_insert_alert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L295",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_collectormetadataservice_get_active_table_count_tables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L347",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_collectormetadataservice_reset_mapping_failure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L323",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_collectormetadataservice_increment_mapping_failure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L415",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L273",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_execute_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L363",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_on_check_future_done",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_persist_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L386",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_run_forever",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L213",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_run_once",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_run_single_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L369",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_shutdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L188",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice",
+      "target": "services_collector_service_collectorruntimeservice_sleep_until_next_boundary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L200",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_forever",
+      "target": "services_collector_service_collectorruntimeservice_sleep_until_next_boundary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L189",
+      "weight": 1.0,
+      "source": "services_collector_service_rationale_189",
+      "target": "services_collector_service_collectorruntimeservice_sleep_until_next_boundary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L206",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_forever",
+      "target": "services_collector_service_collectorruntimeservice_run_once",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L213",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_once",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L273",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_single_check",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L269",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_run_single_check",
+      "target": "services_collector_service_collectorruntimeservice_execute_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L312",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_execute_check",
+      "target": "services_collector_service_collectorruntimeservice_persist_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L384",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_results",
+      "target": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/collector_service.py",
+      "source_location": "L407",
+      "weight": 1.0,
+      "source": "services_collector_service_collectorruntimeservice_persist_row_metrics",
+      "target": "services_collector_service_collectorruntimeservice_evaluate_and_alert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "utils/file_loader.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "utils_file_loader",
+      "target": "utils_file_loader_load_sql_file",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "utils/file_loader.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "utils_file_loader_load_sql_file",
+      "target": "utils_file_loader_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "utils/file_loader.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "utils_file_loader_rationale_5",
+      "target": "utils_file_loader_load_sql_file",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "configures",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/db/connection.py",
+      "weight": 1.0,
+      "source": "db_connection_PostgresConnectionManager",
+      "target": "db_connection_PostgresConnectionManager"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/db/executor.py",
+      "weight": 1.0,
+      "source": "db_executor_QueryExecutor",
+      "target": "db_connection_PostgresConnectionManager"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_apply_scheduler_analytics_schema_updates"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_get_or_create_open_incident"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_increment_mapping_failure"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_insert_alert"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_insert_check_run"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_insert_metrics"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_insert_monitoring_log"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_reset_mapping_failure"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_resolve_incident"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_select_active_checks"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_select_active_table_count_tables"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/db/executor.py",
+      "weight": 0.8,
+      "source": "db_executor_QueryExecutor",
+      "target": "sql_select_check_thresholds"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorMetadataService",
+      "target": "design.QueryBoundaries"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorMetadataService",
+      "target": "sql.stale_in_progress_cleanup"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorMetadataService",
+      "target": "sql.update_check_run"
+    },
+    {
+      "relation": "configures",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "collector_service.CollectorMetadataService"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "app/utils/file_loader.py",
+      "weight": 1.0,
+      "source": "file_loader.load_sql_file",
+      "target": "collector_service.CollectorMetadataService"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "collector_service.CHECK_STATUS_FAILED"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "collector_service.CHECK_STATUS_IN_PROGRESS"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "collector_service.CHECK_STATUS_SUCCESS"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "collector_service.CHECK_STATUS_TIMEOUT"
+    },
+    {
+      "relation": "executes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "concept.TargetServers"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "design.CheckRunLifecycle"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "design.CircuitBreaker"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "design.NonBlockingCycle"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "design.SchedulerLoop"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service.CollectorRuntimeService",
+      "target": "design.ThresholdEvaluation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/collector_service.py",
+      "weight": 1.0,
+      "source": "collector_service._to_jsonable",
+      "target": "collector_service.CollectorRuntimeService"
+    },
+    {
+      "relation": "configures",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "configs/config.yaml",
+      "weight": 1.0,
+      "source": "config.yaml",
+      "target": "collector_service.CollectorRuntimeService"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CHANGES.md",
+      "weight": 1.0,
+      "source": "design.MicrosecondDriftFix",
+      "target": "collector_service.CollectorRuntimeService"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.StartupSequence",
+      "target": "sql.stale_in_progress_cleanup"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/internal/stale_in_progress_cleanup.sql",
+      "weight": 1.0,
+      "source": "sql.stale_in_progress_cleanup",
+      "target": "table.monitoring.check_runs"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/internal/update_check_run.sql",
+      "weight": 1.0,
+      "source": "sql.update_check_run",
+      "target": "table.monitoring.check_runs"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "ddl.metadata_ddl",
+      "target": "schema.alerts"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "ddl.metadata_ddl",
+      "target": "schema.config"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "ddl.metadata_ddl",
+      "target": "schema.monitoring"
+    },
+    {
+      "relation": "describes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "concept.DatabaseMetadata",
+      "target": "schema.alerts"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.QueryBoundaries",
+      "target": "schema.alerts"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.alerts",
+      "target": "table.alerts.alerts"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.alerts",
+      "target": "table.alerts.incidents"
+    },
+    {
+      "relation": "describes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "concept.DatabaseMetadata",
+      "target": "schema.config"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.QueryBoundaries",
+      "target": "schema.config"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.config",
+      "target": "table.config.check_thresholds"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.config",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.config",
+      "target": "table.config.server_checks_mapping"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.config",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "describes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "concept.DatabaseMetadata",
+      "target": "schema.monitoring"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.QueryBoundaries",
+      "target": "schema.monitoring"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.monitoring",
+      "target": "table.monitoring.check_runs"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.monitoring",
+      "target": "table.monitoring.monitoring_logs"
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "schema.monitoring",
+      "target": "table.monitoring.monitoring_metrics"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.ThresholdEvaluation",
+      "target": "table.alerts.alerts"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.alerts.alerts",
+      "target": "table.alerts.incidents"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.alerts.alerts",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.alerts.alerts",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.ThresholdEvaluation",
+      "target": "table.alerts.incidents"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.alerts.incidents",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.alerts.incidents",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.ThresholdEvaluation",
+      "target": "table.config.check_thresholds"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.config.check_thresholds",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.config.check_thresholds",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.config.server_checks_mapping",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.monitoring.check_runs",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.monitoring.monitoring_logs",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.monitoring.monitoring_metrics",
+      "target": "table.config.checks_master"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.CircuitBreaker",
+      "target": "table.config.server_checks_mapping"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.config.server_checks_mapping",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.monitoring.check_runs",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.monitoring.monitoring_logs",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/queries/metadata_ddl.sql",
+      "weight": 1.0,
+      "source": "table.monitoring.monitoring_metrics",
+      "target": "table.config.servers"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.CheckRunLifecycle",
+      "target": "table.monitoring.check_runs"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COLLECTOR_DESIGN.md",
+      "weight": 1.0,
+      "source": "design.CheckStatusValues",
+      "target": "table.monitoring.check_runs"
+    },
+    {
+      "relation": "describes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CHANGES.md",
+      "weight": 1.0,
+      "source": "design.CycleStartedAt",
+      "target": "table.monitoring.check_runs"
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "7f83cb1de0e1c8381430337b5879878fb017826d"
+}
