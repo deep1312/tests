@@ -1,0 +1,1 @@
+{"nodes": [{"id": "tailwind-config", "label": "Tailwind CSS Config", "file_type": "code", "source_file": "tailwind.config.ts"}], "edges": [{"source": "tailwind-config", "target": "tech-stack", "relation": "configures", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "tailwind.config.ts", "weight": 1.0}], "hyperedges": []}

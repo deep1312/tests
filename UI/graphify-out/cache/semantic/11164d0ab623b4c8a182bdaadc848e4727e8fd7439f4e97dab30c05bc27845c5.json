@@ -1,0 +1,1 @@
+{"nodes": [{"id": "table", "label": "Table", "file_type": "code", "source_file": "src/components/ui/table.tsx"}], "edges": [{"source": "table", "target": "cn", "relation": "uses", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "src/components/ui/table.tsx", "weight": 1.0}], "hyperedges": []}

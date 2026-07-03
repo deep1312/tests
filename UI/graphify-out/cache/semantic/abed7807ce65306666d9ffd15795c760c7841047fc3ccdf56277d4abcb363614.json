@@ -1,0 +1,1 @@
+{"nodes": [{"id": "components-config", "label": "shadcn/ui Config", "file_type": "config", "source_file": "components.json"}], "edges": [{"source": "components-config", "target": "shadcn-ui", "relation": "configures", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components.json", "weight": 1.0}], "hyperedges": []}

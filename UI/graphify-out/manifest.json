@@ -1,0 +1,522 @@
+{
+  "C:\\projects\\PG Insides\\UI\\components.json": {
+    "mtime": 1782997106.0,
+    "ast_hash": "3580d194e7683b181a9964d911412c05",
+    "semantic_hash": "3580d194e7683b181a9964d911412c05"
+  },
+  "C:\\projects\\PG Insides\\UI\\package.json": {
+    "mtime": 1782997106.0,
+    "ast_hash": "8e0e5f7d6f7dbeb9bda73aa7db95a9f7",
+    "semantic_hash": "8e0e5f7d6f7dbeb9bda73aa7db95a9f7"
+  },
+  "C:\\projects\\PG Insides\\UI\\postcss.config.js": {
+    "mtime": 1782997107.0,
+    "ast_hash": "5b84f4567208c7c747079c0477373231",
+    "semantic_hash": "5b84f4567208c7c747079c0477373231"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\App.tsx": {
+    "mtime": 1782997109.0,
+    "ast_hash": "1ec486f817030e2f1ec33810dd7bc7a4",
+    "semantic_hash": "1ec486f817030e2f1ec33810dd7bc7a4"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\alerts.ts": {
+    "mtime": 1782997111.0,
+    "ast_hash": "2d9d55ab8510545d8237889810864a51",
+    "semantic_hash": "2d9d55ab8510545d8237889810864a51"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\audit.ts": {
+    "mtime": 1782997111.0,
+    "ast_hash": "9d0a5f8cd4cc9d8edc820bc7312f53a3",
+    "semantic_hash": "9d0a5f8cd4cc9d8edc820bc7312f53a3"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\checks.ts": {
+    "mtime": 1782997111.0,
+    "ast_hash": "ccc347d1c18f481d3d35ae08546d9cee",
+    "semantic_hash": "ccc347d1c18f481d3d35ae08546d9cee"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\client.ts": {
+    "mtime": 1782997111.0,
+    "ast_hash": "ccdae0bc0ff35812a45af7fb8bd8dd20",
+    "semantic_hash": "ccdae0bc0ff35812a45af7fb8bd8dd20"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\dashboard.ts": {
+    "mtime": 1782997111.0,
+    "ast_hash": "ba3c76e2035ed9875e0b4201e9ac1f2b",
+    "semantic_hash": "ba3c76e2035ed9875e0b4201e9ac1f2b"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\incidents.ts": {
+    "mtime": 1782997111.0,
+    "ast_hash": "b51432507e167d623d07a2bef781cf72",
+    "semantic_hash": "b51432507e167d623d07a2bef781cf72"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\monitoring.ts": {
+    "mtime": 1782997112.0,
+    "ast_hash": "70a81528d13c4cad8ea5c17b22506f2a",
+    "semantic_hash": "70a81528d13c4cad8ea5c17b22506f2a"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\monitoringSources.ts": {
+    "mtime": 1782997112.0,
+    "ast_hash": "0516a4ac937813f82c234388ac30af61",
+    "semantic_hash": "0516a4ac937813f82c234388ac30af61"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\schemaTables.ts": {
+    "mtime": 1782997112.0,
+    "ast_hash": "6757cfa2e1752b7942dc68005cd84db1",
+    "semantic_hash": "6757cfa2e1752b7942dc68005cd84db1"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\servers.ts": {
+    "mtime": 1782997112.0,
+    "ast_hash": "8abeeda75fc0420ceee82b4a3d383c5e",
+    "semantic_hash": "8abeeda75fc0420ceee82b4a3d383c5e"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\api\\thresholds.ts": {
+    "mtime": 1782997112.0,
+    "ast_hash": "469eb902343248873b34585061fc6244",
+    "semantic_hash": "469eb902343248873b34585061fc6244"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\dashboard\\MetricsChart.tsx": {
+    "mtime": 1782997124.0,
+    "ast_hash": "c9036eab0d717b7980b2012ad7a4cb80",
+    "semantic_hash": "c9036eab0d717b7980b2012ad7a4cb80"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\dashboard\\ServerCard.tsx": {
+    "mtime": 1782997124.0,
+    "ast_hash": "e389b023f44f4febbf3471636770b880",
+    "semantic_hash": "e389b023f44f4febbf3471636770b880"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\dashboard\\TopFailingChecks.tsx": {
+    "mtime": 1782997124.0,
+    "ast_hash": "ee080f42d679ae6b8c5d4224697a0740",
+    "semantic_hash": "ee080f42d679ae6b8c5d4224697a0740"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\layout\\ProtectedRoute.tsx": {
+    "mtime": 1782997117.0,
+    "ast_hash": "dd6b9a5687c785a70cd6bdaeca4b690d",
+    "semantic_hash": "dd6b9a5687c785a70cd6bdaeca4b690d"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\layout\\SessionBanner.tsx": {
+    "mtime": 1782997118.0,
+    "ast_hash": "508be3a5b023040263b1415c8eafda4b",
+    "semantic_hash": "508be3a5b023040263b1415c8eafda4b"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\layout\\Sidebar.tsx": {
+    "mtime": 1782997118.0,
+    "ast_hash": "9bb9d134ca41f0b156ec9ee72546d3b3",
+    "semantic_hash": "9bb9d134ca41f0b156ec9ee72546d3b3"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\layout\\TimezoneSelect.tsx": {
+    "mtime": 1782997118.0,
+    "ast_hash": "6bdd9def1530133ccb555a336ada8435",
+    "semantic_hash": "6bdd9def1530133ccb555a336ada8435"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\layout\\TopBar.tsx": {
+    "mtime": 1782997118.0,
+    "ast_hash": "42181c6aeb19636e5499995c35bf1207",
+    "semantic_hash": "42181c6aeb19636e5499995c35bf1207"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\AdaptiveInsightsPanel.tsx": {
+    "mtime": 1782997118.0,
+    "ast_hash": "8c65e4ccd76f9b72307a45d0ba929ca8",
+    "semantic_hash": "8c65e4ccd76f9b72307a45d0ba929ca8"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\AlertDetailSheet.tsx": {
+    "mtime": 1782997119.0,
+    "ast_hash": "6a855d30a33070fc2fb68b6b77f6ef2d",
+    "semantic_hash": "6a855d30a33070fc2fb68b6b77f6ef2d"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\CheckHealthMatrix.test.tsx": {
+    "mtime": 1782997119.0,
+    "ast_hash": "fe08fe26e8408ae0f180efde640a9179",
+    "semantic_hash": "fe08fe26e8408ae0f180efde640a9179"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\CheckHealthMatrix.tsx": {
+    "mtime": 1782997120.0,
+    "ast_hash": "b1b08859b7106549195aba27b6168855",
+    "semantic_hash": "b1b08859b7106549195aba27b6168855"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\DetailDrawer.test.tsx": {
+    "mtime": 1782997119.0,
+    "ast_hash": "67c1d0ebbf710b250f4bf65df39ad2eb",
+    "semantic_hash": "67c1d0ebbf710b250f4bf65df39ad2eb"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\DetailDrawer.tsx": {
+    "mtime": 1782997119.0,
+    "ast_hash": "0b1939e9a26f13f12f9e02e5f683e914",
+    "semantic_hash": "0b1939e9a26f13f12f9e02e5f683e914"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\ExecutionTimeChart.test.tsx": {
+    "mtime": 1782997120.0,
+    "ast_hash": "11faf65134321e4dc7703e49862cc343",
+    "semantic_hash": "11faf65134321e4dc7703e49862cc343"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\ExecutionTimeChart.tsx": {
+    "mtime": 1782997120.0,
+    "ast_hash": "30d901d054f131863e69b9da1189890a",
+    "semantic_hash": "30d901d054f131863e69b9da1189890a"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\FilterBar.test.tsx": {
+    "mtime": 1782997120.0,
+    "ast_hash": "932f91092682678cd3ec4ce32284d900",
+    "semantic_hash": "932f91092682678cd3ec4ce32284d900"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\FilterBar.tsx": {
+    "mtime": 1782997120.0,
+    "ast_hash": "554047d348db670ce7fc3de7ae83433e",
+    "semantic_hash": "554047d348db670ce7fc3de7ae83433e"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\MetricExplorer.integration.test.tsx": {
+    "mtime": 1782997120.0,
+    "ast_hash": "ae732c7d1223f3bf64497685c9481192",
+    "semantic_hash": "ae732c7d1223f3bf64497685c9481192"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\MetricExplorer.test.tsx": {
+    "mtime": 1782997120.0,
+    "ast_hash": "2204aa890fa1276d9b493101178d551e",
+    "semantic_hash": "2204aa890fa1276d9b493101178d551e"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\MetricExplorer.tsx": {
+    "mtime": 1782997121.0,
+    "ast_hash": "4830602648f649712e82665ac34d9035",
+    "semantic_hash": "4830602648f649712e82665ac34d9035"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\NotificationPopup.tsx": {
+    "mtime": 1782997121.0,
+    "ast_hash": "173988ce4f92d22475e797f8feb6245b",
+    "semantic_hash": "173988ce4f92d22475e797f8feb6245b"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\StatusTimelineChart.integration.test.tsx": {
+    "mtime": 1782997122.0,
+    "ast_hash": "e55d839c54837f783a54694d91c3e8b2",
+    "semantic_hash": "e55d839c54837f783a54694d91c3e8b2"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\StatusTimelineChart.test.tsx": {
+    "mtime": 1782997121.0,
+    "ast_hash": "d8102a73c295e046561cb0644ba38cde",
+    "semantic_hash": "d8102a73c295e046561cb0644ba38cde"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\StatusTimelineChart.tsx": {
+    "mtime": 1782997121.0,
+    "ast_hash": "df9052f475c7c36a025a234cdf93b861",
+    "semantic_hash": "df9052f475c7c36a025a234cdf93b861"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\SuccessRateChart.test.tsx": {
+    "mtime": 1782997122.0,
+    "ast_hash": "a2ce00837e3dea6f9015bab3fee524f1",
+    "semantic_hash": "a2ce00837e3dea6f9015bab3fee524f1"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\SuccessRateChart.tsx": {
+    "mtime": 1782997122.0,
+    "ast_hash": "39ee3e9843acebc01a1514ecc7ff4582",
+    "semantic_hash": "39ee3e9843acebc01a1514ecc7ff4582"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\SummaryPanel.test.tsx": {
+    "mtime": 1782997122.0,
+    "ast_hash": "ad8e4afb19870743a541bd18d010c54c",
+    "semantic_hash": "ad8e4afb19870743a541bd18d010c54c"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\SummaryPanel.tsx": {
+    "mtime": 1782997122.0,
+    "ast_hash": "da53ae46d88a66086be9b4a4a05107cc",
+    "semantic_hash": "da53ae46d88a66086be9b4a4a05107cc"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\VisualResolver.tsx": {
+    "mtime": 1782997122.0,
+    "ast_hash": "389ff38ca2dbd8c3843c341b84c6acaa",
+    "semantic_hash": "389ff38ca2dbd8c3843c341b84c6acaa"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\charts\\AreaTelemetryChart.tsx": {
+    "mtime": 1782997127.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\charts\\DonutUsageChart.tsx": {
+    "mtime": 1782997128.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\charts\\LineTrendChart.tsx": {
+    "mtime": 1782997128.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\charts\\StoragePieChart.tsx": {
+    "mtime": 1782997128.0,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\monitoring\\charts\\TelemetryTable.tsx": {
+    "mtime": 1782997128.0,
+    "ast_hash": "112431d322aa0a26259389817cc02aeb",
+    "semantic_hash": "112431d322aa0a26259389817cc02aeb"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\shared\\EmptyState.tsx": {
+    "mtime": 1782997123.0,
+    "ast_hash": "1f61b027d9589e3893af6400c0b83099",
+    "semantic_hash": "1f61b027d9589e3893af6400c0b83099"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\shared\\ErrorBanner.tsx": {
+    "mtime": 1782997123.0,
+    "ast_hash": "ae8ac12a6bb327ad69a0502bcf312e26",
+    "semantic_hash": "ae8ac12a6bb327ad69a0502bcf312e26"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\shared\\LoadingSpinner.tsx": {
+    "mtime": 1782997123.0,
+    "ast_hash": "14a840cac9dace42cc9f869ba74a4dc9",
+    "semantic_hash": "14a840cac9dace42cc9f869ba74a4dc9"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\shared\\TimestampCell.tsx": {
+    "mtime": 1782997123.0,
+    "ast_hash": "adcd54c2e472ade34fc10013cd3d1e71",
+    "semantic_hash": "adcd54c2e472ade34fc10013cd3d1e71"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\ui\\badge.tsx": {
+    "mtime": 1782997125.0,
+    "ast_hash": "f4aac1a179c457936372f43c5731815a",
+    "semantic_hash": "f4aac1a179c457936372f43c5731815a"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\ui\\button.tsx": {
+    "mtime": 1782997125.0,
+    "ast_hash": "3ca9af3e0f06580c0f135fa309ec8b6a",
+    "semantic_hash": "3ca9af3e0f06580c0f135fa309ec8b6a"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\ui\\card.tsx": {
+    "mtime": 1782997125.0,
+    "ast_hash": "9657ba00f0713b5b5f80760742dcb55c",
+    "semantic_hash": "9657ba00f0713b5b5f80760742dcb55c"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\ui\\input.tsx": {
+    "mtime": 1782997125.0,
+    "ast_hash": "7ec3bb00332865b939e90cb79eeb1571",
+    "semantic_hash": "7ec3bb00332865b939e90cb79eeb1571"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\ui\\multi-select.tsx": {
+    "mtime": 1782997125.0,
+    "ast_hash": "9ab8cd0cd18302db9cf9ac36ee7727f4",
+    "semantic_hash": "9ab8cd0cd18302db9cf9ac36ee7727f4"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\ui\\sheet.tsx": {
+    "mtime": 1782997125.0,
+    "ast_hash": "6bed544ae6f184598eb41718ad42d954",
+    "semantic_hash": "6bed544ae6f184598eb41718ad42d954"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\components\\ui\\table.tsx": {
+    "mtime": 1782997126.0,
+    "ast_hash": "eff32518918bc9972e02317c3ed4fef3",
+    "semantic_hash": "eff32518918bc9972e02317c3ed4fef3"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\hooks\\useAuth.ts": {
+    "mtime": 1782997116.0,
+    "ast_hash": "223ffa208190d886973d74d62518e2f4",
+    "semantic_hash": "223ffa208190d886973d74d62518e2f4"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\hooks\\useAutoRefresh.ts": {
+    "mtime": 1782997117.0,
+    "ast_hash": "2c5ab424893ede21e08a48f66844b96a",
+    "semantic_hash": "2c5ab424893ede21e08a48f66844b96a"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\hooks\\useDashboardFilters.ts": {
+    "mtime": 1782997117.0,
+    "ast_hash": "2c59cd9fa6705c4e7194f8918af3b7cc",
+    "semantic_hash": "2c59cd9fa6705c4e7194f8918af3b7cc"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\main.tsx": {
+    "mtime": 1782997110.0,
+    "ast_hash": "9944dcbd9c9d7e6526ea4fbc5e80c479",
+    "semantic_hash": "9944dcbd9c9d7e6526ea4fbc5e80c479"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Alerts.tsx": {
+    "mtime": 1782997113.0,
+    "ast_hash": "7f97c4d4eb2b7b47fa745733c5bcb94b",
+    "semantic_hash": "7f97c4d4eb2b7b47fa745733c5bcb94b"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\AuditLog.tsx": {
+    "mtime": 1782997113.0,
+    "ast_hash": "509244e5a01c891a40e7c9bbb703685c",
+    "semantic_hash": "509244e5a01c891a40e7c9bbb703685c"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Checks.tsx": {
+    "mtime": 1782997113.0,
+    "ast_hash": "e1a8aaa6b42eee1371a4de147ce48b49",
+    "semantic_hash": "e1a8aaa6b42eee1371a4de147ce48b49"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Dashboard.tsx": {
+    "mtime": 1782997113.0,
+    "ast_hash": "6951eb8a92fd4e803b6e2c2129e52a2b",
+    "semantic_hash": "6951eb8a92fd4e803b6e2c2129e52a2b"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\IncidentDetail.tsx": {
+    "mtime": 1782997114.0,
+    "ast_hash": "958f65dcc3f5ca99b7808f8fe6debc9a",
+    "semantic_hash": "958f65dcc3f5ca99b7808f8fe6debc9a"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Incidents.tsx": {
+    "mtime": 1782997114.0,
+    "ast_hash": "733264fa1115ccb6edcf034f24910a96",
+    "semantic_hash": "733264fa1115ccb6edcf034f24910a96"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Login.tsx": {
+    "mtime": 1782997114.0,
+    "ast_hash": "a49807701374b1b2532b2aad465aab50",
+    "semantic_hash": "a49807701374b1b2532b2aad465aab50"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Monitoring.tsx": {
+    "mtime": 1782997114.0,
+    "ast_hash": "f7f0ff3b813ba10aaa05911ce500be41",
+    "semantic_hash": "f7f0ff3b813ba10aaa05911ce500be41"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\MonitoringDashboard.tsx": {
+    "mtime": 1782997114.0,
+    "ast_hash": "362edddffd8de787f70044f2d6b0985d",
+    "semantic_hash": "362edddffd8de787f70044f2d6b0985d"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Servers.tsx": {
+    "mtime": 1782997115.0,
+    "ast_hash": "6cbcd737652a783761677e5a4af12de5",
+    "semantic_hash": "6cbcd737652a783761677e5a4af12de5"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Settings.tsx": {
+    "mtime": 1782997115.0,
+    "ast_hash": "28d563e92320bb56ee17a256d22d06c8",
+    "semantic_hash": "28d563e92320bb56ee17a256d22d06c8"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\TableCountDashboard.tsx": {
+    "mtime": 1782997115.0,
+    "ast_hash": "dddc262e452bf3a1ddc94ce0fe0f4cc6",
+    "semantic_hash": "dddc262e452bf3a1ddc94ce0fe0f4cc6"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\pages\\Thresholds.tsx": {
+    "mtime": 1782997115.0,
+    "ast_hash": "149ed9062fde04b1b5151ae149942787",
+    "semantic_hash": "149ed9062fde04b1b5151ae149942787"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\store\\authStore.ts": {
+    "mtime": 1782997110.0,
+    "ast_hash": "486a62ca1e58fe82a2e4ae200b95bc49",
+    "semantic_hash": "486a62ca1e58fe82a2e4ae200b95bc49"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\store\\timezoneStore.ts": {
+    "mtime": 1782997110.0,
+    "ast_hash": "8767941aa69ca386d16a817b0978f5f3",
+    "semantic_hash": "8767941aa69ca386d16a817b0978f5f3"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\test\\setup.ts": {
+    "mtime": 1782997117.0,
+    "ast_hash": "702bfd3de87c3350608235854fae5a23",
+    "semantic_hash": "702bfd3de87c3350608235854fae5a23"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\test\\unit\\EmptyState.test.tsx": {
+    "mtime": 1782997126.0,
+    "ast_hash": "7ee2f778180f5119975f37f490defd46",
+    "semantic_hash": "7ee2f778180f5119975f37f490defd46"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\test\\unit\\TimestampCell.test.tsx": {
+    "mtime": 1782997127.0,
+    "ast_hash": "25f1e45a759296f50a8c53d33b193f41",
+    "semantic_hash": "25f1e45a759296f50a8c53d33b193f41"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\test\\unit\\a11y\\Dashboard.a11y.test.tsx": {
+    "mtime": 1782997127.0,
+    "ast_hash": "02c200a04789fc6e63be8d1eddf9924c",
+    "semantic_hash": "02c200a04789fc6e63be8d1eddf9924c"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\test\\unit\\duration.test.ts": {
+    "mtime": 1782997126.0,
+    "ast_hash": "8a9f70e5fd3b7e5f71b40b65e100336d",
+    "semantic_hash": "8a9f70e5fd3b7e5f71b40b65e100336d"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\test\\unit\\timezone.test.ts": {
+    "mtime": 1782997127.0,
+    "ast_hash": "e78574ffd0eaf77975a2093b0cd19b5d",
+    "semantic_hash": "e78574ffd0eaf77975a2093b0cd19b5d"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\utils\\cn.ts": {
+    "mtime": 1782997115.0,
+    "ast_hash": "d5fc3afa79f0c3df711898805e5da7b2",
+    "semantic_hash": "d5fc3afa79f0c3df711898805e5da7b2"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\utils\\csv.ts": {
+    "mtime": 1782997116.0,
+    "ast_hash": "a8e4aed91e7dd0a99b281dbf7eb94fc0",
+    "semantic_hash": "a8e4aed91e7dd0a99b281dbf7eb94fc0"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\utils\\duration.ts": {
+    "mtime": 1782997116.0,
+    "ast_hash": "3e335147a5a391473a85e5590e580c88",
+    "semantic_hash": "3e335147a5a391473a85e5590e580c88"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\utils\\sound.ts": {
+    "mtime": 1782997116.0,
+    "ast_hash": "3039dbe2c7468faa089ae29aef326d56",
+    "semantic_hash": "3039dbe2c7468faa089ae29aef326d56"
+  },
+  "C:\\projects\\PG Insides\\UI\\src\\utils\\timezone.ts": {
+    "mtime": 1782997116.0,
+    "ast_hash": "ac1c2e295009d471624b98814774e1b0",
+    "semantic_hash": "ac1c2e295009d471624b98814774e1b0"
+  },
+  "C:\\projects\\PG Insides\\UI\\tailwind.config.ts": {
+    "mtime": 1782997107.0,
+    "ast_hash": "7bac6af411fac8cec8041efe6c25f3af",
+    "semantic_hash": "7bac6af411fac8cec8041efe6c25f3af"
+  },
+  "C:\\projects\\PG Insides\\UI\\tests\\property\\SummaryPanel.property.test.ts": {
+    "mtime": 1782997129.0,
+    "ast_hash": "973805a9d624c545ce69948de2f087d3",
+    "semantic_hash": "973805a9d624c545ce69948de2f087d3"
+  },
+  "C:\\projects\\PG Insides\\UI\\tests\\property\\useDashboardFilters.property.test.ts": {
+    "mtime": 1782997130.0,
+    "ast_hash": "ace2e601a6f79383f360e0093d2955c8",
+    "semantic_hash": "ace2e601a6f79383f360e0093d2955c8"
+  },
+  "C:\\projects\\PG Insides\\UI\\tests\\unit\\useAutoRefresh.test.ts": {
+    "mtime": 1782997129.0,
+    "ast_hash": "a7b5df858c713b23ca7f43a9310fdc1e",
+    "semantic_hash": "a7b5df858c713b23ca7f43a9310fdc1e"
+  },
+  "C:\\projects\\PG Insides\\UI\\tests\\unit\\useDashboardFilters.test.ts": {
+    "mtime": 1782997129.0,
+    "ast_hash": "0b38830d4b6276cb6eb35210c81ecbf5",
+    "semantic_hash": "0b38830d4b6276cb6eb35210c81ecbf5"
+  },
+  "C:\\projects\\PG Insides\\UI\\tsconfig.json": {
+    "mtime": 1782997108.0,
+    "ast_hash": "9f8ecd0874ead4d0bb0c7b0d477bcfcd",
+    "semantic_hash": "9f8ecd0874ead4d0bb0c7b0d477bcfcd"
+  },
+  "C:\\projects\\PG Insides\\UI\\tsconfig.node.json": {
+    "mtime": 1782997108.0,
+    "ast_hash": "281e378713152cccc7860c818db55849",
+    "semantic_hash": "281e378713152cccc7860c818db55849"
+  },
+  "C:\\projects\\PG Insides\\UI\\vite.config.ts": {
+    "mtime": 1782997108.0,
+    "ast_hash": "6e4ce54ebb4795eda4ed69809fe60152",
+    "semantic_hash": "6e4ce54ebb4795eda4ed69809fe60152"
+  },
+  "C:\\projects\\PG Insides\\UI\\vitest.config.ts": {
+    "mtime": 1782997108.0,
+    "ast_hash": "a4a8fed56a0a6f344f59e91754a7df50",
+    "semantic_hash": "a4a8fed56a0a6f344f59e91754a7df50"
+  },
+  "C:\\projects\\PG Insides\\UI\\IMPLEMENTATION_SUMMARY.md": {
+    "mtime": 1782997106.0,
+    "ast_hash": "7f7abe14dd90b7a647db931f0b2e6530",
+    "semantic_hash": "7f7abe14dd90b7a647db931f0b2e6530"
+  },
+  "C:\\projects\\PG Insides\\UI\\README.md": {
+    "mtime": 1782997107.0,
+    "ast_hash": "161c380da1e0c84f5bb4fd2700524f02",
+    "semantic_hash": "161c380da1e0c84f5bb4fd2700524f02"
+  },
+  "C:\\projects\\PG Insides\\UI\\UI_DESIGN.md": {
+    "mtime": 1783065465.7621403,
+    "ast_hash": "f6ad65958d6d546dfc2213c0827ee2db",
+    "semantic_hash": "f6ad65958d6d546dfc2213c0827ee2db"
+  },
+  "C:\\projects\\PG Insides\\UI\\index.html": {
+    "mtime": 1782997106.0,
+    "ast_hash": "bfd0e63c2896cb4edbd43bb0b1e2bcf5",
+    "semantic_hash": "bfd0e63c2896cb4edbd43bb0b1e2bcf5"
+  }
+}

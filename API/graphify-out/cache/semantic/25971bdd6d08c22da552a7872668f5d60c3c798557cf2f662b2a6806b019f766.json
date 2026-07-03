@@ -1,0 +1,1 @@
+{"nodes": [{"id": "middleware_cors", "label": "add_cors_middleware", "file_type": "code", "source_file": "app/middleware/cors.py", "source_location": null}], "edges": [{"source": "middleware_cors", "target": "config_get_settings", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "app/middleware/cors.py", "weight": 1.0}], "hyperedges": []}

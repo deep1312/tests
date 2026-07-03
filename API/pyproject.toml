@@ -1,0 +1,32 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = [
+    "unit: fast, isolated unit tests with no external dependencies",
+    "integration: tests that require a live database or external services",
+    "property: Hypothesis property-based tests",
+]
+
+# ---------------------------------------------------------------------------
+# Hypothesis profiles
+# ---------------------------------------------------------------------------
+# Activate a profile by setting the HYPOTHESIS_PROFILE environment variable,
+# e.g.:  HYPOTHESIS_PROFILE=ci pytest
+#
+# Default profile (development): quick feedback, low example count.
+# ci profile: thorough, higher example count, explicit deadline.
+# nightly profile: exhaustive, no deadline, maximum examples.
+# ---------------------------------------------------------------------------
+
+[tool.hypothesis]
+# These are the default settings used when no profile is explicitly selected.
+max_examples = 100
+deadline = 500
+
+[tool.hypothesis.profiles.ci]
+max_examples = 200
+deadline = 2000
+
+[tool.hypothesis.profiles.nightly]
+max_examples = 1000
+deadline = false

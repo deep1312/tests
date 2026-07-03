@@ -1,0 +1,1 @@
+{"nodes": [{"id": "request_auth_LoginRequest", "label": "LoginRequest", "file_type": "code", "source_file": "app/models/requests/auth.py", "source_location": null}], "edges": [], "hyperedges": []}

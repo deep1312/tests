@@ -1,0 +1,1 @@
+{"nodes": [{"id": "input", "label": "Input", "file_type": "code", "source_file": "src/components/ui/input.tsx"}], "edges": [{"source": "input", "target": "cn", "relation": "uses", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "src/components/ui/input.tsx", "weight": 1.0}], "hyperedges": []}

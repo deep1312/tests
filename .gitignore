@@ -1,0 +1,64 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+.pytest_cache/
+*.egg-info/
+dist/
+
+# --- API ---
+API/venv/
+API/.pytest_cache/
+API/stderr.log
+API/stdout.log
+API/*.db
+
+# --- UI / Node ---
+UI/node_modules/
+UI/dist/
+UI/.env.local
+UI/.env.production
+
+# --- Collector ---
+pg_health_collector/logs/
+pg_health_collector/*.log
+
+# --- graphify temp files ---
+**/graphify-out/.graphify_*.json
+**/graphify-out/.graphify_*.txt
+**/graphify-out/.graphify_python
+**/graphify-out/.graphify_root
+**/graphify-out/*.py
+**/graphify-out/.needs_update
+**/graphify-out/step_*.py
+**/graphify-out/merge_*.py
+**/graphify-out/build_*.py
+**/graphify-out/label_*.py
+**/graphify-out/finalize.py
+**/graphify-out/detect_*.py
+**/graphify-out/prepare_*.py
+**/graphify-out/show_*.py
+**/graphify-out/check_cache.py
+
+# --- Environment ---
+.env
+.env.*
+*.key
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Logs ---
+*.log
