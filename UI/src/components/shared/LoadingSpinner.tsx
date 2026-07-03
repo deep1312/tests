@@ -1,17 +1,13 @@
-/**
- * Accessible loading indicator shown while API requests are in flight
- * Validates: Requirements 14.6
- */
+import { Loader2 } from 'lucide-react'
+
 export function LoadingSpinner() {
   return (
-    <div
-      className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"
-      role="status"
-      aria-label="Loading"
-    >
-      <span className="sr-only">Loading...</span>
+    <div className="flex flex-col items-center justify-center gap-3 py-12">
+      <div className="relative">
+        <div className="w-10 h-10 rounded-full border-2 border-muted" />
+        <Loader2 className="w-10 h-10 text-primary animate-spin absolute inset-0" />
+      </div>
+      <p className="text-xs text-muted-foreground font-medium">Loading...</p>
     </div>
   )
 }
-
-export default LoadingSpinner

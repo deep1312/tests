@@ -3,6 +3,7 @@
 import { TabularResult } from '../../../api/monitoring'
 import { EmptyState } from '../../shared/EmptyState'
 import { formatInTZ } from '../../../utils/timezone'
+import { Database } from 'lucide-react'
 
 interface TelemetryTableProps {
   title: string
@@ -21,8 +22,8 @@ export function TelemetryTable({
   // Guard clause against empty or malformed data structures
   if (!data || !data.rows || data.rows.length === 0 || !data.columns || data.columns.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-sm flex items-center justify-center min-h-[280px]">
-        <EmptyState title="No Records Found" description={emptyMessage} />
+      <div className="bg-card/90 backdrop-blur-sm rounded-xl border border-border p-8 shadow-sm flex items-center justify-center min-h-[280px]">
+        <EmptyState title="No Records Found" description={emptyMessage} icon={Database} />
       </div>
     )
   }
@@ -48,20 +49,20 @@ export function TelemetryTable({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full">
+    <div className="bg-card/90 backdrop-blur-sm rounded-xl border border-border shadow-sm overflow-hidden flex flex-col h-full">
       {/* Table Section Header */}
-      <div className="px-5 py-4 bg-slate-50/70 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+      <div className="px-5 py-4 bg-muted/70 border-b border-border flex flex-wrap justify-between items-center gap-2">
         <div>
-          <h3 className="text-sm font-semibold text-slate-800 tracking-tight">
+          <h3 className="text-sm font-semibold text-foreground tracking-tight">
             {title}
           </h3>
           {subtitle && (
-            <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
           )}
         </div>
 
         {data.collected_at && (
-          <div className="text-xs bg-slate-100 border border-slate-200 text-slate-600 px-2 py-1 rounded font-mono">
+          <div className="text-xs bg-muted border border-border text-muted-foreground px-2 py-1 rounded font-mono">
             Captured: {formatInTZ(data.collected_at)}
           </div>
         )}
@@ -71,11 +72,11 @@ export function TelemetryTable({
       <div className="overflow-x-auto flex-grow max-h-[400px] scrollbar-thin">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-slate-200 bg-slate-50/30 sticky top-0 backdrop-blur-sm z-10">
+            <tr className="border-b border-border bg-muted/30 sticky top-0 backdrop-blur-sm z-10">
               {data.columns.map((column) => (
                 <th
                   key={column}
-                  className="px-4 py-2.5 text-xs font-bold text-slate-600 tracking-wider uppercase whitespace-nowrap"
+                  className="px-4 py-2.5 text-xs font-bold text-muted-foreground tracking-wider uppercase whitespace-nowrap"
                 >
                   {formatHeader(column)}
                 </th>
@@ -86,7 +87,7 @@ export function TelemetryTable({
             {data.rows.map((row, rowIndex) => (
               <tr 
                 key={rowIndex} 
-                className="hover:bg-slate-50/50 transition-colors duration-150 ease-in-out odd:bg-white even:bg-slate-50/20"
+                className="hover:bg-muted/50 transition-colors duration-150 ease-in-out odd:bg-card/90 backdrop-blur-sm even:bg-muted/20"
               >
                 {data.columns.map((column) => (
                   <td 

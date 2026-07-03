@@ -33,7 +33,7 @@ function AlertTimeline({ alert }: { alert: Alert }) {
 
   return (
     <div className="space-y-3">
-      <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Timeline</h4>
+      <h4 className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Timeline</h4>
       <div className="relative pl-5 space-y-3">
         {events.map((ev, i) => (
           <div key={ev.label} className="relative">
@@ -46,7 +46,7 @@ function AlertTimeline({ alert }: { alert: Alert }) {
               </div>
               <div className="min-w-0">
                 <p className="text-[11px] font-semibold text-slate-700">{ev.label}</p>
-                <p className="text-[10px] text-slate-400">{formatInTZ(ev.time)}</p>
+                <p className="text-[10px] text-muted-foreground">{formatInTZ(ev.time)}</p>
               </div>
             </div>
           </div>
@@ -101,9 +101,9 @@ export function AlertDetailSheet({ alert, serverName, checkName, open, onOpenCha
 
         <div className="space-y-2">
           {fields.map((f) => (
-            <div key={f.label} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
-              <span className="text-[10px] font-medium text-slate-500">{f.label}</span>
-              <span className="text-[11px] font-semibold text-slate-800 text-right max-w-[60%] truncate">{f.value}</span>
+            <div key={f.label} className="flex items-center justify-between rounded-lg bg-muted px-3 py-2">
+              <span className="text-[10px] font-medium text-muted-foreground">{f.label}</span>
+              <span className="text-[11px] font-semibold text-foreground text-right max-w-[60%] truncate">{f.value}</span>
             </div>
           ))}
         </div>

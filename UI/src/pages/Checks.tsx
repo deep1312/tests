@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Plus, Pencil, Trash2, CheckCircle } from 'lucide-react'
 import { useChecks, useCreateCheck, useUpdateCheck, useDeleteCheck, Check } from '../api/checks'
-import { LoadingSpinner } from '../components/shared/LoadingSpinner'
+
 import { ErrorBanner } from '../components/shared/ErrorBanner'
 import { EmptyState } from '../components/shared/EmptyState'
 import { useAuth } from '../hooks/useAuth'
@@ -73,38 +73,39 @@ function CheckForm({ initial, onSubmit, onCancel, isLoading }: CheckFormProps) {
     })
   }
 
-  const selClass = 'mt-0.5 block w-full border rounded px-2 py-1.5 text-xs bg-white'
+  const inputClass = 'w-full h-10 px-3 rounded-xl bg-muted/50 border border-border text-foreground text-sm focus:ring-2 focus:ring-ring outline-none transition-all duration-200 placeholder:text-muted-foreground/50'
+  const selectClass = 'h-10 px-3 rounded-xl bg-muted/50 border border-border text-foreground text-sm focus:ring-2 focus:ring-ring outline-none transition-all duration-200'
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="grid grid-cols-2 gap-3">
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-gray-700">Code *</label>
-          <input required className="mt-0.5 block w-full border rounded px-2 py-1.5 text-xs" value={form.check_code} onChange={e => set('check_code', e.target.value)} />
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">Code *</label>
+          <input required className={inputClass} value={form.check_code} onChange={e => set('check_code', e.target.value)} />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700">Name *</label>
-          <input required className="mt-0.5 block w-full border rounded px-2 py-1.5 text-xs" value={form.check_name} onChange={e => set('check_name', e.target.value)} />
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">Name *</label>
+          <input required className={inputClass} value={form.check_name} onChange={e => set('check_name', e.target.value)} />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700">Category *</label>
-          <input required className="mt-0.5 block w-full border rounded px-2 py-1.5 text-xs" placeholder="perf / avail / repl" value={form.category} onChange={e => set('category', e.target.value)} />
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">Category *</label>
+          <input required className={inputClass} placeholder="perf / avail / repl" value={form.category} onChange={e => set('category', e.target.value)} />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700">Timeout</label>
-          <div className="flex gap-1.5 mt-0.5">
-            <input type="number" min={1} className="block w-2/3 border rounded px-2 py-1.5 text-xs" value={form.timeout_value} onChange={e => set('timeout_value', Number(e.target.value))} />
-            <select className={`${selClass} w-1/3`} value={form.timeout_unit} onChange={e => set('timeout_unit', e.target.value)}>
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">Timeout</label>
+          <div className="flex gap-2">
+            <input type="number" min={1} className={`${inputClass} w-2/3`} value={form.timeout_value} onChange={e => set('timeout_value', Number(e.target.value))} />
+            <select className={`${selectClass} w-1/3`} value={form.timeout_unit} onChange={e => set('timeout_unit', e.target.value)}>
               <option value="seconds">Seconds</option>
               <option value="minutes">Minutes</option>
             </select>
           </div>
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700">Frequency</label>
-          <div className="flex gap-1.5 mt-0.5">
-            <input type="number" min={1} className="block w-2/3 border rounded px-2 py-1.5 text-xs" placeholder="e.g. 30" value={form.frequency_value ?? ''} onChange={e => set('frequency_value', e.target.value ? Number(e.target.value) : undefined)} />
-            <select className={`${selClass} w-1/3`} value={form.frequency_unit} onChange={e => set('frequency_unit', e.target.value)}>
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">Frequency</label>
+          <div className="flex gap-2">
+            <input type="number" min={1} className={`${inputClass} w-2/3`} placeholder="e.g. 30" value={form.frequency_value ?? ''} onChange={e => set('frequency_value', e.target.value ? Number(e.target.value) : undefined)} />
+            <select className={`${selectClass} w-1/3`} value={form.frequency_unit} onChange={e => set('frequency_unit', e.target.value)}>
               <option value="seconds">Seconds</option>
               <option value="minutes">Minutes</option>
             </select>
@@ -112,20 +113,48 @@ function CheckForm({ initial, onSubmit, onCancel, isLoading }: CheckFormProps) {
         </div>
       </div>
       <div>
-        <label className="block text-xs font-medium text-gray-700">Query *</label>
-        <textarea required rows={3} className="mt-0.5 block w-full border rounded px-2 py-1.5 text-xs font-mono" value={form.query_text} onChange={e => set('query_text', e.target.value)} />
+        <label className="block text-xs font-medium text-muted-foreground mb-1.5">Query *</label>
+        <textarea required rows={3} className="w-full px-3 py-2.5 rounded-xl bg-muted/50 border border-border text-foreground text-sm font-mono focus:ring-2 focus:ring-ring outline-none transition-all duration-200 resize-y" value={form.query_text} onChange={e => set('query_text', e.target.value)} />
       </div>
-      <div className="flex items-center gap-1.5">
-        <input type="checkbox" id="is_active" checked={form.is_active} onChange={e => set('is_active', e.target.checked)} />
-        <label htmlFor="is_active" className="text-xs text-gray-700">Active</label>
+      <div className="flex items-center gap-2">
+        <input type="checkbox" id="is_active" checked={form.is_active} onChange={e => set('is_active', e.target.checked)} className="rounded border-border" />
+        <label htmlFor="is_active" className="text-sm text-foreground font-medium">Active</label>
       </div>
-      <div className="flex justify-end gap-1.5">
-        <button type="button" onClick={onCancel} className="px-3 py-1.5 text-xs border rounded hover:bg-gray-50">Cancel</button>
-        <button type="submit" disabled={isLoading} className="px-3 py-1.5 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
+      <div className="flex justify-end gap-3 pt-4 border-t border-border/50">
+        <button type="button" onClick={onCancel} className="px-4 py-2 rounded-xl bg-muted text-foreground font-medium hover:bg-muted/80 transition-all duration-200 text-sm">Cancel</button>
+        <button type="submit" disabled={isLoading} className="px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold shadow-glow-sm hover:shadow-glow-md transition-all duration-300 disabled:opacity-50 text-sm">
           {isLoading ? 'Saving\u2026' : 'Save'}
         </button>
       </div>
     </form>
+  )
+}
+
+/* ── Skeleton ── */
+function ChecksSkeleton() {
+  return (
+    <div className="p-6 max-w-7xl mx-auto space-y-6" aria-hidden="true">
+      <div className="flex justify-between items-end">
+        <div className="space-y-2">
+          <div className="h-7 w-32 skeleton" />
+          <div className="h-4 w-48 skeleton" />
+        </div>
+        <div className="h-10 w-28 skeleton rounded-xl" />
+      </div>
+      <div className="glass-card overflow-hidden">
+        <div className="bg-muted/50 h-10 w-full" />
+        {[1, 2, 3, 4, 5].map(i => (
+          <div key={i} className="px-4 py-3 flex gap-4 border-b border-border/30">
+            <div className="h-4 w-20 skeleton" />
+            <div className="h-4 w-32 skeleton" />
+            <div className="h-4 w-16 skeleton" />
+            <div className="h-4 w-12 skeleton" />
+            <div className="h-4 w-12 skeleton" />
+            <div className="h-4 w-8 skeleton rounded-full" />
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -163,25 +192,38 @@ export function Checks() {
     catch (e: any) { setError(e?.response?.data?.error?.message ?? 'Failed to delete check') }
   }
 
+  if (isLoading) return <ChecksSkeleton />
+
   return (
-    <div className="p-4 space-y-3">
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
+      {/* ── Page Header ── */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-bold text-gray-900">Checks</h1>
-          <p className="text-[11px] text-gray-500">Define and manage health checks</p>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Checks</h1>
+          <p className="text-sm text-muted-foreground mt-1">Define and manage health checks for your servers</p>
         </div>
         {role === 'admin' && (
-          <button onClick={() => setShowForm(true)} className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-xs">
-            <Plus className="w-3.5 h-3.5" /> Add Check
+          <button onClick={() => setShowForm(true)} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold shadow-glow-sm hover:shadow-glow-md transition-all duration-300 text-sm group">
+            <Plus className="w-4 h-4 transition-transform duration-200 group-hover:rotate-90" /> Add Check
           </button>
         )}
       </div>
 
+      {/* ── Error ── */}
       {error && <ErrorBanner message={error} />}
 
+      {/* ── Form Panel ── */}
       {(showForm || editing) && (
-        <div className="bg-white rounded-lg shadow p-4">
-          <h2 className="text-sm font-semibold mb-3">{editing ? 'Edit Check' : 'Add Check'}</h2>
+        <div className="glass-card p-6 border-primary/20 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <CheckCircle className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-base font-semibold text-foreground">{editing ? 'Edit Check' : 'Add Check'}</h2>
+              <p className="text-xs text-muted-foreground">{editing ? 'Modify the check configuration' : 'Create a new health check definition'}</p>
+            </div>
+          </div>
           <CheckForm
             initial={editing ?? undefined}
             onSubmit={editing ? handleUpdate : handleCreate}
@@ -191,60 +233,72 @@ export function Checks() {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        {isLoading ? <div className="p-4"><LoadingSpinner /></div>
-          : isError ? <div className="p-4"><ErrorBanner message="Failed to load checks." /></div>
-          : checks.length === 0 ? <EmptyState icon={CheckCircle} title="No checks yet" description="Add your first health check" />
-          : (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  {['Code', 'Name', 'Category', 'Timeout', 'Frequency', 'Status', 'Actions'].map(h => (
-                    <th key={h} className="px-3 py-2 text-left text-[10px] font-medium text-gray-500 uppercase">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {checks.map(c => (
-                  <tr key={c.check_id} className="hover:bg-gray-50">
-                    <td className="px-3 py-2 text-xs font-mono text-gray-700">{c.check_code}</td>
-                    <td className="px-3 py-2 text-xs text-gray-900">{c.check_name}</td>
-                    <td className="px-3 py-2 text-xs text-gray-500">{c.category}</td>
-                    <td className="px-3 py-2 text-xs text-gray-500">{(() => { if (c.timeout_ms == null) return '\u2014'; const vu = msToValueUnit(c.timeout_ms, 0); return `${vu.value}${vu.unit === 'minutes' ? 'm' : 's'}` })()}</td>
-                    <td className="px-3 py-2 text-xs text-gray-500">{(() => { if (c.default_frequency_sec == null) return '\u2014'; const vu = secToValueUnit(c.default_frequency_sec); if (!vu) return '\u2014'; return `${vu.value}${vu.unit === 'minutes' ? 'm' : 's'}` })()}</td>
-                    <td className="px-3 py-2">
-                      {role === 'admin' ? (
-                        <button
-                          onClick={() => updateCheck.mutateAsync({ checkId: c.check_id, data: { is_active: !c.is_active, version: c.version } })}
-                          className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${c.is_active ? 'bg-blue-600' : 'bg-gray-300'}`}
-                        >
-                          <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${c.is_active ? 'translate-x-[18px]' : 'translate-x-[3px]'}`} />
-                        </button>
-                      ) : (
-                        <span className={`text-[10px] font-medium ${c.is_active ? 'text-green-600' : 'text-gray-400'}`}>
-                          {c.is_active ? 'Active' : 'Inactive'}
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-3 py-2">
-                      {role === 'admin' && (
-                        <div className="flex items-center gap-1.5">
-                          <button onClick={() => setEditing(c)} className="text-gray-400 hover:text-blue-600"><Pencil className="w-3.5 h-3.5" /></button>
-                          <button onClick={() => handleDelete(c.check_id)} className="text-gray-400 hover:text-red-600"><Trash2 className="w-3.5 h-3.5" /></button>
-                        </div>
-                      )}
-                    </td>
+      {/* ── Table ── */}
+      <div className="glass-card overflow-hidden">
+        {isError ? <div className="p-6"><ErrorBanner message="Failed to load checks." /></div>
+          : checks.length === 0 ? (
+            <div className="p-10">
+              <EmptyState icon={CheckCircle} title="No checks yet" description="Add your first health check to start monitoring" />
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr className="bg-muted/50">
+                    {['Code', 'Name', 'Category', 'Timeout', 'Frequency', 'Status', 'Actions'].map(h => (
+                      <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">{h}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-border/50">
+                  {checks.map(c => (
+                    <tr key={c.check_id} className="hover:bg-muted/30 transition-colors duration-200">
+                      <td className="px-4 py-3 text-sm font-mono text-foreground">{c.check_code}</td>
+                      <td className="px-4 py-3 text-sm text-foreground font-medium">{c.check_name}</td>
+                      <td className="px-4 py-3">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-muted text-muted-foreground">{c.category}</span>
+                      </td>
+                      <td className="px-4 py-3 text-sm text-muted-foreground tabular-nums">{(() => { if (c.timeout_ms == null) return '\u2014'; const vu = msToValueUnit(c.timeout_ms, 0); return `${vu.value}${vu.unit === 'minutes' ? 'm' : 's'}` })()}</td>
+                      <td className="px-4 py-3 text-sm text-muted-foreground tabular-nums">{(() => { if (c.default_frequency_sec == null) return '\u2014'; const vu = secToValueUnit(c.default_frequency_sec); if (!vu) return '\u2014'; return `${vu.value}${vu.unit === 'minutes' ? 'm' : 's'}` })()}</td>
+                      <td className="px-4 py-3">
+                        {role === 'admin' ? (
+                          <button
+                            onClick={() => updateCheck.mutateAsync({ checkId: c.check_id, data: { is_active: !c.is_active, version: c.version } })}
+                            className={`relative inline-flex h-5 w-9 items-center rounded-full transition-all duration-200 ${c.is_active ? 'bg-success' : 'bg-muted-foreground/20'}`}
+                          >
+                            <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-card shadow-sm transition-transform duration-200 ${c.is_active ? 'translate-x-[18px]' : 'translate-x-[3px]'}`} />
+                          </button>
+                        ) : (
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold ${c.is_active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${c.is_active ? 'bg-success' : 'bg-muted-foreground/30'}`} />
+                            {c.is_active ? 'Active' : 'Inactive'}
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">
+                        {role === 'admin' && (
+                          <div className="flex items-center gap-1.5">
+                            <button onClick={() => setEditing(c)} className="p-1.5 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200"><Pencil className="w-3.5 h-3.5" /></button>
+                            <button onClick={() => handleDelete(c.check_id)} className="p-1.5 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all duration-200"><Trash2 className="w-3.5 h-3.5" /></button>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
+
+        {/* ── Pagination ── */}
         {totalPages > 1 && (
-          <div className="px-3 py-2 border-t flex items-center justify-between text-xs text-gray-500">
-            <span>Page {page + 1} of {totalPages} ({total} total)</span>
-            <div className="flex gap-1.5">
-              <button disabled={page === 0} onClick={() => setPage(p => p - 1)} className="px-2 py-1 border rounded text-xs disabled:opacity-40">Prev</button>
-              <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)} className="px-2 py-1 border rounded text-xs disabled:opacity-40">Next</button>
+          <div className="px-5 py-3 border-t border-border/50 flex items-center justify-between">
+            <span className="text-xs font-medium text-muted-foreground">
+              Page {page + 1} of {totalPages} ({total} total)
+            </span>
+            <div className="flex gap-2">
+              <button disabled={page === 0} onClick={() => setPage(p => p - 1)} className="px-4 py-2 rounded-xl bg-muted text-foreground font-medium hover:bg-muted/80 transition-all duration-200 text-sm disabled:opacity-30">Prev</button>
+              <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)} className="px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold shadow-glow-sm hover:shadow-glow-md transition-all duration-300 text-sm disabled:opacity-30">Next</button>
             </div>
           </div>
         )}

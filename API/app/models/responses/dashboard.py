@@ -132,6 +132,7 @@ class DashboardSummaryItem(BaseModel):
     )
     retention_metrics_days: int = Field(..., ge=1, description="Metrics retention in days")
     retention_logs_days: int = Field(..., ge=1, description="Logs retention in days")
+    latest_metrics: list[dict] | None = Field(None, description="Array of latest key metrics")
 
 
 class DashboardSummaryResponse(BaseModel):

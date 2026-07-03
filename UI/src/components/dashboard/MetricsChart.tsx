@@ -31,10 +31,10 @@ export function MetricsChart({
   // 1. Handle Loading State
   if (isLoading) {
     return (
-      <div className="bg-white rounded-lg shadow p-6 h-80 flex items-center justify-center">
+      <div className="bg-card/90 backdrop-blur-sm rounded-lg border border-border p-6 h-80 flex items-center justify-center shadow-sm">
         <div className="flex flex-col items-center gap-2">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-          <p className="text-sm text-gray-500">Loading chart data...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <p className="text-sm text-muted-foreground">Loading chart data...</p>
         </div>
       </div>
     )
@@ -43,10 +43,10 @@ export function MetricsChart({
   // 2. Handle Empty Data State
   if (!data || data.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow p-6 h-80 flex items-center justify-center">
+      <div className="bg-card/90 backdrop-blur-sm rounded-lg border border-border p-6 h-80 flex items-center justify-center shadow-sm">
         <div className="text-center">
-          <p className="text-gray-400 italic">No data recorded for this period</p>
-          <p className="text-xs text-gray-300 mt-1">Check back once the collector has run</p>
+          <p className="text-muted-foreground italic">No data recorded for this period</p>
+          <p className="text-xs text-muted-foreground/50 mt-1">Check back once the collector has run</p>
         </div>
       </div>
     )
@@ -74,10 +74,10 @@ export function MetricsChart({
   const isRunType = type === 'runs' || (data[0] && 'success_rate_pct' in data[0])
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div className="bg-card/90 backdrop-blur-sm rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition-all duration-200">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">{metricName}</h3>
-        <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded">
+        <h3 className="text-lg font-semibold text-foreground">{metricName}</h3>
+        <span className="text-xs font-medium px-2 py-1 bg-muted text-muted-foreground rounded">
           {isRunType ? 'Success Rate %' : 'Value'}
         </span>
       </div>

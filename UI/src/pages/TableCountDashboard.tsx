@@ -65,19 +65,19 @@ function MultiServerSelect({
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 shadow-sm transition-all hover:border-blue-300"
+        className="flex items-center gap-2 rounded-xl border border-border/50 bg-muted/50 px-4 py-2.5 text-xs font-semibold text-foreground transition-all duration-200 hover:border-primary/50 hover:shadow-glow-sm"
       >
         {label}
-        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="absolute top-full left-0 z-20 mt-1 w-64 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+        <div className="absolute top-full left-0 z-20 mt-1.5 w-64 rounded-2xl border border-border/50 bg-card/95 backdrop-blur-xl p-2 shadow-xl">
           {servers.map(([sid, info]) => {
             const isChecked = selected.has(sid)
             return (
               <label
                 key={sid}
-                className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs text-slate-700 transition-colors hover:bg-slate-50 cursor-pointer"
+                className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-xs text-foreground transition-colors duration-200 hover:bg-muted/50 cursor-pointer"
               >
                 <input
                   type="checkbox"
@@ -88,7 +88,7 @@ function MultiServerSelect({
                     else next.add(sid)
                     onChange(next)
                   }}
-                  className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-300"
+                  className="h-4 w-4 rounded border-border text-primary focus:ring-primary/30"
                 />
                 <span className="font-medium">{info.label}</span>
               </label>
@@ -154,19 +154,19 @@ function SchemaTableManager() {
             placeholder="Schema"
             value={addSchema}
             onChange={(e) => setAddSchema(e.target.value)}
-            className="w-36 rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-700 placeholder-slate-300 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+            className="w-36 h-10 px-3 rounded-xl bg-muted/50 border border-border text-foreground text-sm placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent focus:outline-none transition-all duration-200"
           />
           <input
             type="text"
             placeholder="Table"
             value={addTable}
             onChange={(e) => setAddTable(e.target.value)}
-            className="w-36 rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-700 placeholder-slate-300 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+            className="w-36 h-10 px-3 rounded-xl bg-muted/50 border border-border text-foreground text-sm placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent focus:outline-none transition-all duration-200"
           />
           <button
             onClick={handleAdd}
             disabled={createMutation.isPending || !addSchema.trim() || !addTable.trim()}
-            className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-2 text-xs font-bold text-white shadow-sm transition-all hover:bg-blue-700 disabled:opacity-50"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-glow-sm hover:shadow-glow-md transition-all duration-300 disabled:opacity-50 disabled:shadow-none"
           >
             <Plus className="h-3.5 w-3.5" />
             Add
@@ -176,36 +176,36 @@ function SchemaTableManager() {
       <div ref={ref} className="relative">
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 shadow-sm transition-all hover:border-blue-300 hover:text-blue-600"
+          className="flex items-center gap-1.5 rounded-xl border border-border/50 bg-muted/50 px-3 py-2.5 text-xs font-semibold text-muted-foreground transition-all duration-200 hover:border-primary/50 hover:text-primary"
         >
-          <ChevronDown className={`h-3 w-3 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
           Configured ({totalActive})
         </button>
         {dropdownOpen && (
-          <div className="absolute right-0 top-full z-20 mt-1 w-80 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+          <div className="absolute right-0 top-full z-20 mt-1.5 w-80 rounded-2xl border border-border/50 bg-card/95 backdrop-blur-xl p-2 shadow-xl">
             {!records || records.length === 0 ? (
-              <p className="p-3 text-center text-xs text-slate-400">No records configured</p>
+              <p className="p-4 text-center text-sm text-muted-foreground">No records configured</p>
             ) : (
               <div className="max-h-64 overflow-y-auto">
                 {records.filter((r) => r.is_active).map((r) => (
                   <div
                     key={r.id}
                     onClick={() => setSelectedConfigId(r.id === selectedConfigId ? null : r.id)}
-                    className={`flex items-center justify-between rounded-lg px-3 py-2 text-xs cursor-pointer transition-colors ${
+                    className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-xs cursor-pointer transition-all duration-200 ${
                       r.id === selectedConfigId
-                        ? 'bg-blue-50 text-blue-700'
-                        : 'hover:bg-slate-50'
+                        ? 'bg-primary/10 text-primary ring-1 ring-primary/20'
+                        : 'hover:bg-muted/50'
                     }`}
                   >
                     <div className="min-w-0 flex-1">
-                      <span className="font-medium">{r.schema_name}</span>
-                      <span className="mx-1 text-slate-300">.</span>
-                      <span>{r.table_name}</span>
+                      <span className="font-medium text-foreground">{r.schema_name}</span>
+                      <span className="mx-1 text-muted-foreground/50">.</span>
+                      <span className="text-foreground">{r.table_name}</span>
                     </div>
                     {r.id === selectedConfigId && (
                       <button
                         onClick={(e) => { e.stopPropagation(); setSelectedConfigId(null) }}
-                        className="ml-2 rounded p-0.5 text-blue-400 hover:text-red-500 transition-colors"
+                        className="ml-2 rounded-lg p-1 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all duration-200"
                         title="Deselect"
                       >
                         <X className="h-3 w-3" />
@@ -216,11 +216,11 @@ function SchemaTableManager() {
               </div>
             )}
             {selectedConfigId !== null && isAdmin && (
-              <div className="mt-2 border-t border-slate-100 pt-2">
+              <div className="mt-2 border-t border-border/50 pt-2">
                 <button
                   onClick={handleDelete}
                   disabled={deleteMutation.isPending}
-                  className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-red-50 px-3 py-2 text-xs font-bold text-red-600 transition-colors hover:bg-red-100 disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-destructive/10 px-3 py-2.5 text-xs font-semibold text-destructive transition-all duration-200 hover:bg-destructive/20 disabled:opacity-50"
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                   Delete {selectedRecord ? `${selectedRecord.schema_name}.${selectedRecord.table_name}` : ''}
@@ -381,21 +381,22 @@ export default function TableCountDashboard() {
   const history = historyQuery.data ?? []
 
   return (
-    <div className="mx-auto max-w-[1600px] px-4 py-4">
-      <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="rounded-lg bg-indigo-100 p-2 text-indigo-600">
-            <Table2 className="h-5 w-5" />
+    <div className="p-6 max-w-[1600px] mx-auto space-y-6">
+      {/* ── Page Header ── */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+            <Table2 className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-lg font-black text-slate-900">Table Count</h1>
-            <p className="text-[11px] text-slate-400">
+            <h1 className="text-2xl font-bold text-foreground tracking-tight">Table Count</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">
               {totalCompared} tables | {activeServers.length} server{activeServers.length !== 1 ? 's' : ''}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <SchemaTableManager />
           <MultiServerSelect
             servers={servers}
@@ -405,266 +406,283 @@ export default function TableCountDashboard() {
           <button
             onClick={() => refetch()}
             disabled={isRefetching}
-            className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-[10px] font-bold text-slate-600 shadow-sm transition-all hover:border-blue-300 hover:text-blue-600"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-muted text-foreground font-medium text-sm hover:bg-muted/80 transition-all duration-200 disabled:opacity-50"
           >
-            <RefreshCw className={`h-3 w-3 ${isRefetching ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-3.5 w-3.5 ${isRefetching ? 'animate-spin text-primary' : ''}`} />
             Refresh
           </button>
         </div>
       </div>
 
-      {/* Mismatch Summary */}
+      {/* ── Mismatch Summary ── */}
       {activeServers.length >= 2 && (
-        <div className="mb-4 rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <div className="glass-card p-4">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <div>
-              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Servers</span>
-              <p className="text-sm font-black text-slate-900">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Servers</span>
+              <p className="text-sm font-bold text-foreground">
                 {activeServers.length} ({activeServers.map(([, info]) => info.label).join(', ')})
               </p>
             </div>
-            <div className="h-8 w-px bg-slate-200" />
+            <div className="h-8 w-px bg-border/50" />
             <div>
-              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Tables</span>
-              <p className="text-sm font-black text-slate-900">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Tables</span>
+              <p className="text-sm font-bold text-foreground tabular-nums">
                 {totalCompared.toLocaleString()}
               </p>
             </div>
-            <div className="h-8 w-px bg-slate-200" />
+            <div className="h-8 w-px bg-border/50" />
             <div>
-              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Mismatches</span>
-              <p className={`text-sm font-black ${mismatchCount > 0 ? 'text-red-600' : 'text-emerald-600'}`}>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Mismatches</span>
+              <p className={`text-sm font-bold tabular-nums ${mismatchCount > 0 ? 'text-destructive' : 'text-success'}`}>
                 {mismatchCount > 0 ? mismatchCount.toLocaleString() : '0'}
               </p>
               {mismatchCount > 0 && (
-                <p className="text-[10px] text-red-500">Differences detected</p>
+                <p className="text-[10px] text-destructive">Differences detected</p>
               )}
             </div>
           </div>
         </div>
       )}
 
-      <div className="mb-4 relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+      {/* ── Search Bar ── */}
+      <div className="relative max-w-sm">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <input
           type="text"
           placeholder="Search tables..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full max-w-sm rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-xs text-slate-700 placeholder-slate-400 shadow-sm focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+          className="w-full h-10 pl-10 pr-3 rounded-xl bg-muted/50 border border-border text-foreground text-sm placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent focus:outline-none transition-all duration-200"
         />
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
-        <table className="w-full text-left text-[11px]">
-          <thead>
-            <tr className="border-b border-slate-200 bg-slate-50">
-              <th className="sticky left-0 z-10 bg-slate-50 px-3 py-2.5 text-[9px] font-bold uppercase tracking-wider text-slate-400">
-                Tables
-              </th>
-              {activeServers.map(([sid, info]) => (
-                <th key={sid} className="px-3 py-2.5 text-center">
-                  <div className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
-                    {info.label}
-                  </div>
-                  <div className="text-[8px] text-slate-300">
-                    {formatTime(info.collectedAt)}
-                  </div>
+      {/* ── Data Table ── */}
+      <div className="glass-card overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead>
+              <tr className="border-b border-border/50 bg-muted/50">
+                <th className="sticky left-0 z-10 bg-muted/50 px-4 py-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Tables
                 </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {selectedServers.size === 0 ? (
-              <tr>
-                <td colSpan={activeServers.length + 1 || 1} className="px-3 py-12 text-center text-xs text-slate-400">
-                  Select servers to view table count data
-                </td>
+                {activeServers.map(([sid, info]) => (
+                  <th key={sid} className="px-4 py-3 text-center">
+                    <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      {info.label}
+                    </div>
+                    <div className="text-[9px] text-muted-foreground/60 mt-0.5">
+                      {formatTime(info.collectedAt)}
+                    </div>
+                  </th>
+                ))}
               </tr>
-            ) : isLoading ? (
-              <tr>
-                <td colSpan={activeServers.length + 1 || 1} className="px-3 py-12 text-center">
-                  <LoadingSpinner />
-                </td>
-              </tr>
-            ) : error ? (
-              <tr>
-                <td colSpan={activeServers.length + 1 || 1} className="px-3 py-8 text-center">
-                  <ErrorBanner error={error} />
-                  <button
-                    onClick={() => refetch()}
-                    className="mt-2 rounded-lg bg-red-50 px-3 py-1.5 text-[10px] font-bold text-red-600 hover:bg-red-100 transition-colors"
-                  >
-                    Retry
-                  </button>
-                </td>
-              </tr>
-            ) : sortedRows.length === 0 ? (
-              <tr>
-                <td colSpan={activeServers.length + 1} className="px-3 py-8 text-center text-xs text-slate-400">
-                  {search ? 'No tables match your search' : 'No table count data available'}
-                </td>
-              </tr>
-            ) : (
-              sortedRows.map((row) => {
-                const presentCounts: number[] = []
-                let hasMissing = false
-                for (const sid of selectedServers) {
-                  const cell = row.servers[sid]
-                  if (!cell) { hasMissing = true; break }
-                  if (cell.record_count !== null && cell.record_count !== undefined) {
-                    presentCounts.push(cell.record_count)
+            </thead>
+            <tbody className="divide-y divide-border/50">
+              {selectedServers.size === 0 ? (
+                <tr>
+                  <td colSpan={activeServers.length + 1 || 1} className="px-4 py-16 text-center">
+                    <div className="flex flex-col items-center gap-2">
+                      <Table2 className="w-10 h-10 text-muted-foreground/30" />
+                      <p className="text-sm text-muted-foreground">Select servers to view table count data</p>
+                    </div>
+                  </td>
+                </tr>
+              ) : isLoading ? (
+                <tr>
+                  <td colSpan={activeServers.length + 1 || 1} className="px-4 py-16 text-center">
+                    <LoadingSpinner />
+                  </td>
+                </tr>
+              ) : error ? (
+                <tr>
+                  <td colSpan={activeServers.length + 1 || 1} className="px-4 py-10 text-center">
+                    <ErrorBanner error={error} />
+                    <button
+                      onClick={() => refetch()}
+                      className="mt-3 px-4 py-2 rounded-xl bg-destructive/10 text-xs font-semibold text-destructive hover:bg-destructive/20 transition-all duration-200"
+                    >
+                      Retry
+                    </button>
+                  </td>
+                </tr>
+              ) : sortedRows.length === 0 ? (
+                <tr>
+                  <td colSpan={activeServers.length + 1} className="px-4 py-16 text-center">
+                    <div className="flex flex-col items-center gap-2">
+                      <Search className="w-8 h-8 text-muted-foreground/30" />
+                      <p className="text-sm text-muted-foreground">
+                        {search ? 'No tables match your search' : 'No table count data available'}
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                sortedRows.map((row) => {
+                  const presentCounts: number[] = []
+                  let hasMissing = false
+                  for (const sid of selectedServers) {
+                    const cell = row.servers[sid]
+                    if (!cell) { hasMissing = true; break }
+                    if (cell.record_count !== null && cell.record_count !== undefined) {
+                      presentCounts.push(cell.record_count)
+                    }
                   }
-                }
-                const isMismatch = !hasMissing && presentCounts.length > 1 && !presentCounts.every((c) => c === presentCounts[0])
-                const isNotFoundRow = hasMissing
+                  const isMismatch = !hasMissing && presentCounts.length > 1 && !presentCounts.every((c) => c === presentCounts[0])
+                  const isNotFoundRow = hasMissing
 
-                return (
-                  <tr
-                    key={row.rawName}
-                    className={`transition-colors ${
-                      isMismatch
-                        ? 'bg-red-50/40 hover:bg-red-50/70'
-                        : isNotFoundRow
-                          ? 'bg-amber-50/40 hover:bg-amber-50/70'
-                          : 'hover:bg-slate-50'
-                    }`}
-                  >
-                    <td className="sticky left-0 z-10 bg-[inherit] px-3 py-2 font-semibold text-slate-800">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-xs">{row.displayName}</span>
-                        {isMismatch && (
-                          <span className="rounded-full bg-red-100 px-1.5 py-0.5 text-[8px] font-bold uppercase text-red-700 leading-none">
-                            Mismatch
-                          </span>
-                        )}
-                        {isNotFoundRow && (
-                          <span className="rounded-full bg-amber-100 px-1.5 py-0.5 text-[8px] font-bold uppercase text-amber-700 leading-none">
-                            Not Found
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    {activeServers.map(([sid, info]) => {
-                      const cell = row.servers[sid]
-                      if (!cell) {
+                  return (
+                    <tr
+                      key={row.rawName}
+                      className={`transition-colors duration-200 ${
+                        isMismatch
+                          ? 'bg-destructive/5 hover:bg-destructive/10'
+                          : isNotFoundRow
+                            ? 'bg-warning/5 hover:bg-warning/10'
+                            : 'hover:bg-muted/30'
+                      }`}
+                    >
+                      <td className="sticky left-0 z-10 bg-[inherit] px-4 py-2.5 font-semibold text-foreground">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs">{row.displayName}</span>
+                          {isMismatch && (
+                            <span className="px-2 py-0.5 rounded-full bg-destructive/10 text-[8px] font-semibold uppercase text-destructive border border-destructive/20">
+                              Mismatch
+                            </span>
+                          )}
+                          {isNotFoundRow && (
+                            <span className="px-2 py-0.5 rounded-full bg-warning/10 text-[8px] font-semibold uppercase text-warning border border-warning/20">
+                              Not Found
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      {activeServers.map(([sid, info]) => {
+                        const cell = row.servers[sid]
+                        if (!cell) {
+                          return (
+                            <td key={sid} className="px-4 py-2.5 text-center">
+                              <span className="text-[10px] font-medium text-warning">Not Found</span>
+                            </td>
+                          )
+                        }
+                        const isSuccess = cell.status === 'SUCCESS'
                         return (
-                          <td key={sid} className="px-3 py-2 text-center text-slate-300">
-                            <span className="text-[9px] font-medium text-amber-500">Not Found</span>
+                          <td key={sid} className="px-4 py-2.5 text-center">
+                            <button
+                              onClick={() =>
+                                setDrawer({
+                                  open: true,
+                                  serverId: sid,
+                                  serverLabel: info.label,
+                                  tableName: row.rawName,
+                                  displayName: row.displayName,
+                                  recordCount: cell.record_count,
+                                })
+                              }
+                              className="group inline-block rounded-xl px-3 py-1.5 transition-all duration-200 hover:bg-muted/50 active:scale-95"
+                            >
+                              <div className="font-bold tabular-nums text-foreground group-hover:text-primary text-sm transition-colors duration-200">
+                                {cell.record_count !== null && cell.record_count !== undefined
+                                  ? Number(cell.record_count).toLocaleString()
+                                  : '\u2014'}
+                              </div>
+                              <span className={`mt-0.5 inline-block px-2 py-0.5 rounded-full text-[8px] font-semibold uppercase leading-none ${
+                                isSuccess ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'
+                              }`}>
+                                {cell.status}
+                              </span>
+                            </button>
                           </td>
                         )
-                      }
-                      const isSuccess = cell.status === 'SUCCESS'
-                      return (
-                        <td key={sid} className="px-3 py-2 text-center">
-                          <button
-                            onClick={() =>
-                              setDrawer({
-                                open: true,
-                                serverId: sid,
-                                serverLabel: info.label,
-                                tableName: row.rawName,
-                                displayName: row.displayName,
-                                recordCount: cell.record_count,
-                              })
-                            }
-                            className="group inline-block rounded-lg px-2 py-1 transition-all hover:bg-slate-100 active:scale-95"
-                          >
-                            <div className="font-bold tabular-nums text-slate-700 group-hover:text-indigo-600 text-xs">
-                              {cell.record_count !== null && cell.record_count !== undefined
-                                ? Number(cell.record_count).toLocaleString()
-                                : '\u2014'}
-                            </div>
-                            <span className={`mt-0.5 inline-block rounded-full px-1.5 py-0.5 text-[8px] font-bold uppercase leading-none ${
-                              isSuccess ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
-                            }`}>
-                              {cell.status}
-                            </span>
-                          </button>
-                        </td>
-                      )
-                    })}
-                  </tr>
-                )
-              })
-            )}
-          </tbody>
-        </table>
+                      })}
+                    </tr>
+                  )
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div className="mt-3 flex items-center gap-3 text-[9px] text-slate-400">
-        <span>Tables: <strong className="text-slate-600">{totalCompared.toLocaleString()}</strong></span>
-        <span>Servers: <strong className="text-slate-600">{activeServers.length}</strong></span>
+      {/* ── Footer Stats ── */}
+      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+        <span>Tables: <strong className="text-foreground tabular-nums">{totalCompared.toLocaleString()}</strong></span>
+        <span>Servers: <strong className="text-foreground tabular-nums">{activeServers.length}</strong></span>
         {mismatchCount > 0 && (
-          <span>Mismatch: <strong className="text-red-600">{mismatchCount.toLocaleString()}</strong></span>
+          <span>Mismatch: <strong className="text-destructive tabular-nums">{mismatchCount.toLocaleString()}</strong></span>
         )}
       </div>
 
-      {/* Slide Drawer */}
+      {/* ── Slide Drawer ── */}
       {drawer && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-background/40 backdrop-blur-sm"
             onClick={() => setDrawer(null)}
           />
-          <div className="fixed right-0 top-0 z-50 h-full w-full max-w-md bg-white shadow-2xl border-l border-slate-200 overflow-y-auto transition-transform">
-            <div className="sticky top-0 z-10 border-b border-slate-200 bg-white px-4 py-3 flex items-center justify-between">
+          <div className="fixed right-0 top-0 z-50 h-full w-full max-w-md bg-card/95 backdrop-blur-xl shadow-2xl border-l border-border/50 overflow-y-auto transition-transform">
+            {/* Drawer Header */}
+            <div className="sticky top-0 z-10 border-b border-border/50 bg-card/80 backdrop-blur-xl px-5 py-4 flex items-center justify-between">
               <div>
-                <h2 className="text-sm font-black text-slate-900">{drawer.displayName}</h2>
-                <p className="text-[11px] text-slate-400">{drawer.serverLabel}</p>
+                <h2 className="text-base font-bold text-foreground">{drawer.displayName}</h2>
+                <p className="text-xs text-muted-foreground mt-0.5">{drawer.serverLabel}</p>
               </div>
               <button
                 onClick={() => setDrawer(null)}
-                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-all"
+                className="rounded-xl p-2 text-muted-foreground hover:bg-muted/50 hover:text-foreground transition-all duration-200"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="px-4 py-3">
-              <div className="mb-4 grid grid-cols-2 gap-3">
-                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
-                  <div className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Current Count</div>
-                  <div className="mt-0.5 text-lg font-black text-slate-900">
+            {/* Drawer Content */}
+            <div className="px-5 py-5">
+              {/* Stat Cards */}
+              <div className="mb-5 grid grid-cols-2 gap-3">
+                <div className="glass-card p-4">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Current Count</div>
+                  <div className="mt-1 text-2xl font-bold text-foreground tabular-nums">
                     {drawer.recordCount !== null ? Number(drawer.recordCount).toLocaleString() : '\u2014'}
                   </div>
                 </div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
-                  <div className="text-[9px] font-bold uppercase tracking-wider text-slate-400">History Points</div>
-                  <div className="mt-0.5 text-lg font-black text-slate-900">{history.length}</div>
+                <div className="glass-card p-4">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">History Points</div>
+                  <div className="mt-1 text-2xl font-bold text-foreground tabular-nums">{history.length}</div>
                 </div>
               </div>
 
+              {/* History Table */}
               {historyQuery.isLoading ? (
-                <div className="flex justify-center py-8">
+                <div className="flex justify-center py-12">
                   <LoadingSpinner />
                 </div>
               ) : history.length === 0 ? (
-                <p className="py-8 text-center text-xs text-slate-400">No historical data available</p>
+                <p className="py-12 text-center text-sm text-muted-foreground">No historical data available</p>
               ) : (
-                <div className="overflow-x-auto rounded-lg border border-slate-200">
-                  <table className="w-full text-left text-[11px]">
-                    <thead className="border-b border-slate-200 bg-slate-50 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                <div className="glass-card overflow-hidden">
+                  <table className="w-full text-left text-xs">
+                    <thead className="border-b border-border/50 bg-muted/50">
                       <tr>
-                        <th className="px-3 py-2">Collected At</th>
-                        <th className="px-3 py-2 text-right">Count</th>
-                        <th className="px-3 py-2 text-center">Status</th>
+                        <th className="px-4 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Collected At</th>
+                        <th className="px-4 py-2.5 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Count</th>
+                        <th className="px-4 py-2.5 text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Status</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100">
+                    <tbody className="divide-y divide-border/50">
                       {history.map((h, i) => (
-                        <tr key={i} className="hover:bg-slate-50 transition-colors">
-                          <td className="px-3 py-1.5 font-mono text-slate-700 text-[10px]">
+                        <tr key={i} className="hover:bg-muted/30 transition-colors duration-200">
+                          <td className="px-4 py-2 font-mono text-foreground text-[11px]">
                             {formatTime(h.collected_at)}
                           </td>
-                          <td className="px-3 py-1.5 text-right font-bold tabular-nums text-slate-700 text-[10px]">
+                          <td className="px-4 py-2 text-right font-bold tabular-nums text-foreground text-[11px]">
                             {h.record_count !== null ? Number(h.record_count).toLocaleString() : '\u2014'}
                           </td>
-                          <td className="px-3 py-1.5 text-center">
-                            <span className={`inline-block rounded-full px-1.5 py-0.5 text-[8px] font-bold uppercase leading-none ${
+                          <td className="px-4 py-2 text-center">
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-semibold ${
                               h.status === 'SUCCESS'
-                                ? 'bg-emerald-100 text-emerald-700'
-                                : 'bg-red-100 text-red-700'
+                                ? 'bg-success/10 text-success'
+                                : 'bg-destructive/10 text-destructive'
                             }`}>
                               {h.status}
                             </span>

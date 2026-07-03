@@ -7,9 +7,9 @@ import { Server } from 'lucide-react'
 describe('EmptyState component', () => {
   it('should render title and description', () => {
     render(
-      <EmptyState
+      <EmptyState icon={Server} description="test description"
         title="No data"
-        description="There is no data to display"
+        
       />
     )
 
@@ -19,7 +19,7 @@ describe('EmptyState component', () => {
 
   it('should render icon when provided', () => {
     render(
-      <EmptyState
+      <EmptyState description="test description"
         icon={Server}
         title="No servers"
       />
@@ -32,7 +32,7 @@ describe('EmptyState component', () => {
   it('should render CTA button when action is provided', () => {
     const handleClick = vi.fn()
     render(
-      <EmptyState
+      <EmptyState icon={Server} description="test description"
         title="No data"
         action={{
           label: 'Add Item',
@@ -50,7 +50,7 @@ describe('EmptyState component', () => {
     const handleClick = vi.fn()
 
     render(
-      <EmptyState
+      <EmptyState icon={Server} description="test description"
         title="No data"
         action={{
           label: 'Add Item',
@@ -70,7 +70,7 @@ describe('EmptyState component', () => {
     const handleClick = vi.fn()
 
     render(
-      <EmptyState
+      <EmptyState icon={Server} description="test description"
         title="No data"
         action={{
           label: 'Add Item',

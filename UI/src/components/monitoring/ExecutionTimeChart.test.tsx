@@ -69,7 +69,7 @@ describe('ExecutionTimeChart', () => {
     )
     // Check that the outer container is rendered with correct styling
     const outerDiv = container.firstChild as HTMLElement
-    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-white', 'rounded-lg', 'border', 'border-gray-200', 'p-4')
+    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-card/90 backdrop-blur-sm', 'rounded-lg', 'border', 'border-border', 'p-4')
   })
 
   it('renders responsive container', () => {
@@ -91,7 +91,7 @@ describe('ExecutionTimeChart', () => {
       />
     )
     const outerDiv = container.firstChild as HTMLElement
-    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-white', 'rounded-lg', 'border', 'border-gray-200', 'p-4')
+    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-card/90 backdrop-blur-sm', 'rounded-lg', 'border', 'border-border', 'p-4')
   })
 
   it('handles data with null execution time values', () => {
@@ -116,7 +116,7 @@ describe('ExecutionTimeChart', () => {
     )
     // Should still render the chart container
     const outerDiv = container.firstChild as HTMLElement
-    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-white', 'rounded-lg', 'border', 'border-gray-200', 'p-4')
+    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-card/90 backdrop-blur-sm', 'rounded-lg', 'border', 'border-border', 'p-4')
   })
 
   it('renders multiple data points correctly', () => {
@@ -170,7 +170,7 @@ describe('ExecutionTimeChart', () => {
       />
     )
     const outerDiv = container.firstChild as HTMLElement
-    expect(outerDiv).toHaveClass('bg-white')
+    expect(outerDiv).toHaveClass('bg-card/90 backdrop-blur-sm')
   })
 
   it('renders with correct border classes', () => {
@@ -181,6 +181,6 @@ describe('ExecutionTimeChart', () => {
       />
     )
     const outerDiv = container.firstChild as HTMLElement
-    expect(outerDiv).toHaveClass('border', 'border-gray-200')
+    expect(outerDiv).toHaveClass('border', 'border-border')
   })
 })

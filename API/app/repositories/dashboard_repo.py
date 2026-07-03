@@ -83,11 +83,23 @@ trend_prior AS (
     FROM monitoring.check_runs
     WHERE started_at BETWEEN now() - INTERVAL '12 hours' AND now() - INTERVAL '6 hours'
     GROUP BY server_id
+),
+latest_metrics AS (
+    SELECT server_id,
+           json_agg(json_build_object('metric_name', metric_name, 'metric_value', metric_value)) AS metrics_json
+    FROM (
+        SELECT DISTINCT ON (server_id, metric_name) server_id, metric_name, metric_value
+        FROM monitoring.monitoring_metrics
+        WHERE metric_name IN ('active_connections', 'wal_file_count')
+        ORDER BY server_id, metric_name, collected_at DESC
+    ) sub
+    GROUP BY server_id
 )
 SELECT s.*,
        COALESCE(oi.cnt, 0)  AS open_incident_count,
        COALESCE(ua.cnt, 0)  AS unack_alert_count,
        lr.status             AS latest_run_status,
+       lm.metrics_json       AS latest_metrics,
        CASE
            WHEN tc.fail_rate < tp.fail_rate THEN 'IMPROVING'
            WHEN tc.fail_rate > tp.fail_rate THEN 'DEGRADING'
@@ -104,6 +116,7 @@ LEFT JOIN unack_alerts ua    ON ua.server_id = s.server_id
 LEFT JOIN latest_run lr      ON lr.server_id = s.server_id
 LEFT JOIN trend_current tc   ON tc.server_id = s.server_id
 LEFT JOIN trend_prior tp     ON tp.server_id = s.server_id
+LEFT JOIN latest_metrics lm  ON lm.server_id = s.server_id
 ORDER BY
     COALESCE(oi.cnt, 0) DESC,
     COALESCE(ua.cnt, 0) DESC,

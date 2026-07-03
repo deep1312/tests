@@ -121,7 +121,7 @@ function HealthCheckDetailsContainer({
   const metadata = checkData?.result_metadata ?? {};
 
   const renderJsonBlock = (data: any) => (
-    <pre className="overflow-x-auto rounded-lg bg-slate-900 p-3 text-[10px] text-emerald-400">
+    <pre className="overflow-x-auto rounded-lg bg-background p-3 text-[10px] text-emerald-400">
       {JSON.stringify(data, null, 2)}
     </pre>
   )
@@ -129,7 +129,7 @@ function HealthCheckDetailsContainer({
   return (
     <div className="space-y-3">
       {checkData?.check_name && (
-        <div className="inline-block rounded bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+        <div className="inline-block rounded bg-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
           {checkData.check_name}
         </div>
       )}
@@ -182,8 +182,8 @@ function HealthCheckDetailsContainer({
 
             const connBar = (val: number, label: string, color: string) => (
               <div className="flex items-center gap-1.5 text-[11px]">
-                <span className="w-14 font-bold text-slate-500 uppercase tracking-wide">{label}</span>
-                <div className="flex-1 h-3 rounded-full bg-slate-100 overflow-hidden">
+                <span className="w-14 font-bold text-muted-foreground uppercase tracking-wide">{label}</span>
+                <div className="flex-1 h-3 rounded-full bg-muted overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${Math.min((val / maxVal) * 100, 100)}%`, backgroundColor: color }} />
                 </div>
                 <span className="w-12 text-right font-bold tabular-nums text-slate-700">{val}</span>
@@ -201,8 +201,8 @@ function HealthCheckDetailsContainer({
                   <MetricCard title="IdleTxn" value={rawRow.idle_in_txn_connections ?? 0} />
                 </div>
 
-                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-                  <p className="mb-2 text-[9px] font-black uppercase tracking-wider text-slate-400">
+                <div className="rounded-xl border border-border bg-card/90 backdrop-blur-sm p-3 shadow-sm">
+                  <p className="mb-2 text-[9px] font-black uppercase tracking-wider text-muted-foreground">
                     Connection Breakdown
                   </p>
                   <div className="space-y-1">
@@ -216,8 +216,8 @@ function HealthCheckDetailsContainer({
 
                 {/* Trend Graph — always visible */}
                 {connChartData && connChartData.length >= 2 && (
-                  <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-                    <p className="mb-2 text-[9px] font-black uppercase tracking-wider text-slate-400">
+                  <div className="rounded-xl border border-border bg-card/90 backdrop-blur-sm p-3 shadow-sm">
+                    <p className="mb-2 text-[9px] font-black uppercase tracking-wider text-muted-foreground">
                       Connection Metrics Over Time
                     </p>
                     <div className="h-48 w-full">
@@ -279,23 +279,23 @@ function HealthCheckDetailsContainer({
                     <div className="mt-1.5 grid grid-cols-2 gap-x-3 gap-y-1 text-[11px] text-slate-700">
                           {blocker.blocker_user && (
                             <div>
-                              <span className="font-semibold text-slate-500">User:</span> {blocker.blocker_user}
+                              <span className="font-semibold text-muted-foreground">User:</span> {blocker.blocker_user}
                             </div>
                           )}
                           {blocker.blocker_state && (
                             <div>
-                              <span className="font-semibold text-slate-500">State:</span> {blocker.blocker_state}
+                              <span className="font-semibold text-muted-foreground">State:</span> {blocker.blocker_state}
                             </div>
                           )}
                           <div>
-                            <span className="font-semibold text-slate-500">Waiting:</span> {blocker.waiting_count}
+                            <span className="font-semibold text-muted-foreground">Waiting:</span> {blocker.waiting_count}
                           </div>
                           <div>
-                            <span className="font-semibold text-slate-500">Txn Age:</span> {blocker.blocker_txn_age_s ?? blocker.blocker_duration_s ?? 0}s
+                            <span className="font-semibold text-muted-foreground">Txn Age:</span> {blocker.blocker_txn_age_s ?? blocker.blocker_duration_s ?? 0}s
                           </div>
                         </div>
 
-                        <pre className="mt-2 overflow-x-auto rounded-lg bg-slate-900 p-2 text-[10px] text-emerald-400">
+                        <pre className="mt-2 overflow-x-auto rounded-lg bg-background p-2 text-[10px] text-emerald-400">
                           {blocker.blocker_query}
                         </pre>
                       </div>
@@ -317,26 +317,26 @@ function HealthCheckDetailsContainer({
                 {Array.isArray(bloatedList) && bloatedList.length > 0 ? (
                   <div className="space-y-1.5">
                     {bloatedList.map((t: any, idx: number) => (
-                      <div key={idx} className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
-                        <div className="font-mono text-[11px] font-bold text-slate-800 break-all">
+                      <div key={idx} className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3 shadow-sm">
+                        <div className="font-mono text-[11px] font-bold text-foreground break-all">
                           {t.table}
                         </div>
                         <div className="mt-1.5 grid grid-cols-3 gap-2 text-[11px]">
-                          <div className="bg-slate-50 p-1.5 rounded-lg">
-                            <span className="text-gray-400 block text-[9px] uppercase font-bold">Bloat %</span>
+                          <div className="bg-muted p-1.5 rounded-lg">
+                            <span className="text-muted-foreground block text-[9px] uppercase font-bold">Bloat %</span>
                             <span className="font-bold text-amber-600">{t.bloat_pct ?? t.table_bloat_pct ?? 0}%</span>
                           </div>
-                          <div className="bg-slate-50 p-1.5 rounded-lg">
-                            <span className="text-gray-400 block text-[9px] uppercase font-bold">Dead Tuples</span>
+                          <div className="bg-muted p-1.5 rounded-lg">
+                            <span className="text-muted-foreground block text-[9px] uppercase font-bold">Dead Tuples</span>
                             <span className="font-bold text-slate-700">{t.dead_tuples ?? 0}</span>
                           </div>
-                          <div className="bg-slate-50 p-1.5 rounded-lg">
-                            <span className="text-gray-400 block text-[9px] uppercase font-bold">Live Tuples</span>
+                          <div className="bg-muted p-1.5 rounded-lg">
+                            <span className="text-muted-foreground block text-[9px] uppercase font-bold">Live Tuples</span>
                             <span className="font-bold text-slate-700">{t.live_tuples ?? 0}</span>
                           </div>
                         </div>
                         {(t.last_vacuum || t.last_autovacuum) && (
-                          <div className="mt-1 flex gap-3 text-[10px] text-gray-400">
+                          <div className="mt-1 flex gap-3 text-[10px] text-muted-foreground">
                             {t.last_vacuum && <span>Vacuum: {new Date(t.last_vacuum).toLocaleDateString()}</span>}
                             {t.last_autovacuum && <span>Auto: {new Date(t.last_autovacuum).toLocaleDateString()}</span>}
                           </div>
@@ -345,7 +345,7 @@ function HealthCheckDetailsContainer({
                     ))}
                   </div>
                 ) : (
-                  <div className="rounded-lg bg-slate-50 p-4 text-center text-xs text-slate-400">
+                  <div className="rounded-lg bg-muted p-4 text-center text-xs text-muted-foreground">
                     No bloated tables detected
                   </div>
                 )}
@@ -361,7 +361,7 @@ function HealthCheckDetailsContainer({
               <div className="space-y-3">
                 <MetricCard title="Index Usage" value={`${rawRow.index_usage_pct ?? 0}%`} />
 
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
                   Table Scan Methods ({Array.isArray(indexTables) ? indexTables.length : 0} tables)
                 </p>
 
@@ -370,37 +370,37 @@ function HealthCheckDetailsContainer({
                     indexTables.map((tableRow: any, idx: number) => (
                     <div
                       key={idx}
-                      className="rounded-lg border border-slate-200 bg-white p-3 hover:border-blue-300 transition-all shadow-sm"
+                      className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3 hover:border-blue-300 transition-all shadow-sm"
                     >
-                      <div className="font-mono text-[11px] font-bold text-slate-800 break-all select-all">
+                      <div className="font-mono text-[11px] font-bold text-foreground break-all select-all">
                         {tableRow.table || "Unknown Object/Chunk"}
                       </div>
 
                       <div className="mt-1.5 grid grid-cols-4 gap-2 text-[11px]">
-                        <div className="bg-slate-50 p-1.5 rounded-lg">
-                          <span className="text-gray-400 block text-[9px] uppercase font-bold">Seq %</span>
+                        <div className="bg-muted p-1.5 rounded-lg">
+                          <span className="text-muted-foreground block text-[9px] uppercase font-bold">Seq %</span>
                           <span className="font-bold text-slate-700">{tableRow.seq_pct ?? 0}%</span>
                         </div>
 
-                        <div className="bg-slate-50 p-1.5 rounded-lg">
-                          <span className="text-gray-400 block text-[9px] uppercase font-bold">IDX</span>
+                        <div className="bg-muted p-1.5 rounded-lg">
+                          <span className="text-muted-foreground block text-[9px] uppercase font-bold">IDX</span>
                           <span className="font-bold text-slate-700">{tableRow.idx_scans ?? 0}</span>
                         </div>
 
-                        <div className="bg-slate-50 p-1.5 rounded-lg">
-                          <span className="text-gray-400 block text-[9px] uppercase font-bold">Seq</span>
+                        <div className="bg-muted p-1.5 rounded-lg">
+                          <span className="text-muted-foreground block text-[9px] uppercase font-bold">Seq</span>
                           <span className="font-bold text-amber-600">{tableRow.seq_scans ?? 0}</span>
                         </div>
 
-                        <div className="bg-slate-50 p-1.5 rounded-lg">
-                          <span className="text-gray-400 block text-[9px] uppercase font-bold">Rows</span>
+                        <div className="bg-muted p-1.5 rounded-lg">
+                          <span className="text-muted-foreground block text-[9px] uppercase font-bold">Rows</span>
                           <span className="font-bold text-slate-700">{tableRow.row_count ?? tableRow.n_live_tup ?? 0}</span>
                         </div>
                       </div>
                     </div>
                     ))
                   ) : (
-                    <div className="rounded-lg bg-slate-50 p-4 text-center text-xs text-slate-400">
+                    <div className="rounded-lg bg-muted p-4 text-center text-xs text-muted-foreground">
                       No tables with low index usage
                     </div>
                   )}
@@ -437,14 +437,14 @@ function HealthCheckDetailsContainer({
                   </p>
                 </div>
 
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
                   Indexes ({unusedIndexesData.length})
                 </p>
 
                 {Array.isArray(unusedIndexesData) && unusedIndexesData.length > 0 ? (
-                  <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white">
+                  <div className="overflow-x-auto rounded-lg border border-border bg-card/90 backdrop-blur-sm">
                     <table className="w-full text-left text-xs">
-                      <thead className="border-b border-slate-200 bg-slate-50 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                      <thead className="border-b border-border bg-muted text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
                         <tr>
                           <th className="px-3 py-2">Index</th>
                           <th className="px-3 py-2">Table</th>
@@ -453,11 +453,11 @@ function HealthCheckDetailsContainer({
                       </thead>
                       <tbody className="divide-y divide-slate-100">
                         {unusedIndexesData.map((indexItem: any, idx: number) => (
-                          <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                            <td className="px-3 py-2 font-mono text-[11px] text-slate-800 break-all select-all max-w-[300px]">
+                          <tr key={idx} className="hover:bg-muted transition-colors">
+                            <td className="px-3 py-2 font-mono text-[11px] text-foreground break-all select-all max-w-[300px]">
                               <div className="truncate" title={indexItem?.index}>{indexItem?.index || 'Unnamed Index'}</div>
                             </td>
-                            <td className="px-3 py-2 font-mono text-[11px] text-slate-600 max-w-[200px]">
+                            <td className="px-3 py-2 font-mono text-[11px] text-muted-foreground max-w-[200px]">
                               <div className="truncate" title={indexItem?.table}>{indexItem?.table || '—'}</div>
                             </td>
                             <td className="px-3 py-2 text-right font-mono text-[11px] text-slate-700">{indexItem?.size || '—'}</td>
@@ -467,7 +467,7 @@ function HealthCheckDetailsContainer({
                     </table>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-200 py-8 text-center bg-white">
+                  <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-8 text-center bg-card/90 backdrop-blur-sm">
                     <Info className="h-5 w-5 text-emerald-500 mb-1" />
                     <p className="text-xs font-bold text-gray-700">Perfect Index Optimization!</p>
                   </div>
@@ -511,12 +511,12 @@ function HealthCheckDetailsContainer({
                     (table: any, idx: number) => (
                       <div
                         key={idx}
-                        className="rounded-lg border border-slate-200 bg-white p-3"
+                        className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3"
                       >
-                        <div className="font-bold text-slate-800 text-xs">
+                        <div className="font-bold text-foreground text-xs">
                           {table.table}
                         </div>
-                        <div className="mt-0.5 text-[11px] text-slate-500">
+                        <div className="mt-0.5 text-[11px] text-muted-foreground">
                           {table.size}
                         </div>
                       </div>
@@ -538,7 +538,7 @@ function HealthCheckDetailsContainer({
                   (query: any, idx: number) => (
                     <div
                       key={idx}
-                      className="rounded-lg border border-slate-200 bg-white p-3"
+                      className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3"
                     >
                       <div className="grid grid-cols-4 gap-3 text-[11px]">
                         <div>
@@ -559,7 +559,7 @@ function HealthCheckDetailsContainer({
                         </div>
                       </div>
 
-                      <pre className="mt-2 overflow-x-auto rounded-lg bg-slate-900 p-2 text-[10px] text-emerald-400">
+                      <pre className="mt-2 overflow-x-auto rounded-lg bg-background p-2 text-[10px] text-emerald-400">
                         {query.query}
                       </pre>
                     </div>
@@ -580,9 +580,9 @@ function HealthCheckDetailsContainer({
                   <MetricCard title="Servers" value={1} />
                 </div>
 
-                <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+                <div className="overflow-x-auto rounded-xl border border-border bg-card/90 backdrop-blur-sm shadow-sm">
                   <table className="w-full text-left text-xs">
-                    <thead className="border-b border-slate-200 bg-slate-50 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                    <thead className="border-b border-border bg-muted text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
                       <tr>
                         <th className="px-3 py-2">Table</th>
                         <th className="px-3 py-2 text-right">Record Count</th>
@@ -591,8 +591,8 @@ function HealthCheckDetailsContainer({
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {allRows.map((row: any, idx: number) => (
-                        <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                          <td className="px-3 py-2 font-mono text-slate-800 text-[11px]">
+                        <tr key={idx} className="hover:bg-muted transition-colors">
+                          <td className="px-3 py-2 font-mono text-foreground text-[11px]">
                             {row.table_name}
                           </td>
                           <td className="px-3 py-2 text-right font-bold tabular-nums text-slate-700">
@@ -647,9 +647,9 @@ function HealthCheckDetailsContainer({
                 <MetricCard title="Total Partitions" value={partitionCount} />
 
                 {partitionRows.length > 0 ? (
-                  <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+                  <div className="overflow-x-auto rounded-xl border border-border bg-card/90 backdrop-blur-sm shadow-sm">
                     <table className="w-full text-left text-xs">
-                      <thead className="border-b border-slate-200 bg-slate-50 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                      <thead className="border-b border-border bg-muted text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
                         <tr>
                           {partitionColumns.map((key) => (
                             <th key={key} className="px-3 py-2">{label(key)}</th>
@@ -658,9 +658,9 @@ function HealthCheckDetailsContainer({
                       </thead>
                       <tbody className="divide-y divide-slate-100">
                         {partitionRows.map((row: any, idx: number) => (
-                          <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                          <tr key={idx} className="hover:bg-muted transition-colors">
                             {partitionColumns.map((key) => (
-                              <td key={key} className="px-3 py-2 font-mono text-slate-800 text-[11px]">
+                              <td key={key} className="px-3 py-2 font-mono text-foreground text-[11px]">
                                 {String(row[key] ?? '—')}
                               </td>
                             ))}
@@ -670,7 +670,7 @@ function HealthCheckDetailsContainer({
                     </table>
                   </div>
                 ) : (
-                  <div className="rounded-lg bg-slate-50 p-4 text-center text-xs text-slate-400">
+                  <div className="rounded-lg bg-muted p-4 text-center text-xs text-muted-foreground">
                     No partition data available
                   </div>
                 )}
@@ -698,12 +698,12 @@ function MetricCard({
   value: any
 }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
-      <div className="text-[9px] font-black uppercase tracking-wider text-slate-400">
+    <div className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3 shadow-sm">
+      <div className="text-[9px] font-black uppercase tracking-wider text-muted-foreground">
         {title}
       </div>
 
-      <div className="mt-1 text-lg font-black text-slate-900">
+      <div className="mt-1 text-lg font-black text-foreground">
         {value}
       </div>
     </div>
@@ -779,11 +779,11 @@ function BucketRecordCard({ bucket, checkId, runs, partitionLive }: { bucket: an
     }
 
     return (
-      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+      <div className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3 shadow-sm">
         <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-100">
           <div className="flex items-center gap-2">
-            <p className="text-[11px] font-bold text-slate-500">{dateStr}</p>
-            <p className="text-[11px] font-mono font-bold text-slate-800">{timeStr}</p>
+            <p className="text-[11px] font-bold text-muted-foreground">{dateStr}</p>
+            <p className="text-[11px] font-mono font-bold text-foreground">{timeStr}</p>
           </div>
           <span className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase ${statusColors[status]}`}>
             {status}
@@ -795,11 +795,11 @@ function BucketRecordCard({ bucket, checkId, runs, partitionLive }: { bucket: an
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm hover:shadow-md transition-shadow">
+    <div className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <p className="text-[11px] font-bold text-slate-500">{dateStr}</p>
-          <p className="text-[11px] font-mono font-bold text-slate-800">{timeStr}</p>
+          <p className="text-[11px] font-bold text-muted-foreground">{dateStr}</p>
+          <p className="text-[11px] font-mono font-bold text-foreground">{timeStr}</p>
         </div>
         <span className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase ${statusColors[status]}`}>
           {status}
@@ -892,7 +892,7 @@ function renderBucketFields(bucket: any, checkId?: number) {
       )
     default:
       return (
-        <pre className="overflow-x-auto rounded-lg bg-slate-900 p-2 text-[10px] text-emerald-400 max-h-32">
+        <pre className="overflow-x-auto rounded-lg bg-background p-2 text-[10px] text-emerald-400 max-h-32">
           {JSON.stringify(bucket, null, 2)}
         </pre>
       )
@@ -901,8 +901,8 @@ function renderBucketFields(bucket: any, checkId?: number) {
 
 function Field({ label, value, highlight }: { label: string; value: any; highlight?: boolean }) {
   return (
-    <div className="flex items-center justify-between rounded-lg bg-slate-50 px-2.5 py-1.5">
-      <span className="font-semibold text-slate-400">{label}</span>
+    <div className="flex items-center justify-between rounded-lg bg-muted px-2.5 py-1.5">
+      <span className="font-semibold text-muted-foreground">{label}</span>
       <span className={`font-bold ${highlight ? 'text-blue-600' : 'text-slate-700'}`}>{value}</span>
     </div>
   )
@@ -1021,9 +1021,9 @@ export function DetailDrawer({
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm" />
 
-        <Dialog.Content className="fixed right-0 top-0 z-50 h-screen w-full max-w-4xl overflow-y-auto bg-slate-50 shadow-2xl outline-none">
+        <Dialog.Content className="fixed right-0 top-0 z-50 h-screen w-full max-w-4xl overflow-y-auto bg-muted shadow-2xl outline-none">
           {/* HEADER */}
-          <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-900 px-5 py-3 text-white shadow-lg">
+          <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background px-5 py-3 text-white shadow-lg">
             <div>
               <Dialog.Title className="text-lg font-black">
                 Health Check Details
@@ -1052,22 +1052,22 @@ export function DetailDrawer({
           {/* CONTENT */}
           <div className="p-4">
             {missingServerId ? (
-              <div className="flex h-32 items-center justify-center text-slate-500 text-xs">
+              <div className="flex h-32 items-center justify-center text-muted-foreground text-xs">
                 Select a specific server from the filter to view live details
               </div>
             ) : isLoading ? (
-              <div className="flex h-32 items-center justify-center text-slate-500 text-xs">
+              <div className="flex h-32 items-center justify-center text-muted-foreground text-xs">
                 Loading details...
               </div>
             ) : hasRealBuckets ? (
               <div className="space-y-4">
                 {/* All historical bucket records as individual cards */}
                 <div className="flex items-center justify-between">
-                  <h3 className="text-[9px] font-black uppercase tracking-wider text-slate-400">
+                  <h3 className="text-[9px] font-black uppercase tracking-wider text-muted-foreground">
                     Historical Buckets ({historicalBuckets.length})
                   </h3>
                   {context?.from && context?.to && (
-                    <p className="text-[10px] font-mono text-slate-400">
+                    <p className="text-[10px] font-mono text-muted-foreground">
                       {formatInTZ(context.from, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                       {' — '}
                       {formatInTZ(context.to, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
@@ -1076,8 +1076,8 @@ export function DetailDrawer({
                 </div>
 
                 {context?.checkId === 1 && (
-                  <div className="rounded-lg border border-slate-200 bg-white p-3">
-                    <h4 className="mb-2 text-[9px] font-black uppercase tracking-wider text-slate-400">
+                  <div className="rounded-lg border border-border bg-card/90 backdrop-blur-sm p-3">
+                    <h4 className="mb-2 text-[9px] font-black uppercase tracking-wider text-muted-foreground">
                       Connection Trend
                     </h4>
                     <ResponsiveContainer width="100%" height={160}>
@@ -1121,7 +1121,7 @@ export function DetailDrawer({
                 partitionLive={partitionLive}
               />
             ) : !detailViewRecord ? (
-              <div className="flex h-32 items-center justify-center text-slate-500 text-xs">
+              <div className="flex h-32 items-center justify-center text-muted-foreground text-xs">
                 No data found for this check
               </div>
             ) : (

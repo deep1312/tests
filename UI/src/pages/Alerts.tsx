@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { useAlerts, useAcknowledgeAlert } from '../api/alerts'
 import { useServers } from '../api/servers'
 import { useChecks } from '../api/checks'
-import { LoadingSpinner } from '../components/shared/LoadingSpinner'
+
 import { ErrorBanner } from '../components/shared/ErrorBanner'
 import { EmptyState } from '../components/shared/EmptyState'
 import { NotificationPopup } from '../components/monitoring/NotificationPopup'
@@ -15,19 +15,57 @@ import { formatInTZ } from '../utils/timezone'
 import type { Alert } from '../api/alerts'
 
 const STATUS_COLORS: Record<string, string> = {
-  WARNING: 'bg-yellow-100 text-yellow-800',
-  CRITICAL: 'bg-red-100 text-red-800',
+  WARNING: 'bg-warning/10 text-warning border-warning/20',
+  CRITICAL: 'bg-destructive/10 text-destructive border-destructive/20',
 }
 
-function SummaryCard({ icon: Icon, label, value, color }: { icon: any; label: string; value: number | string; color: string }) {
+function SummaryCard({ icon: Icon, label, value, iconBg, iconColor }: { icon: any; label: string; value: number | string; iconBg: string; iconColor: string }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3 py-2.5 shadow-sm">
-      <div className={`rounded-full p-1.5 ${color}`}>
-        <Icon className="h-3.5 w-3.5" />
+    <div className="glass-card p-5">
+      <div className="flex items-center justify-between mb-3">
+        <div className={`w-10 h-10 rounded-xl ${iconBg} flex items-center justify-center`}>
+          <Icon className={`w-5 h-5 ${iconColor}`} />
+        </div>
+        <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">{label}</span>
       </div>
-      <div>
-        <p className="text-[18px] font-black text-slate-900 leading-none">{value}</p>
-        <p className="text-[9px] font-medium uppercase tracking-wider text-slate-400 mt-0.5">{label}</p>
+      <p className="text-3xl font-bold text-foreground tabular-nums">{value}</p>
+      <p className="text-xs text-muted-foreground mt-1">{label.toLowerCase()}</p>
+    </div>
+  )
+}
+
+/* ── Skeleton ── */
+function AlertsSkeleton() {
+  return (
+    <div className="p-6 max-w-7xl mx-auto space-y-6" aria-hidden="true">
+      <div className="flex justify-between items-end">
+        <div className="space-y-2">
+          <div className="h-7 w-36 skeleton" />
+          <div className="h-4 w-56 skeleton" />
+        </div>
+        <div className="h-10 w-28 skeleton rounded-xl" />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="glass-card p-5 space-y-3">
+            <div className="flex justify-between">
+              <div className="h-10 w-10 skeleton rounded-xl" />
+              <div className="h-5 w-16 skeleton rounded-full" />
+            </div>
+            <div className="h-8 w-20 skeleton" />
+            <div className="h-3 w-28 skeleton" />
+          </div>
+        ))}
+      </div>
+      <div className="glass-card overflow-hidden">
+        <div className="px-5 py-3 bg-muted/50">
+          <div className="h-4 w-full skeleton" />
+        </div>
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div key={i} className="px-5 py-3 border-t border-border/50">
+            <div className="h-4 w-full skeleton" />
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -116,111 +154,141 @@ export function Alerts() {
     downloadCSV(rows, `alerts-${new Date().toISOString().slice(0, 10)}.csv`)
   }
 
+  if (isLoading) return <AlertsSkeleton />
+
   return (
-    <div className="p-4 space-y-3">
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
+      {/* ── Page Header ── */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-bold text-gray-900">Alerts</h1>
-          <p className="text-[11px] text-gray-500">View and acknowledge threshold breach alerts</p>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Alerts</h1>
+          <p className="text-sm text-muted-foreground mt-1">View and acknowledge threshold breach alerts</p>
         </div>
         <button
           onClick={handleExport}
           disabled={alerts.length === 0}
-          className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-[10px] font-semibold text-slate-600 shadow-sm hover:border-blue-300 hover:text-blue-600 disabled:opacity-40"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted text-foreground font-medium hover:bg-muted/80 transition-all duration-200 disabled:opacity-40"
         >
-          <Download className="h-3 w-3" />
+          <Download className="h-4 w-4" />
           Export CSV
         </button>
       </div>
 
-      {/* Summary Dashboard */}
+      {/* ── Summary Stats ── */}
       {summary.total > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <SummaryCard icon={Bell} label="Total Alerts" value={summary.total} color="bg-blue-100 text-blue-600" />
-          <SummaryCard icon={AlertTriangle} label="Critical" value={summary.critical} color="bg-red-100 text-red-600" />
-          <SummaryCard icon={Activity} label="Warning" value={summary.warning} color="bg-amber-100 text-amber-600" />
-          <SummaryCard icon={CheckCircle} label="Acknowledged" value={summary.acknowledged} color="bg-green-100 text-green-600" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <SummaryCard icon={Bell} label="Total Alerts" value={summary.total} iconBg="bg-info/10" iconColor="text-info" />
+          <SummaryCard icon={AlertTriangle} label="Critical" value={summary.critical} iconBg="bg-destructive/10" iconColor="text-destructive" />
+          <SummaryCard icon={Activity} label="Warning" value={summary.warning} iconBg="bg-warning/10" iconColor="text-warning" />
+          <SummaryCard icon={CheckCircle} label="Acknowledged" value={summary.acknowledged} iconBg="bg-success/10" iconColor="text-success" />
         </div>
       )}
 
       {error && <ErrorBanner message={error} />}
 
-      <div className="flex gap-1.5">
+      {/* ── Filter Tabs ── */}
+      <div className="flex items-center gap-2">
         {(['all', 'unacknowledged', 'acknowledged'] as const).map(s => (
           <button
             key={s}
             onClick={() => { setAckState(s === 'all' ? undefined : s); setPage(0) }}
-            className={`px-2.5 py-1 text-xs rounded-full border ${(s === 'all' && !ackState) || ackState === s ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+            className={`px-4 py-2 text-xs font-semibold rounded-xl border transition-all duration-200 ${
+              (s === 'all' && !ackState) || ackState === s
+                ? 'bg-primary text-primary-foreground border-primary shadow-glow-sm'
+                : 'bg-muted/50 text-muted-foreground border-border hover:bg-muted/80'
+            }`}
           >
             {s.charAt(0).toUpperCase() + s.slice(1)}
           </button>
         ))}
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        {isLoading ? (
-          <div className="p-4"><LoadingSpinner /></div>
-        ) : isError ? (
-          <div className="p-4"><ErrorBanner message="Failed to load alerts." /></div>
+      {/* ── Alerts Table ── */}
+      <div className="glass-card overflow-hidden">
+        {isError ? (
+          <div className="p-6"><ErrorBanner message="Failed to load alerts." /></div>
         ) : alerts.length === 0 ? (
           <EmptyState icon={Zap} title="No alerts" description="No alerts match the current filter" />
         ) : (
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                {['Triggered', 'Server', 'Check', 'Metric', 'Value', 'Status', 'Ack', ...(role === 'admin' ? ['Action'] : [])].map(h => (
-                  <th key={h} className="px-3 py-2 text-left text-[10px] font-medium text-gray-500 uppercase">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {alerts.map(a => (
-                <tr
-                  key={`${a.alert_id}-${a.triggered_at}`}
-                  className="hover:bg-gray-50 cursor-pointer"
-                  onClick={() => setSelectedAlert(a)}
-                >
-                  <td className="px-3 py-2 text-xs text-gray-500">{formatInTZ(a.triggered_at)}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{serverMap.get(a.server_id) ?? `#${a.server_id}`}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{checkMap.get(a.check_id) ?? `#${a.check_id}`}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{a.metric_name}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{a.observed_value}</td>
-                  <td className="px-3 py-2">
-                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-medium ${STATUS_COLORS[a.status] ?? 'bg-gray-100 text-gray-800'}`}>
-                      {a.status}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2 text-xs">
-                    {a.acknowledged_at
-                      ? <span className="flex items-center gap-1 text-green-600 text-[10px]"><CheckCircle className="w-3 h-3" />{formatInTZ(a.acknowledged_at)}</span>
-                      : <span className="text-gray-400 text-[10px]">&mdash;</span>}
-                  </td>
-                  {role === 'admin' && (
-                    <td className="px-3 py-2">
-                      {!a.acknowledged_at && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); handleAck(a.alert_id, a.triggered_at) }}
-                          disabled={acknowledge.isPending}
-                          className="text-[10px] px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
-                        >
-                          Acknowledge
-                        </button>
+          <>
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr className="bg-muted/50">
+                    {['Triggered', 'Server', 'Check', 'Metric', 'Value', 'Status', 'Ack', ...(role === 'admin' ? ['Action'] : [])].map(h => (
+                      <th key={h} className="px-4 py-3 text-left text-xs uppercase tracking-wider font-semibold text-muted-foreground">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/50">
+                  {alerts.map(a => (
+                    <tr
+                      key={`${a.alert_id}-${a.triggered_at}`}
+                      className="hover:bg-muted/30 transition-colors cursor-pointer"
+                      onClick={() => setSelectedAlert(a)}
+                    >
+                      <td className="px-4 py-3 text-sm text-muted-foreground whitespace-nowrap">{formatInTZ(a.triggered_at)}</td>
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">{serverMap.get(a.server_id) ?? `#${a.server_id}`}</td>
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">{checkMap.get(a.check_id) ?? `#${a.check_id}`}</td>
+                      <td className="px-4 py-3 text-sm text-foreground">{a.metric_name}</td>
+                      <td className="px-4 py-3 text-sm text-foreground tabular-nums">{a.observed_value}</td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-full border text-[11px] font-semibold ${STATUS_COLORS[a.status] ?? 'bg-muted text-muted-foreground border-border'}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
+                            a.status === 'CRITICAL' ? 'bg-destructive' : a.status === 'WARNING' ? 'bg-warning' : 'bg-muted-foreground'
+                          }`} />
+                          {a.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-sm">
+                        {a.acknowledged_at
+                          ? <span className="flex items-center gap-1.5 text-success text-xs font-medium"><CheckCircle className="w-3.5 h-3.5" />{formatInTZ(a.acknowledged_at)}</span>
+                          : <span className="text-muted-foreground text-xs">&mdash;</span>}
+                      </td>
+                      {role === 'admin' && (
+                        <td className="px-4 py-3">
+                          {!a.acknowledged_at && (
+                            <button
+                              onClick={(e) => { e.stopPropagation(); handleAck(a.alert_id, a.triggered_at) }}
+                              disabled={acknowledge.isPending}
+                              className="px-3 py-1.5 rounded-xl bg-success/10 text-success text-xs font-semibold border border-success/20 hover:bg-success/20 transition-all duration-200 disabled:opacity-50"
+                            >
+                              Acknowledge
+                            </button>
+                          )}
+                        </td>
                       )}
-                    </td>
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-        {totalPages > 1 && (
-          <div className="px-3 py-2 border-t flex items-center justify-between text-xs text-gray-500">
-            <span>Page {page + 1} of {totalPages} ({total} total)</span>
-            <div className="flex gap-1.5">
-              <button disabled={page === 0} onClick={() => setPage(p => p - 1)} className="px-2 py-1 border rounded text-xs disabled:opacity-40">Prev</button>
-              <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)} className="px-2 py-1 border rounded text-xs disabled:opacity-40">Next</button>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </div>
+
+            {/* ── Pagination ── */}
+            {totalPages > 1 && (
+              <div className="px-5 py-3 border-t border-border/50 flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">
+                  Page {page + 1} of {totalPages} <span className="text-muted-foreground/60">({total} total)</span>
+                </span>
+                <div className="flex gap-2">
+                  <button
+                    disabled={page === 0}
+                    onClick={() => setPage(p => p - 1)}
+                    className="px-4 py-2 rounded-xl bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-all duration-200 disabled:opacity-40"
+                  >
+                    Prev
+                  </button>
+                  <button
+                    disabled={page >= totalPages - 1}
+                    onClick={() => setPage(p => p + 1)}
+                    className="px-4 py-2 rounded-xl bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-all duration-200 disabled:opacity-40"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 

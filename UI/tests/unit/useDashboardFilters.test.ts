@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { useDashboardFilters } from '../../src/hooks/useDashboardFilters'
 
 // Helper to render hook with router context
-function renderHookWithRouter(hook: any) {
+function renderHookWithRouter<T>(hook: () => T) {
   return renderHook(hook, {
     wrapper: BrowserRouter,
   })

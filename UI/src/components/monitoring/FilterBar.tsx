@@ -115,17 +115,17 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
     "flex items-center justify-between gap-1 text-[11px] font-semibold text-slate-700 outline-none hover:text-blue-600 transition-colors min-w-[80px]"
 
   const itemClass =
-    "flex items-center px-2.5 py-1.5 text-xs text-slate-600 rounded outline-none cursor-pointer data-[highlighted]:bg-blue-50 data-[highlighted]:text-blue-600"
+    "flex items-center px-2.5 py-1.5 text-xs text-muted-foreground rounded outline-none cursor-pointer data-[highlighted]:bg-blue-50 data-[highlighted]:text-blue-600"
 
   const groupClass =
-    "flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 shadow-sm"
+    "flex items-center gap-1 rounded-md border border-border bg-card/90 backdrop-blur-sm px-2 py-1 shadow-sm"
 
   return (
 
     <div className="flex flex-wrap items-center gap-1.5">
 
       <div className={groupClass}>
-        <Server className="h-3 w-3 shrink-0 text-slate-400" />
+        <Server className="h-3 w-3 shrink-0 text-muted-foreground" />
         <Select.Root
           value={filters.serverId?.toString() || 'all'}
           onValueChange={value => onChange({ serverId: value === 'all' ? null : Number(value) })}
@@ -135,7 +135,7 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
             <ChevronDown className="h-3 w-3 opacity-50 shrink-0" />
           </Select.Trigger>
           <Select.Portal>
-            <Select.Content className="bg-white border border-slate-200 rounded-lg shadow-lg z-[100] min-w-[180px] overflow-hidden">
+            <Select.Content className="bg-card/90 backdrop-blur-sm border border-border rounded-lg shadow-lg z-[100] min-w-[180px] overflow-hidden">
               <Select.Viewport className="p-0.5">
                 <Select.Item value="all" className={itemClass}>
                   <Select.ItemText>All Instances</Select.ItemText>
@@ -152,7 +152,7 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
       </div>
 
       <div className={groupClass}>
-        <Activity className="h-3 w-3 shrink-0 text-slate-400" />
+        <Activity className="h-3 w-3 shrink-0 text-muted-foreground" />
         <Select.Root
           value={filters.checkId?.toString() || 'all'}
           onValueChange={value => onChange({ checkId: value === 'all' ? null : Number(value) })}
@@ -162,7 +162,7 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
             <ChevronDown className="h-3 w-3 opacity-50 shrink-0" />
           </Select.Trigger>
           <Select.Portal>
-            <Select.Content className="bg-white border border-slate-200 rounded-lg shadow-lg z-[100] min-w-[200px] overflow-hidden">
+            <Select.Content className="bg-card/90 backdrop-blur-sm border border-border rounded-lg shadow-lg z-[100] min-w-[200px] overflow-hidden">
               <Select.Viewport className="p-0.5">
                 <Select.Item value="all" className={itemClass}>
                   <Select.ItemText>All Checks</Select.ItemText>
@@ -179,7 +179,7 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
       </div>
 
       <div className={groupClass}>
-        <Clock className="h-3 w-3 shrink-0 text-slate-400" />
+        <Clock className="h-3 w-3 shrink-0 text-muted-foreground" />
         <Select.Root
           value={showCustom ? 'Custom' : (RANGE_LABEL_MAP[filters.rangeHours] || '24H')}
           onValueChange={(value) => {
@@ -197,7 +197,7 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
             <ChevronDown className="h-3 w-3 opacity-50 shrink-0" />
           </Select.Trigger>
           <Select.Portal>
-            <Select.Content className="bg-white border border-slate-200 rounded-lg shadow-lg z-[100] min-w-[110px] overflow-hidden">
+            <Select.Content className="bg-card/90 backdrop-blur-sm border border-border rounded-lg shadow-lg z-[100] min-w-[110px] overflow-hidden">
               <Select.Viewport className="p-0.5">
                 {RANGE_OPTIONS.map(option => (
                   <Select.Item key={option.label} value={option.label} className={itemClass}>
@@ -216,14 +216,14 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
             type="datetime-local"
             value={localFrom}
             onChange={e => setLocalFrom(e.target.value)}
-            className="text-[11px] font-semibold text-slate-700 bg-white border border-slate-200 rounded px-1.5 py-0.5 outline-none focus:border-amber-400 w-36"
+            className="text-[11px] font-semibold text-slate-700 bg-card/90 backdrop-blur-sm border border-border rounded px-1.5 py-0.5 outline-none focus:border-amber-400 w-36"
           />
           <span className="text-[10px] font-bold text-amber-700">to</span>
           <input
             type="datetime-local"
             value={localTo}
             onChange={e => setLocalTo(e.target.value)}
-            className="text-[11px] font-semibold text-slate-700 bg-white border border-slate-200 rounded px-1.5 py-0.5 outline-none focus:border-amber-400 w-36"
+            className="text-[11px] font-semibold text-slate-700 bg-card/90 backdrop-blur-sm border border-border rounded px-1.5 py-0.5 outline-none focus:border-amber-400 w-36"
           />
           <button
             onClick={handleApplyCustom}
@@ -236,7 +236,7 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
       )}
 
       <div className={groupClass}>
-        <RefreshCcw className={`h-3 w-3 shrink-0 text-slate-400 ${filters.refreshInterval > 0 ? 'animate-spin' : ''}`} style={{ animationDuration: '3s' }} />
+        <RefreshCcw className={`h-3 w-3 shrink-0 text-muted-foreground ${filters.refreshInterval > 0 ? 'animate-spin' : ''}`} style={{ animationDuration: '3s' }} />
         <Select.Root
           value={String(filters.refreshInterval)}
           onValueChange={(value) => onChange({ refreshInterval: Number(value) })}
@@ -246,14 +246,14 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
             <ChevronDown className="h-3 w-3 opacity-50 shrink-0" />
           </Select.Trigger>
           <Select.Portal>
-            <Select.Content className="bg-white border border-slate-200 rounded-lg shadow-lg z-[100] min-w-[110px] overflow-hidden">
+            <Select.Content className="bg-card/90 backdrop-blur-sm border border-border rounded-lg shadow-lg z-[100] min-w-[110px] overflow-hidden">
               <Select.Viewport className="p-0.5">
                 {REFRESH_OPTIONS.map(option => (
                   <Select.Item key={option.seconds} value={String(option.seconds)} className={itemClass}>
                     <Select.ItemText>
                       {option.label}
                       {option.seconds > 0 && filters.refreshInterval === option.seconds && (
-                        <span className="ml-1.5 font-mono text-[10px] text-slate-400">{countdown}s</span>
+                        <span className="ml-1.5 font-mono text-[10px] text-muted-foreground">{countdown}s</span>
                       )}
                     </Select.ItemText>
                   </Select.Item>
@@ -272,7 +272,7 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
           setShowCustom(false)
         }}
         title="Reset All Filters"
-        className="h-7 w-7 p-0 text-slate-400 hover:text-rose-500"
+        className="h-7 w-7 p-0 text-muted-foreground hover:text-rose-500"
       >
         <RotateCcw className="h-3.5 w-3.5" />
       </Button>

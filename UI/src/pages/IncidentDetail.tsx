@@ -3,16 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useIncident, usePatchIncidentRootCause } from '../api/incidents'
 import { useServers } from '../api/servers'
 import { useChecks } from '../api/checks'
-import { LoadingSpinner } from '../components/shared/LoadingSpinner'
 import { ErrorBanner } from '../components/shared/ErrorBanner'
-import { Card } from '../components/ui/card'
-import { ArrowLeft, CheckCircle, Clock, AlertTriangle, Flag, Activity } from 'lucide-react'
+import { ArrowLeft, CheckCircle, Clock, AlertTriangle, Flag, Activity, Server, FileSearch, Calendar, CalendarCheck } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { formatInTZ } from '../utils/timezone'
 
 const STATUS_LABELS: Record<number, string> = { 1: 'OPEN', 2: 'RESOLVED' }
 const ALERT_STATUS: Record<number, string> = { 1: 'WARNING', 2: 'CRITICAL' }
-const ALERT_COLORS: Record<number, string> = { 1: 'bg-yellow-100 text-yellow-800', 2: 'bg-red-100 text-red-800' }
+const ALERT_COLORS: Record<number, string> = { 1: 'bg-warning/10 text-warning border-warning/20', 2: 'bg-destructive/10 text-destructive border-destructive/20' }
 
 function buildTimelineEvents(incident: any): Array<{ icon: any; color: string; title: string; description: string; timestamp: string }> {
   const events: Array<{ icon: any; color: string; title: string; description: string; timestamp: string }> = []
@@ -94,6 +92,29 @@ function generateIncidentDescription(
   return `An incident was ${statusLabel === 'open' ? 'opened' : 'resolved'} for check "${checkName}" on server "${serverName}". The incident started on ${formatInTZ(incident.started_at)} and is currently ${statusLabel}. ${alertInfo} ${rootCauseInfo} ${durationInfo}`.trim()
 }
 
+/* ── Skeleton ── */
+function IncidentDetailSkeleton() {
+  return (
+    <div className="p-6 max-w-7xl mx-auto space-y-6" aria-hidden="true">
+      <div className="h-4 w-32 skeleton" />
+      <div className="glass-card p-6 space-y-4">
+        <div className="flex justify-between">
+          <div className="h-7 w-48 skeleton" />
+          <div className="h-6 w-20 skeleton rounded-full" />
+        </div>
+        <div className="h-16 w-full skeleton rounded-xl" />
+        <div className="grid grid-cols-4 gap-4">
+          {[1, 2, 3, 4].map(i => <div key={i} className="h-16 skeleton rounded-xl" />)}
+        </div>
+      </div>
+      <div className="glass-card p-6 space-y-4">
+        <div className="h-5 w-24 skeleton" />
+        {[1, 2, 3].map(i => <div key={i} className="h-12 w-full skeleton" />)}
+      </div>
+    </div>
+  )
+}
+
 export function IncidentDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -128,79 +149,160 @@ export function IncidentDetail() {
     }
   }
 
-  if (isLoading) return <div className="p-4"><LoadingSpinner /></div>
-  if (isError || !incident) return <div className="p-4"><ErrorBanner message="Failed to load incident." /></div>
+  if (isLoading) return <IncidentDetailSkeleton />
+  if (isError || !incident) return <div className="p-6 max-w-7xl mx-auto"><ErrorBanner message="Failed to load incident." /></div>
+
+  const statusText = STATUS_LABELS[incident.status as any] ?? incident.status
+  const isOpen = incident.status === 'OPEN' || (incident.status as any) === 1
 
   return (
-    <div className="p-4 space-y-4">
-      <button onClick={() => navigate('/incidents')} className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-700">
-        <ArrowLeft className="w-3.5 h-3.5" /> Back to Incidents
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
+      {/* ── Back Button ── */}
+      <button
+        onClick={() => navigate('/incidents')}
+        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+      >
+        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+        Back to Incidents
       </button>
 
-      <div className="bg-white rounded-lg shadow p-4 space-y-3">
-        <div className="flex items-center justify-between">
-          <h1 className="text-lg font-bold text-gray-900">Incident #{incident.incident_id}</h1>
-          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${incident.status === 'OPEN' || (incident.status as any) === 1 ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
-            {STATUS_LABELS[incident.status as any] ?? incident.status}
-          </span>
-        </div>
-
-        <Card className="p-3 bg-blue-50 border-blue-200">
-          <p className="text-xs leading-relaxed text-slate-700">{description}</p>
-        </Card>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-          <div><p className="text-gray-500">Server</p><p className="font-medium">{serverName}</p></div>
-          <div><p className="text-gray-500">Check</p><p className="font-medium">{checkName}</p></div>
-          <div><p className="text-gray-500">Started</p><p className="font-medium">{formatInTZ(incident.started_at)}</p></div>
-          <div><p className="text-gray-500">Ended</p><p className="font-medium">{incident.ended_at ? formatInTZ(incident.ended_at) : '\u2014'}</p></div>
-        </div>
-
+      {/* ── Page Header ── */}
+      <div className="flex items-center justify-between">
         <div>
-          <div className="flex items-center justify-between mb-1">
-            <p className="text-xs text-gray-500 font-medium">Root Cause</p>
-            {role === 'admin' && !editingRootCause && (
-              <button onClick={() => { setEditingRootCause(true); setRootCauseText(incident.root_cause ?? '') }} className="text-[10px] text-blue-600 hover:underline">Edit</button>
-            )}
-          </div>
-          {editingRootCause ? (
-            <div className="space-y-1.5">
-              <textarea
-                className="w-full border rounded px-2 py-1.5 text-xs"
-                rows={3}
-                value={rootCauseText}
-                onChange={e => setRootCauseText(e.target.value)}
-              />
-              {saveError && <p className="text-[10px] text-red-600">{saveError}</p>}
-              <div className="flex gap-1.5">
-                <button onClick={handleSaveRootCause} disabled={patchRootCause.isPending} className="px-2.5 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">Save</button>
-                <button onClick={() => setEditingRootCause(false)} className="px-2.5 py-1 text-xs border rounded hover:bg-gray-50">Cancel</button>
-              </div>
-            </div>
-          ) : (
-            <p className="text-xs text-gray-700">{incident.root_cause ?? <span className="text-gray-400 italic">Not set</span>}</p>
-          )}
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Incident #{incident.incident_id}</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            {checkName} on {serverName}
+          </p>
+        </div>
+        <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold ${
+          isOpen
+            ? 'bg-destructive/10 text-destructive border-destructive/20'
+            : 'bg-success/10 text-success border-success/20'
+        }`}>
+          <span className={`w-2 h-2 rounded-full ${isOpen ? 'bg-destructive animate-pulse' : 'bg-success'}`} />
+          {statusText}
+        </span>
+      </div>
+
+      {/* ── Description Card ── */}
+      <div className="glass-card p-5">
+        <div className="rounded-xl bg-info/5 border border-info/10 p-4">
+          <p className="text-sm leading-relaxed text-foreground">{description}</p>
         </div>
       </div>
 
-      {/* Timeline */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <h2 className="text-sm font-semibold text-gray-900 mb-3">Timeline</h2>
-        <div className="relative pl-6 space-y-0">
+      {/* ── Info Grid ── */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="glass-card p-4">
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Server className="w-3.5 h-3.5 text-primary" />
+            </div>
+            <p className="text-xs text-muted-foreground font-medium">Server</p>
+          </div>
+          <p className="text-sm font-semibold text-foreground">{serverName}</p>
+        </div>
+        <div className="glass-card p-4">
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="w-7 h-7 rounded-lg bg-warning/10 flex items-center justify-center">
+              <FileSearch className="w-3.5 h-3.5 text-warning" />
+            </div>
+            <p className="text-xs text-muted-foreground font-medium">Check</p>
+          </div>
+          <p className="text-sm font-semibold text-foreground">{checkName}</p>
+        </div>
+        <div className="glass-card p-4">
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="w-7 h-7 rounded-lg bg-info/10 flex items-center justify-center">
+              <Calendar className="w-3.5 h-3.5 text-info" />
+            </div>
+            <p className="text-xs text-muted-foreground font-medium">Started</p>
+          </div>
+          <p className="text-sm font-semibold text-foreground">{formatInTZ(incident.started_at)}</p>
+        </div>
+        <div className="glass-card p-4">
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="w-7 h-7 rounded-lg bg-success/10 flex items-center justify-center">
+              <CalendarCheck className="w-3.5 h-3.5 text-success" />
+            </div>
+            <p className="text-xs text-muted-foreground font-medium">Ended</p>
+          </div>
+          <p className="text-sm font-semibold text-foreground">{incident.ended_at ? formatInTZ(incident.ended_at) : '\u2014'}</p>
+        </div>
+      </div>
+
+      {/* ── Root Cause ── */}
+      <div className="glass-card p-5">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Flag className="w-4 h-4 text-primary" />
+            </div>
+            <h2 className="text-sm font-semibold text-foreground">Root Cause</h2>
+          </div>
+          {role === 'admin' && !editingRootCause && (
+            <button
+              onClick={() => { setEditingRootCause(true); setRootCauseText(incident.root_cause ?? '') }}
+              className="text-xs text-primary font-medium hover:text-primary/80 transition-colors"
+            >
+              Edit
+            </button>
+          )}
+        </div>
+        {editingRootCause ? (
+          <div className="space-y-3">
+            <textarea
+              className="w-full h-10 px-3 py-2.5 rounded-xl bg-muted/50 border border-border text-foreground text-sm focus:ring-2 focus:ring-ring focus:outline-none resize-none"
+              rows={3}
+              value={rootCauseText}
+              onChange={e => setRootCauseText(e.target.value)}
+              placeholder="Describe the root cause..."
+            />
+            {saveError && <p className="text-xs text-destructive">{saveError}</p>}
+            <div className="flex gap-2">
+              <button
+                onClick={handleSaveRootCause}
+                disabled={patchRootCause.isPending}
+                className="px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-xs shadow-glow-sm hover:shadow-glow-md transition-all duration-300 disabled:opacity-50"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => setEditingRootCause(false)}
+                className="px-4 py-2 rounded-xl bg-muted text-foreground font-medium text-xs hover:bg-muted/80 transition-all duration-200"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p className="text-sm text-foreground">{incident.root_cause ?? <span className="text-muted-foreground italic">Not set</span>}</p>
+        )}
+      </div>
+
+      {/* ── Timeline ── */}
+      <div className="glass-card p-5">
+        <div className="flex items-center gap-2.5 mb-5">
+          <div className="w-8 h-8 rounded-lg bg-info/10 flex items-center justify-center">
+            <Clock className="w-4 h-4 text-info" />
+          </div>
+          <h2 className="text-sm font-semibold text-foreground">Timeline</h2>
+        </div>
+        <div className="relative pl-8 space-y-0">
           {(() => {
             const events = buildTimelineEvents(incident)
             return events.map((event, idx) => (
-              <div key={idx} className="relative pb-4 last:pb-0">
+              <div key={idx} className="relative pb-6 last:pb-0">
                 {idx < events.length - 1 && (
-                  <div className="absolute left-[7px] top-3 bottom-0 w-px bg-gray-200" />
+                  <div className="absolute left-[9px] top-5 bottom-0 w-px bg-border/50" />
                 )}
-                <div className="absolute left-0 top-0.5 rounded-full p-1" style={{ backgroundColor: event.color + '20' }}>
-                  <event.icon className="h-3 w-3" style={{ color: event.color }} />
+                <div className="absolute left-0 top-0.5 rounded-full p-1.5" style={{ backgroundColor: event.color + '15' }}>
+                  <event.icon className="h-3.5 w-3.5" style={{ color: event.color }} />
                 </div>
-                <div className="ml-5">
-                  <p className="text-[10px] font-semibold text-gray-900">{event.title}</p>
-                  <p className="text-[9px] text-gray-500 mt-0.5">{event.description}</p>
-                  <p className="text-[9px] text-gray-400 mt-0.5">{formatInTZ(event.timestamp)}</p>
+                <div className="ml-6">
+                  <p className="text-sm font-semibold text-foreground">{event.title}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{event.description}</p>
+                  <p className="text-[11px] text-muted-foreground/70 mt-1">{formatInTZ(event.timestamp)}</p>
                 </div>
               </div>
             ))
@@ -208,41 +310,58 @@ export function IncidentDetail() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow">
-        <div className="px-4 py-3 border-b">
-          <h2 className="text-sm font-semibold text-gray-900">Associated Alerts ({(incident as any).alerts?.length ?? 0})</h2>
+      {/* ── Associated Alerts ── */}
+      <div className="glass-card overflow-hidden">
+        <div className="px-5 py-4 border-b border-border/50 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-warning/10 flex items-center justify-center">
+              <AlertTriangle className="w-4 h-4 text-warning" />
+            </div>
+            <div>
+              <h2 className="text-sm font-semibold text-foreground">Associated Alerts</h2>
+              <p className="text-[11px] text-muted-foreground">Alerts triggered by this incident</p>
+            </div>
+          </div>
+          <span className="px-2.5 py-1 rounded-full bg-muted text-muted-foreground text-[11px] font-semibold">
+            {(incident as any).alerts?.length ?? 0} alerts
+          </span>
         </div>
         {(incident as any).alerts?.length === 0 ? (
-          <p className="p-4 text-xs text-gray-500">No alerts associated with this incident.</p>
+          <p className="p-5 text-sm text-muted-foreground">No alerts associated with this incident.</p>
         ) : (
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                {['Triggered', 'Metric', 'Value', 'Status', 'Acknowledged'].map(h => (
-                  <th key={h} className="px-3 py-2 text-left text-[10px] font-medium text-gray-500 uppercase">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {((incident as any).alerts ?? []).map((a: any) => (
-                <tr key={`${a.alert_id}-${a.triggered_at}`} className="hover:bg-gray-50">
-                  <td className="px-3 py-2 text-xs text-gray-500">{formatInTZ(a.triggered_at)}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{a.metric_name}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{a.observed_value}</td>
-                  <td className="px-3 py-2">
-                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-medium ${ALERT_COLORS[a.status] ?? 'bg-gray-100 text-gray-800'}`}>
-                      {ALERT_STATUS[a.status] ?? a.status}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2 text-xs">
-                    {a.acknowledged_at
-                      ? <span className="flex items-center gap-1 text-green-600 text-[10px]"><CheckCircle className="w-3 h-3" />{formatInTZ(a.acknowledged_at)}</span>
-                      : <span className="text-gray-400 text-[10px]">&mdash;</span>}
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead>
+                <tr className="bg-muted/50">
+                  {['Triggered', 'Metric', 'Value', 'Status', 'Acknowledged'].map(h => (
+                    <th key={h} className="px-4 py-3 text-left text-xs uppercase tracking-wider font-semibold text-muted-foreground">{h}</th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-border/50">
+                {((incident as any).alerts ?? []).map((a: any) => (
+                  <tr key={`${a.alert_id}-${a.triggered_at}`} className="hover:bg-muted/30 transition-colors">
+                    <td className="px-4 py-3 text-sm text-muted-foreground whitespace-nowrap">{formatInTZ(a.triggered_at)}</td>
+                    <td className="px-4 py-3 text-sm font-medium text-foreground">{a.metric_name}</td>
+                    <td className="px-4 py-3 text-sm text-foreground tabular-nums">{a.observed_value}</td>
+                    <td className="px-4 py-3">
+                      <span className={`inline-flex items-center px-2.5 py-1 rounded-full border text-[11px] font-semibold ${ALERT_COLORS[a.status] ?? 'bg-muted text-muted-foreground border-border'}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
+                          a.status === 2 ? 'bg-destructive' : a.status === 1 ? 'bg-warning' : 'bg-muted-foreground'
+                        }`} />
+                        {ALERT_STATUS[a.status] ?? a.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">
+                      {a.acknowledged_at
+                        ? <span className="flex items-center gap-1.5 text-success text-xs font-medium"><CheckCircle className="w-3.5 h-3.5" />{formatInTZ(a.acknowledged_at)}</span>
+                        : <span className="text-muted-foreground text-xs">&mdash;</span>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>

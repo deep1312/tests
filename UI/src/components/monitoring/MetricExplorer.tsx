@@ -46,8 +46,8 @@ const UnusedIndexTable = ({ data }: { data: Metric }) => {
   const indexes: IndexDetail[] = (data.details as any)?.indexes || (data.labels as any)?.indexes || []
   
   return (
-    <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-      <div className="p-4 bg-gray-50 border-b flex justify-between items-center">
+    <div className="bg-card/90 backdrop-blur-sm border border-border rounded-xl overflow-hidden shadow-sm">
+      <div className="p-4 bg-muted border-b flex justify-between items-center">
         <span className="font-bold text-sm flex items-center gap-2">
           <Database className="w-4 h-4 text-blue-600" /> Unused Index Report
         </span>
@@ -57,23 +57,23 @@ const UnusedIndexTable = ({ data }: { data: Metric }) => {
       </div>
       <div className="max-h-[400px] overflow-y-auto">
         <table className="w-full text-sm text-left">
-          <thead className="bg-gray-50 sticky top-0 border-b">
+          <thead className="bg-muted sticky top-0 border-b">
             <tr>
-              <th className="p-3 text-[10px] font-black uppercase text-gray-400 tracking-wider">Table</th>
-              <th className="p-3 text-[10px] font-black uppercase text-gray-400 tracking-wider">Index Name</th>
-              <th className="p-3 text-[10px] font-black uppercase text-gray-400 tracking-wider text-right">Size</th>
+              <th className="p-3 text-[10px] font-black uppercase text-muted-foreground tracking-wider">Table</th>
+              <th className="p-3 text-[10px] font-black uppercase text-muted-foreground tracking-wider">Index Name</th>
+              <th className="p-3 text-[10px] font-black uppercase text-muted-foreground tracking-wider text-right">Size</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {indexes.length > 0 ? indexes.map((idx, i) => (
               <tr key={i} className="hover:bg-blue-50/30 transition-colors">
-                <td className="p-3 font-semibold text-gray-900">{idx.table_name}</td>
-                <td className="p-3 text-gray-500 font-mono text-xs">{idx.index_name}</td>
+                <td className="p-3 font-semibold text-foreground">{idx.table_name}</td>
+                <td className="p-3 text-muted-foreground font-mono text-xs">{idx.index_name}</td>
                 <td className="p-3 text-right font-mono text-blue-600 font-medium">{idx.index_size || idx.size}</td>
               </tr>
             )) : (
               <tr>
-                <td colSpan={3} className="p-10 text-center text-gray-400 italic text-xs">
+                <td colSpan={3} className="p-10 text-center text-muted-foreground italic text-xs">
                   No unused indexes found in this sample.
                 </td>
               </tr>
@@ -90,8 +90,8 @@ const DatabaseUsageTable = ({ data }: { data: Metric }) => {
   const dbData: DatabaseDetail[] = (data.details as any)?.databases || (data.labels as any)?.databases || []
   
   return (
-    <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-      <div className="p-4 bg-gray-50 border-b flex justify-between items-center">
+    <div className="bg-card/90 backdrop-blur-sm border border-border rounded-xl overflow-hidden shadow-sm">
+      <div className="p-4 bg-muted border-b flex justify-between items-center">
         <span className="font-bold text-sm flex items-center gap-2">
           <HardDrive className="w-4 h-4 text-indigo-600" /> Storage Breakdown
         </span>
@@ -101,21 +101,21 @@ const DatabaseUsageTable = ({ data }: { data: Metric }) => {
       </div>
       <div className="max-h-[400px] overflow-y-auto">
         <table className="w-full text-sm text-left">
-          <thead className="bg-gray-50 sticky top-0 border-b">
+          <thead className="bg-muted sticky top-0 border-b">
             <tr>
-              <th className="p-3 text-[10px] font-black uppercase text-gray-400 tracking-wider">Database</th>
-              <th className="p-3 text-[10px] font-black uppercase text-gray-400 tracking-wider text-right">Size (GB)</th>
+              <th className="p-3 text-[10px] font-black uppercase text-muted-foreground tracking-wider">Database</th>
+              <th className="p-3 text-[10px] font-black uppercase text-muted-foreground tracking-wider text-right">Size (GB)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {dbData.length > 0 ? dbData.map((db, i) => (
               <tr key={i} className="hover:bg-indigo-50/30 transition-colors">
-                <td className="p-3 font-bold text-gray-900">{db.db_name || db.name}</td>
+                <td className="p-3 font-bold text-foreground">{db.db_name || db.name}</td>
                 <td className="p-3 text-right font-mono text-indigo-600 font-bold">{db.size_gb || db.size} GB</td>
               </tr>
             )) : (
               <tr>
-                <td colSpan={2} className="p-10 text-center text-gray-400 italic text-xs">
+                <td colSpan={2} className="p-10 text-center text-muted-foreground italic text-xs">
                   No detailed usage breakdown available.
                 </td>
               </tr>
@@ -138,16 +138,16 @@ const ConnectionGauge = ({ data }: { data: Metric }) => {
   const barColor = pct > 80 ? 'bg-red-500' : pct > 50 ? 'bg-orange-500' : 'bg-green-500';
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden">
+    <div className="bg-card/90 backdrop-blur-sm border border-border rounded-xl p-8 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden">
       <Users className="w-8 h-8 mb-2 text-gray-300" />
-      <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Active Connections</h4>
+      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Active Connections</h4>
       <div className={`text-7xl font-black font-mono my-2 tracking-tighter ${color}`}>
         {Math.round(pct)}%
       </div>
-      <div className="text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full border border-gray-100">
-        Active: <strong className="text-gray-900">{val}</strong> / Max: {max}
+      <div className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full border border-gray-100">
+        Active: <strong className="text-foreground">{val}</strong> / Max: {max}
       </div>
-      <div className="w-full max-w-xs bg-gray-100 h-3 rounded-full mt-8 overflow-hidden border">
+      <div className="w-full max-w-xs bg-muted h-3 rounded-full mt-8 overflow-hidden border">
         <div 
           className={`h-full transition-all duration-1000 ease-out ${barColor}`} 
           style={{ width: `${Math.min(pct, 100)}%` }} 
@@ -209,7 +209,7 @@ export function MetricExplorer({ serverId, from, to, bucketInterval }: MetricExp
   const renderDashboard = () => {
     if (selectedMetrics.length !== 1) {
       return (
-        <div className="h-64 flex flex-col items-center justify-center border-2 border-dashed border-gray-100 rounded-xl text-gray-400 bg-gray-50/30">
+        <div className="h-64 flex flex-col items-center justify-center border-2 border-dashed border-gray-100 rounded-xl text-muted-foreground bg-muted/30">
           <TableIcon className="w-10 h-10 mb-2 opacity-10" />
           <p className="text-sm font-medium">Select a metric to view detailed table</p>
         </div>
@@ -217,7 +217,7 @@ export function MetricExplorer({ serverId, from, to, bucketInterval }: MetricExp
     }
 
     const latest = rawMetricsData?.data?.[0]
-    if (!latest) return <div className="p-10 text-center text-gray-400 italic">Fetching latest data...</div>
+    if (!latest) return <div className="p-10 text-center text-muted-foreground italic">Fetching latest data...</div>
 
     const mName = selectedMetrics[0].name.toLowerCase()
 
@@ -234,12 +234,12 @@ export function MetricExplorer({ serverId, from, to, bucketInterval }: MetricExp
     }
 
     return (
-      <div className="p-8 border rounded-xl bg-white shadow-sm">
-        <h4 className="text-xs font-black text-gray-400 uppercase mb-4 tracking-tighter">{selectedMetrics[0].name}</h4>
+      <div className="p-8 border rounded-xl bg-card/90 backdrop-blur-sm shadow-sm">
+        <h4 className="text-xs font-black text-muted-foreground uppercase mb-4 tracking-tighter">{selectedMetrics[0].name}</h4>
         <div className="text-5xl font-mono font-bold text-blue-600 mb-6 tracking-tight">
           {latest.metric_value}
         </div>
-        <div className="text-[11px] bg-gray-900 text-green-400 p-4 rounded-lg overflow-auto font-mono max-h-48 border-4 border-gray-800">
+        <div className="text-[11px] bg-background text-green-400 p-4 rounded-lg overflow-auto font-mono max-h-48 border-4 border-gray-800">
           <pre>{JSON.stringify(latest.details || latest.labels || {}, null, 2)}</pre>
         </div>
       </div>
@@ -248,32 +248,32 @@ export function MetricExplorer({ serverId, from, to, bucketInterval }: MetricExp
 
   if (!serverId) {
     return (
-      <div className="p-12 border-2 border-dashed rounded-2xl text-center text-gray-400 bg-gray-50/50 font-medium">
+      <div className="p-12 border-2 border-dashed rounded-2xl text-center text-muted-foreground bg-muted/50 font-medium">
         Select a database server to start monitoring.
       </div>
     )
   }
 
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-6">
+    <div className="bg-card/90 backdrop-blur-sm border border-gray-100 rounded-2xl p-6 shadow-sm space-y-6">
       <div className="flex justify-between items-center">
-        <h3 className="font-bold text-gray-900 flex items-center gap-2.5">
+        <h3 className="font-bold text-foreground flex items-center gap-2.5">
           <div className="p-2 bg-blue-50 rounded-lg">
             <Activity className="w-4 h-4 text-blue-600" />
           </div>
           Metric Explorer
           {isAggLoading && <span className="text-[9px] text-blue-400 animate-pulse font-normal">Syncing...</span>}
         </h3>
-        <div className="flex bg-gray-100 p-1 rounded-xl border border-gray-200 shadow-inner">
+        <div className="flex bg-muted p-1 rounded-xl border border-border shadow-inner">
           <button 
             onClick={() => setViewMode('dashboard')} 
-            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${viewMode === 'dashboard' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-800'}`}
+            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${viewMode === 'dashboard' ? 'bg-card/90 backdrop-blur-sm shadow-sm text-blue-600' : 'text-muted-foreground hover:text-foreground'}`}
           >
             <LayoutGrid className="w-3.5 h-3.5"/> Dashboard View
           </button>
           <button 
             onClick={() => setViewMode('chart')} 
-            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${viewMode === 'chart' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-800'}`}
+            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${viewMode === 'chart' ? 'bg-card/90 backdrop-blur-sm shadow-sm text-blue-600' : 'text-muted-foreground hover:text-foreground'}`}
           >
             <Activity className="w-3.5 h-3.5"/> Trend Chart
           </button>
@@ -282,18 +282,18 @@ export function MetricExplorer({ serverId, from, to, bucketInterval }: MetricExp
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <label className="text-[10px] font-black uppercase text-gray-400 ml-1">Choose Metrics</label>
+          <label className="text-[10px] font-black uppercase text-muted-foreground ml-1">Choose Metrics</label>
           <Select.Root onValueChange={(val) => {
             if (selectedMetrics.length < 3 && !selectedMetrics.some(m => m.name === val)) {
               setSelectedMetrics([...selectedMetrics, { name: val, color: METRIC_COLORS[selectedMetrics.length] }])
             }
           }} value="">
-            <Select.Trigger className="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl flex justify-between items-center bg-gray-50 hover:bg-white hover:border-blue-400 transition-all outline-none focus:ring-2 focus:ring-blue-100">
+            <Select.Trigger className="w-full px-4 py-3 text-sm border border-border rounded-xl flex justify-between items-center bg-muted hover:bg-card/90 backdrop-blur-sm hover:border-blue-400 transition-all outline-none focus:ring-2 focus:ring-blue-100">
               <Select.Value placeholder="Search database metrics..." />
               <span className="text-gray-300 text-xs">▼</span>
             </Select.Trigger>
             <Select.Portal>
-              <Select.Content className="bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] overflow-hidden min-w-[240px]">
+              <Select.Content className="bg-card/90 backdrop-blur-sm border border-border rounded-xl shadow-2xl z-[100] overflow-hidden min-w-[240px]">
                 <Select.Viewport className="p-1">
                   {metricNames.map(n => (
                     <Select.Item key={n} value={n} className="px-8 py-2.5 text-sm cursor-pointer hover:bg-blue-50 outline-none rounded-lg flex items-center transition-colors">
@@ -308,7 +308,7 @@ export function MetricExplorer({ serverId, from, to, bucketInterval }: MetricExp
 
         <div className="flex flex-wrap gap-2 items-end">
           {selectedMetrics.map(m => (
-            <div key={m.name} className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center gap-2 shadow-sm hover:border-red-200 transition-all">
+            <div key={m.name} className="px-3 py-2 bg-card/90 backdrop-blur-sm border border-border rounded-xl text-xs flex items-center gap-2 shadow-sm hover:border-red-200 transition-all">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: m.color }} />
               <span className="font-bold text-gray-700 uppercase tracking-tighter">{m.name}</span>
               <button 
@@ -322,12 +322,12 @@ export function MetricExplorer({ serverId, from, to, bucketInterval }: MetricExp
         </div>
       </div>
 
-      <div className="min-h-[450px] bg-gray-50/20 rounded-2xl border border-gray-100 p-4">
+      <div className="min-h-[450px] bg-muted/20 rounded-2xl border border-gray-100 p-4">
         {viewMode === 'dashboard' ? (
           isRawLoading ? (
             <div className="flex flex-col items-center justify-center h-[350px]">
                <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mb-2" />
-               <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Loading Telemetry...</span>
+               <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Loading Telemetry...</span>
             </div>
           ) : renderDashboard()
         ) : (

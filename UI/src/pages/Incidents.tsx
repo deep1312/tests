@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useIncidents } from '../api/incidents'
 import { useServers } from '../api/servers'
 import { useChecks } from '../api/checks'
-import { LoadingSpinner } from '../components/shared/LoadingSpinner'
+
 import { ErrorBanner } from '../components/shared/ErrorBanner'
 import { EmptyState } from '../components/shared/EmptyState'
 import { NotificationPopup } from '../components/monitoring/NotificationPopup'
@@ -13,23 +13,46 @@ import { FileText, Download, Bug, CheckCircle, Activity } from 'lucide-react'
 import { formatInTZ } from '../utils/timezone'
 import type { Incident } from '../api/incidents'
 
-function SummaryCard({ icon: Icon, label, value, color }: { icon: any; label: string; value: number | string; color: string }) {
+const STATUS_COLORS: Record<string, string> = {
+  OPEN: 'bg-destructive/10 text-destructive border-destructive/20',
+  RESOLVED: 'bg-success/10 text-success border-success/20',
+}
+
+/* ── Skeleton ── */
+function IncidentsSkeleton() {
   return (
-    <div className="flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3 py-2.5 shadow-sm">
-      <div className={`rounded-full p-1.5 ${color}`}>
-        <Icon className="h-3.5 w-3.5" />
+    <div className="p-6 max-w-7xl mx-auto space-y-6" aria-hidden="true">
+      <div className="flex justify-between items-end">
+        <div className="space-y-2">
+          <div className="h-7 w-36 skeleton" />
+          <div className="h-4 w-52 skeleton" />
+        </div>
+        <div className="h-10 w-28 skeleton rounded-xl" />
       </div>
-      <div>
-        <p className="text-[18px] font-black text-slate-900 leading-none">{value}</p>
-        <p className="text-[9px] font-medium uppercase tracking-wider text-slate-400 mt-0.5">{label}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="glass-card p-5 space-y-3">
+            <div className="flex justify-between">
+              <div className="h-10 w-10 skeleton rounded-xl" />
+              <div className="h-5 w-16 skeleton rounded-full" />
+            </div>
+            <div className="h-8 w-20 skeleton" />
+            <div className="h-3 w-28 skeleton" />
+          </div>
+        ))}
+      </div>
+      <div className="glass-card overflow-hidden">
+        <div className="px-5 py-3 bg-muted/50">
+          <div className="h-4 w-full skeleton" />
+        </div>
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div key={i} className="px-5 py-3 border-t border-border/50">
+            <div className="h-4 w-full skeleton" />
+          </div>
+        ))}
       </div>
     </div>
   )
-}
-
-const STATUS_COLORS: Record<string, string> = {
-  OPEN: 'bg-red-100 text-red-800',
-  RESOLVED: 'bg-green-100 text-green-800',
 }
 
 export function Incidents() {
@@ -98,91 +121,150 @@ export function Incidents() {
     downloadCSV(rows, `incidents-${new Date().toISOString().slice(0, 10)}.csv`)
   }
 
+  if (isLoading) return <IncidentsSkeleton />
+
   return (
-    <div className="p-4 space-y-3">
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
+      {/* ── Page Header ── */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-bold text-gray-900">Incidents</h1>
-          <p className="text-[11px] text-gray-500">Track and manage fault events</p>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Incidents</h1>
+          <p className="text-sm text-muted-foreground mt-1">Track and manage fault events across your fleet</p>
         </div>
         <button
           onClick={handleExport}
           disabled={incidents.length === 0}
-          className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-[10px] font-semibold text-slate-600 shadow-sm hover:border-blue-300 hover:text-blue-600 disabled:opacity-40"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted text-foreground font-medium hover:bg-muted/80 transition-all duration-200 disabled:opacity-40"
         >
-          <Download className="h-3 w-3" />
+          <Download className="h-4 w-4" />
           Export CSV
         </button>
       </div>
 
-      {/* Summary Dashboard */}
+      {/* ── Summary Stats ── */}
       {summary.total > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          <SummaryCard icon={Activity} label="Total Incidents" value={summary.total} color="bg-blue-100 text-blue-600" />
-          <SummaryCard icon={Bug} label="Open" value={summary.open} color="bg-red-100 text-red-600" />
-          <SummaryCard icon={CheckCircle} label="Resolved" value={summary.resolved} color="bg-green-100 text-green-600" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="glass-card p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-10 h-10 rounded-xl bg-info/10 flex items-center justify-center">
+                <Activity className="w-5 h-5 text-info" />
+              </div>
+              <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Total</span>
+            </div>
+            <p className="text-3xl font-bold text-foreground tabular-nums">{summary.total}</p>
+            <p className="text-xs text-muted-foreground mt-1">total incidents</p>
+          </div>
+
+          <div className="glass-card p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center">
+                <Bug className="w-5 h-5 text-destructive" />
+              </div>
+              <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Open</span>
+            </div>
+            <p className="text-3xl font-bold text-foreground tabular-nums">{summary.open}</p>
+            <p className="text-xs text-muted-foreground mt-1">open incidents</p>
+          </div>
+
+          <div className="glass-card p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-success" />
+              </div>
+              <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Resolved</span>
+            </div>
+            <p className="text-3xl font-bold text-foreground tabular-nums">{summary.resolved}</p>
+            <p className="text-xs text-muted-foreground mt-1">resolved incidents</p>
+          </div>
         </div>
       )}
 
-      <div className="flex gap-1.5">
+      {/* ── Filter Tabs ── */}
+      <div className="flex items-center gap-2">
         {[{ label: 'All', value: undefined }, { label: 'Open', value: 1 }, { label: 'Resolved', value: 2 }].map(opt => (
           <button
             key={opt.label}
             onClick={() => { setStatusFilter(opt.value); setPage(0) }}
-            className={`px-2.5 py-1 text-xs rounded-full border ${statusFilter === opt.value ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+            className={`px-4 py-2 text-xs font-semibold rounded-xl border transition-all duration-200 ${
+              statusFilter === opt.value
+                ? 'bg-primary text-primary-foreground border-primary shadow-glow-sm'
+                : 'bg-muted/50 text-muted-foreground border-border hover:bg-muted/80'
+            }`}
           >
             {opt.label}
           </button>
         ))}
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        {isLoading ? (
-          <div className="p-4"><LoadingSpinner /></div>
-        ) : isError ? (
-          <div className="p-4"><ErrorBanner message="Failed to load incidents." /></div>
+      {/* ── Incidents Table ── */}
+      <div className="glass-card overflow-hidden">
+        {isError ? (
+          <div className="p-6"><ErrorBanner message="Failed to load incidents." /></div>
         ) : incidents.length === 0 ? (
           <EmptyState icon={FileText} title="No incidents" description="No incidents match the current filter" />
         ) : (
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                {['ID', 'Server', 'Check', 'Status', 'Started', 'Ended', 'Root Cause'].map(h => (
-                  <th key={h} className="px-3 py-2 text-left text-[10px] font-medium text-gray-500 uppercase">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {incidents.map(i => (
-                <tr
-                  key={i.incident_id}
-                  className="hover:bg-gray-50 cursor-pointer"
-                  onClick={() => navigate(`/incidents/${i.incident_id}`)}
-                >
-                  <td className="px-3 py-2 text-xs font-medium text-blue-600">#{i.incident_id}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{serverMap.get(i.server_id) ?? `#${i.server_id}`}</td>
-                  <td className="px-3 py-2 text-xs text-gray-700">{checkMap.get(i.check_id) ?? `#${i.check_id}`}</td>
-                  <td className="px-3 py-2">
-                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-medium ${STATUS_COLORS[i.status] ?? 'bg-gray-100 text-gray-800'}`}>
-                      {i.status}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2 text-xs text-gray-500">{formatInTZ(i.started_at)}</td>
-                  <td className="px-3 py-2 text-xs text-gray-500">{i.ended_at ? formatInTZ(i.ended_at) : '\u2014'}</td>
-                  <td className="px-3 py-2 text-xs text-gray-500 max-w-xs truncate">{i.root_cause ?? '\u2014'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-        {totalPages > 1 && (
-          <div className="px-3 py-2 border-t flex items-center justify-between text-xs text-gray-500">
-            <span>Page {page + 1} of {totalPages} ({total} total)</span>
-            <div className="flex gap-1.5">
-              <button disabled={page === 0} onClick={() => setPage(p => p - 1)} className="px-2 py-1 border rounded text-xs disabled:opacity-40">Prev</button>
-              <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)} className="px-2 py-1 border rounded text-xs disabled:opacity-40">Next</button>
+          <>
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr className="bg-muted/50">
+                    {['ID', 'Server', 'Check', 'Status', 'Started', 'Ended', 'Root Cause'].map(h => (
+                      <th key={h} className="px-4 py-3 text-left text-xs uppercase tracking-wider font-semibold text-muted-foreground">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/50">
+                  {incidents.map(i => (
+                    <tr
+                      key={i.incident_id}
+                      className="hover:bg-muted/30 transition-colors cursor-pointer group"
+                      onClick={() => navigate(`/incidents/${i.incident_id}`)}
+                    >
+                      <td className="px-4 py-3 text-sm font-semibold text-primary group-hover:text-primary/80 transition-colors">#{i.incident_id}</td>
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">{serverMap.get(i.server_id) ?? `#${i.server_id}`}</td>
+                      <td className="px-4 py-3 text-sm font-medium text-foreground">{checkMap.get(i.check_id) ?? `#${i.check_id}`}</td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-full border text-[11px] font-semibold ${STATUS_COLORS[i.status] ?? 'bg-muted text-muted-foreground border-border'}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
+                            i.status === 'OPEN' ? 'bg-destructive' : 'bg-success'
+                          }`} />
+                          {i.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-sm text-muted-foreground whitespace-nowrap">{formatInTZ(i.started_at)}</td>
+                      <td className="px-4 py-3 text-sm text-muted-foreground whitespace-nowrap">{i.ended_at ? formatInTZ(i.ended_at) : '\u2014'}</td>
+                      <td className="px-4 py-3 text-sm text-muted-foreground max-w-xs truncate">{i.root_cause ?? '\u2014'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </div>
+
+            {/* ── Pagination ── */}
+            {totalPages > 1 && (
+              <div className="px-5 py-3 border-t border-border/50 flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">
+                  Page {page + 1} of {totalPages} <span className="text-muted-foreground/60">({total} total)</span>
+                </span>
+                <div className="flex gap-2">
+                  <button
+                    disabled={page === 0}
+                    onClick={() => setPage(p => p - 1)}
+                    className="px-4 py-2 rounded-xl bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-all duration-200 disabled:opacity-40"
+                  >
+                    Prev
+                  </button>
+                  <button
+                    disabled={page >= totalPages - 1}
+                    onClick={() => setPage(p => p + 1)}
+                    className="px-4 py-2 rounded-xl bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-all duration-200 disabled:opacity-40"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 

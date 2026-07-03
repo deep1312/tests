@@ -57,7 +57,8 @@ describe('StatusTimelineChart Integration Tests', () => {
       <StatusTimelineChart
         data={data}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -113,7 +114,8 @@ describe('StatusTimelineChart Integration Tests', () => {
       <StatusTimelineChart
         data={data}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -150,7 +152,8 @@ describe('StatusTimelineChart Integration Tests', () => {
       <StatusTimelineChart
         data={data}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -187,7 +190,8 @@ describe('StatusTimelineChart Integration Tests', () => {
       <StatusTimelineChart
         data={data}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -235,7 +239,8 @@ describe('StatusTimelineChart Integration Tests', () => {
       <StatusTimelineChart
         data={data}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 

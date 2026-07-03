@@ -125,13 +125,13 @@ function MonitoringCard({
 
 }: MonitoringCardProps) {
 
-  const statusColors = {
+  const statusStyles = {
 
-    healthy: 'border-emerald-500/20 bg-emerald-50/30 text-emerald-700',
+    healthy: 'bg-success/10 text-success border-success/20',
 
-    warning: 'border-amber-500/20 bg-amber-50/30 text-amber-700',
+    warning: 'bg-warning/10 text-warning border-warning/20',
 
-    critical: 'border-red-500/20 bg-red-50/30 text-red-700',
+    critical: 'bg-destructive/10 text-destructive border-destructive/20',
 
   }
 
@@ -143,23 +143,23 @@ function MonitoringCard({
 
       onClick={onClick}
 
-      className="group relative flex cursor-pointer flex-col rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:border-blue-400 hover:shadow"
+      className="glass-card-hover group relative flex cursor-pointer flex-col p-4 transition-all duration-200"
 
     >
 
-      <div className="mb-2 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
 
-          <div className="rounded-lg bg-slate-100 p-1.5 text-slate-600 transition-all group-hover:bg-blue-600 group-hover:text-white">
+          <div className="w-8 h-8 rounded-xl bg-muted/50 flex items-center justify-center text-muted-foreground transition-all duration-200 group-hover:bg-primary/10 group-hover:text-primary">
 
-            <Icon size={14} />
+            <Icon size={16} />
 
           </div>
 
 
 
-          <h3 className="text-[9px] font-black uppercase tracking-[0.15em] text-slate-500">
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
 
             {title}
 
@@ -169,15 +169,15 @@ function MonitoringCard({
 
 
 
-        <div
+        <span
 
-          className={`rounded-full border px-1.5 py-0.5 text-[8px] font-black uppercase leading-none ${statusColors[status]}`}
+          className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase leading-none ${statusStyles[status]}`}
 
         >
 
           {status}
 
-        </div>
+        </span>
 
       </div>
 
@@ -187,7 +187,7 @@ function MonitoringCard({
 
 
 
-      <div className="mt-2 text-[9px] font-black uppercase tracking-wider text-blue-500 opacity-0 transition-opacity group-hover:opacity-100">
+      <div className="mt-3 text-[10px] font-bold uppercase tracking-wider text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100">
 
         View Details →
 
@@ -1043,82 +1043,60 @@ export function Monitoring() {
 
   return (
 
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans">
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
 
-      {/* HEADER */}
+      {/* ── Page Header ── */}
 
-      <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 px-4 py-2 backdrop-blur-md">
+      <div className="flex items-center justify-between">
 
-        <div className="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-2 md:flex-row">
+        <div className="flex items-center gap-3">
 
-          <div className="flex items-center gap-2">
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
 
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white shadow">
-
-              <Database className="h-4 w-4" />
-
-            </div>
-
-
-
-            <div>
-
-              <h1 className="text-sm font-black tracking-tight text-slate-900">
-
-                Fleet Monitor
-
-              </h1>
-
-
-
-              <p className={`flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.2em] ${isHistorical ? 'text-amber-500' : 'text-emerald-500'}`}>
-
-                <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${isHistorical ? 'bg-amber-500' : 'bg-emerald-500'}`} />
-
-                {isHistorical ? `Historical • ${filters.rangeHours}h` : 'Live System Metrics'}
-
-              </p>
-
-            </div>
+            <Database className="w-5 h-5 text-primary" />
 
           </div>
 
+          <div>
 
+            <h1 className="text-2xl font-bold text-foreground tracking-tight">
 
-          <div className="flex items-center gap-1.5">
+              Fleet Monitor
 
-            <Badge variant="secondary" className="flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-              <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${isHistorical ? 'bg-amber-500' : 'bg-blue-500'}`} />
-              {isLatestLoading || isHistoricalLoading || isAggregateLoading
-                ? 'Syncing...'
-                : isHistorical
-                  ? `Historical • ${filters.rangeHours}h`
-                  : 'System Online'}
-            </Badge>
+            </h1>
 
-            <Button variant="outline" size="sm" onClick={handleExportCSV} title="Export CSV" className="h-7 w-7 p-0">
-              <Download className="h-3.5 w-3.5" />
-            </Button>
+            <p className={`flex items-center gap-1.5 text-sm mt-0.5 ${isHistorical ? 'text-warning' : 'text-success'}`}>
 
-            <Button variant="outline" size="sm" onClick={handleRefresh} className="h-7 w-7 p-0">
-              <RefreshCw className={`h-3.5 w-3.5 ${isLatestLoading || isHistoricalLoading || isAggregateLoading ? 'animate-spin' : ''}`} />
-            </Button>
+              <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${isHistorical ? 'bg-warning' : 'bg-success'}`} />
+
+              {isHistorical ? `Historical • ${filters.rangeHours}h` : 'Live System Metrics'}
+
+            </p>
 
           </div>
 
         </div>
 
-      </nav>
 
 
+        <div className="flex items-center gap-2">
 
-      {/* FILTERS */}
+          <Badge variant="secondary" className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold">
+            <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${isHistorical ? 'bg-warning' : 'bg-info'}`} />
+            {isLatestLoading || isHistoricalLoading || isAggregateLoading
+              ? 'Syncing...'
+              : isHistorical
+                ? `Historical • ${filters.rangeHours}h`
+                : 'System Online'}
+          </Badge>
 
-      <div className="border-b border-slate-200 bg-white px-4 py-3">
+          <Button variant="outline" size="sm" onClick={handleExportCSV} title="Export CSV" className="h-8 w-8 p-0 rounded-xl">
+            <Download className="h-3.5 w-3.5" />
+          </Button>
 
-        <div className="mx-auto max-w-[1600px]">
-
-          <FilterBar filters={filters} onChange={updateFilters} />
+          <Button variant="outline" size="sm" onClick={handleRefresh} className="h-8 w-8 p-0 rounded-xl">
+            <RefreshCw className={`h-3.5 w-3.5 ${isLatestLoading || isHistoricalLoading || isAggregateLoading ? 'animate-spin' : ''}`} />
+          </Button>
 
         </div>
 
@@ -1126,193 +1104,209 @@ export function Monitoring() {
 
 
 
-      {/* CONTENT */}
+      {/* ── Filters ── */}
 
-      <main className="mx-auto max-w-[1600px] space-y-2 px-4 py-4">
+      <div className="glass-card p-3">
 
-        {/* ROW 1 */}
+        <FilterBar filters={filters} onChange={updateFilters} />
 
-        <section>
-
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-5">
-
-            {/* CONNECTIONS (Check ID: 1) */}
-
-            {isActive(1) && <MonitoringCard
-
-              title="Connections"
-
-              icon={Activity}
-
-              status={getStatus(1, 80, 95)}
-
-              onClick={() => openDrawer(1)}
-
-            >
-
-              <div className="flex h-full flex-col justify-between">
-
-                <div className="mb-1 text-center">
-
-                  <div className="text-xl font-black">
-
-                    {getMetadataValue(1, 'connection_pct') !== undefined
-
-                      ? `${Number(getMetadataValue(1, 'connection_pct')).toFixed(1)}%`
-
-                      : '—'}
-
-                  </div>
+      </div>
 
 
 
-                  <div className="text-[9px] text-slate-400">
+      {/* ── ROW 1: Top Metrics ── */}
 
-                    {getMetadataValue(1, 'active_connections', 0)} / {getMetadataValue(1, 'max_connections', '—')} Active
+      <section>
 
-                  </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
 
-                </div>
+          {/* CONNECTIONS (Check ID: 1) */}
+
+          {isActive(1) && <MonitoringCard
+
+            title="Connections"
+
+            icon={Activity}
+
+            status={getStatus(1, 80, 95)}
+
+            onClick={() => openDrawer(1)}
+
+          >
+
+            <div className="flex h-full flex-col justify-between">
 
 
 
-                <div className="h-10 w-full">
+              <div className="h-14 w-full mt-2 glass-card overflow-hidden rounded-xl border border-border/50 bg-background/30 p-1">
 
-                  <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%">
 
-                    <LineChart data={dynamicTimeSeriesData}>
+                  <LineChart data={dynamicTimeSeriesData}>
 
-                      <Line type="monotone" dataKey="conn" stroke="#3b82f6" strokeWidth={1.5} dot={false} />
+                    <Line type="monotone" dataKey="conn" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} strokeOpacity={0.8} />
 
-                    </LineChart>
+                  </LineChart>
 
-                  </ResponsiveContainer>
-
-                </div>
+                </ResponsiveContainer>
 
               </div>
 
-            </MonitoringCard>}
+            </div>
+
+          </MonitoringCard>}
 
 
 
-            {/* BLOCKING (Check ID: 2) */}
+          {/* BLOCKING (Check ID: 2) */}
 
-            {isActive(2) && <MonitoringCard
+          {isActive(2) && <MonitoringCard
 
-              title="Blocking"
+            title="Blocking"
 
-              icon={ShieldCheck}
+            icon={ShieldCheck}
 
-              status={getStatus(2, 1, 5)}
+            status={getStatus(2, 1, 5)}
 
-              onClick={() => openDrawer(2)}
+            onClick={() => openDrawer(2)}
 
-            >
+          >
 
-              <div className="text-center">
+            <div className="flex flex-col h-full justify-center items-center py-4">
 
-                <div className="text-xl font-black">
+              <div className="relative mb-2">
+
+                <div className={`absolute inset-0 blur-xl opacity-30 rounded-full ${getMetadataValue(2, 'blocking_count', 0) > 0 ? 'bg-destructive' : 'bg-success'}`}></div>
+
+                <div className={`text-5xl font-black tabular-nums tracking-tighter drop-shadow-md relative ${getMetadataValue(2, 'blocking_count', 0) > 0 ? 'text-destructive' : 'text-success'}`}>
 
                   {getMetadataValue(2, 'blocking_count', 0)}
 
                 </div>
 
-                <div className="text-[9px] text-slate-400">
+              </div>
 
-                  Active Blocker Sessions
+              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mt-2 bg-muted/50 px-3 py-1 rounded-full border border-border/50">
+
+                Active Blockers
+
+              </div>
+
+            </div>
+
+          </MonitoringCard>}
+
+
+
+          {/* REPLICATION (Check ID: 6) */}
+
+          {isActive(6) && <MonitoringCard
+
+            title="Replication Lag"
+
+            icon={RefreshCw}
+
+            status={getStatus(6, 5, 30)}
+
+            onClick={() => openDrawer(6)}
+
+          >
+
+            <div className="text-center">
+
+              <div className="text-[10px] font-semibold uppercase text-muted-foreground">
+
+                {getMetadataValue(6, 'is_replica') ? 'Replica Lag' : 'Cluster Primary'}
+
+              </div>
+
+
+
+              <div className="text-lg font-bold text-primary truncate tabular-nums">
+
+                {getMetadataValue(6, 'lag_seconds') !== undefined 
+                  ? `${getMetadataValue(6, 'lag_seconds')}s` 
+                  : '0s'}
+
+              </div>
+
+            </div>
+
+          </MonitoringCard>}
+
+          {/* WAL (Check ID: 7) */}
+
+          {isActive(7) && <MonitoringCard
+
+            title="WAL Production"
+
+            icon={HardDrive}
+
+            status={getStatus(7, 500, 1000)}
+
+            onClick={() => openDrawer(7)}
+
+          >
+
+            <div className="grid grid-cols-2 gap-3 mt-2">
+
+              <div className="glass-card bg-muted/20 p-3 flex flex-col items-center justify-center text-center rounded-xl border border-border/40">
+
+                <div className="text-2xl font-bold text-foreground tabular-nums">
+
+                  {getMetadataValue(7, 'wal_gb_total') ?? '—'}
+
+                </div>
+
+                <div className="text-[9px] uppercase tracking-widest text-muted-foreground mt-1 font-semibold">
+
+                  Total Size (GB)
 
                 </div>
 
               </div>
 
-            </MonitoringCard>}
+              <div className="glass-card bg-muted/20 p-3 flex flex-col items-center justify-center text-center rounded-xl border border-border/40">
 
+                <div className="text-2xl font-bold text-info tabular-nums">
 
-
-            {/* REPLICATION (Check ID: 6) */}
-
-            {isActive(6) && <MonitoringCard
-
-              title="Replication Lag"
-
-              icon={RefreshCw}
-
-              status={getStatus(6, 5, 30)}
-
-              onClick={() => openDrawer(6)}
-
-            >
-
-              <div className="text-center">
-
-                <div className="text-[9px] font-bold uppercase text-slate-400">
-
-                  {getMetadataValue(6, 'is_replica') ? 'Replica Lag' : 'Cluster Primary'}
+                  {getMetadataValue(7, 'wal_file_count', '—')}
 
                 </div>
 
+                <div className="text-[9px] uppercase tracking-widest text-muted-foreground mt-1 font-semibold">
 
-
-                <div className="text-lg font-black text-blue-600 truncate">
-
-                  {getMetadataValue(6, 'lag_seconds') !== undefined 
-                    ? `${getMetadataValue(6, 'lag_seconds')}s` 
-                    : '0s'}
+                  WAL Files
 
                 </div>
 
               </div>
 
-            </MonitoringCard>}
+            </div>
 
-            {/* WAL (Check ID: 7) */}
-
-            {isActive(7) && <MonitoringCard
-
-              title="WAL Production"
-
-              icon={HardDrive}
-
-              status={getStatus(7, 500, 1000)}
-
-              onClick={() => openDrawer(7)}
-
-            >
-
-              <div className="text-center text-xs font-bold">
-
-                {getMetadataValue(7, 'wal_gb_total') ?? '—'} Total
-
-              </div>
+          </MonitoringCard>}
 
 
 
-              <div className="text-center text-[9px] uppercase tracking-tight text-slate-400">
+          {/* DATABASE SIZE (Check ID: 8) */}
 
-                Files: {getMetadataValue(7, 'wal_file_count', '—')}
+          {isActive(8) && <MonitoringCard
 
-              </div>
+            title="Database Size"
 
-            </MonitoringCard>}
+            icon={Database}
 
+            status={getStatus(8, 100, 500)}
 
+            onClick={() => openDrawer(8)}
 
-            {/* DATABASE SIZE (Check ID: 8) */}
+          >
 
-            {isActive(8) && <MonitoringCard
+            <div className="flex flex-col items-center justify-center h-full py-4 relative group-hover:scale-105 transition-transform duration-300">
 
-              title="Database Size"
+              <div className="absolute inset-0 bg-primary/5 blur-2xl rounded-full"></div>
 
-              icon={Database}
-
-              status={getStatus(8, 100, 500)}
-
-              onClick={() => openDrawer(8)}
-
-            >
-
-              <div className="text-center text-xl font-black">
+              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-muted-foreground tabular-nums drop-shadow-sm">
 
                 {getMetadataValue(8, 'size_human') !== undefined
 
@@ -1322,133 +1316,145 @@ export function Monitoring() {
 
               </div>
 
-            </MonitoringCard>}
+              <div className="mt-2 text-xs font-semibold text-muted-foreground bg-muted/50 px-4 py-1 rounded-full border border-border/30">
 
-          </div>
-
-        </section>
-
-
-
-        {/* ROW 2 */}
-
-        <section className="grid grid-cols-1 gap-2 xl:grid-cols-3">
-
-          {/* QUERIES (Check ID: 9) */}
-
-          {isActive(9) && <div className="xl:col-span-2">
-
-            <MonitoringCard
-
-              title="Slow Queries"
-
-              icon={Zap}
-
-              status={getStatus(9, 1000, 5000)}
-
-              onClick={() => openDrawer(9)}
-
-            >
-
-              <div className="flex items-center">
-
-                <div className="w-1/3 space-y-2">
-
-                  {(() => {
-
-                    const rawResult = getMetadataValue(9, 'raw_result') || getMetadataValue(9, 'queries');
-
-                    const targetRow = Array.isArray(rawResult?.rows) ? rawResult.rows[0] : rawResult;
-
-                    const queriesList = Array.isArray(targetRow?.queries) ? targetRow.queries : (Array.isArray(rawResult) ? rawResult : [])
-
-                    const globalAvgMean = targetRow?.avg_mean_ms ?? getMetadataValue(9, 'avg_mean_ms', 0);
-
-
-
-                    return (
-
-                      <>
-
-                        <div>
-
-                          <p className="text-[9px] font-bold text-slate-400">AVG MEAN TIME</p>
-
-                          <p className="text-sm font-black text-amber-600 truncate">
-
-                            {globalAvgMean > 0 ? `${Math.round(globalAvgMean).toLocaleString()}ms` : '—'}
-
-                          </p>
-
-                        </div>
-
-
-
-                        <div>
-
-                          <p className="text-[9px] font-bold text-slate-400">ACTIVE LOGGED</p>
-
-                          <p className="text-sm font-black">
-
-                            {queriesList.length}
-
-                          </p>
-
-                        </div>
-
-                      </>
-
-                    );
-
-                  })()}
-
-                </div>
-
-
-
-                <div className="h-20 w-2/3">
-
-                  <ResponsiveContainer width="100%" height="100%">
-
-                    <BarChart data={queryPerfData}>
-
-                      <Tooltip />
-
-                      <Bar dataKey="ms" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-
-                    </BarChart>
-
-                  </ResponsiveContainer>
-
-                </div>
+                Total Allocated Space
 
               </div>
 
-            </MonitoringCard>
+            </div>
 
-          </div>}
+          </MonitoringCard>}
+
+        </div>
+
+      </section>
 
 
 
-          {/* INDEX USAGE (Check ID: 4) */}
+      {/* ── ROW 2: Queries + Index Usage ── */}
 
-          {isActive(4) && <div>
+      <section className="grid grid-cols-1 gap-4 xl:grid-cols-3">
 
-            <MonitoringCard
+        {/* QUERIES (Check ID: 9) */}
 
-              title="Index Usage"
+        {isActive(9) && <div className="xl:col-span-2">
 
-              icon={MousePointerClick}
+          <MonitoringCard
 
-              status={getMetadataValue(4, 'index_usage_pct', 100) < 90 ? 'warning' : 'healthy'}
+            title="Slow Queries"
 
-              onClick={() => openDrawer(4)}
+            icon={Zap}
 
-            >
+            status={getStatus(9, 1000, 5000)}
 
-              <div className="flex h-full flex-col justify-between">
+            onClick={() => openDrawer(9)}
 
-                <div className="mb-1 text-center text-xl font-black text-blue-600">
+          >
+
+            <div className="flex items-center h-full gap-4">
+
+              <div className="w-2/5 space-y-3">
+
+                {(() => {
+
+                  const rawResult = getMetadataValue(9, 'raw_result') || getMetadataValue(9, 'queries');
+
+                  const targetRow = Array.isArray(rawResult?.rows) ? rawResult.rows[0] : rawResult;
+
+                  const queriesList = Array.isArray(targetRow?.queries) ? targetRow.queries : (Array.isArray(rawResult) ? rawResult : [])
+
+                  const globalAvgMean = targetRow?.avg_mean_ms ?? getMetadataValue(9, 'avg_mean_ms', 0);
+
+
+
+                  return (
+
+                    <>
+
+                      <div className="glass-card bg-muted/20 p-2.5 rounded-xl border-border/40">
+
+                        <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Avg Mean Time</p>
+
+                        <p className="text-lg font-extrabold text-warning tabular-nums shadow-glow-sm">
+
+                          {globalAvgMean > 0 ? `${Math.round(globalAvgMean).toLocaleString()}ms` : '—'}
+
+                        </p>
+
+                      </div>
+
+
+
+                      <div className="glass-card bg-muted/20 p-2.5 rounded-xl border-border/40">
+
+                        <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Active Logged</p>
+
+                        <p className="text-lg font-extrabold text-foreground tabular-nums">
+
+                          {queriesList.length}
+
+                        </p>
+
+                      </div>
+
+                    </>
+
+                  );
+
+                })()}
+
+              </div>
+
+
+
+              <div className="h-24 w-3/5 glass-card bg-background/40 rounded-xl p-2 border-border/30">
+
+                <ResponsiveContainer width="100%" height="100%">
+
+                  <BarChart data={queryPerfData}>
+
+                    <Tooltip cursor={{ fill: 'hsl(var(--muted)/0.5)' }} contentStyle={{ borderRadius: '12px', backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))' }} />
+
+                    <Bar dataKey="ms" fill="hsl(var(--primary))" radius={[6, 6, 6, 6]} />
+
+                  </BarChart>
+
+                </ResponsiveContainer>
+
+              </div>
+
+            </div>
+
+          </MonitoringCard>
+
+        </div>}
+
+
+
+        {/* INDEX USAGE (Check ID: 4) */}
+
+        {isActive(4) && <div>
+
+          <MonitoringCard
+
+            title="Index Usage"
+
+            icon={MousePointerClick}
+
+            status={getMetadataValue(4, 'index_usage_pct', 100) < 90 ? 'warning' : 'healthy'}
+
+            onClick={() => openDrawer(4)}
+
+          >
+
+            <div className="flex h-full flex-col justify-between">
+
+              <div className="flex items-center justify-between mb-2 px-1">
+
+                <div className="text-sm font-semibold text-muted-foreground">Overall Usage</div>
+
+                <div className="text-3xl font-extrabold text-primary tabular-nums drop-shadow-sm">
 
                   {getMetadataValue(4, 'index_usage_pct') !== undefined
 
@@ -1458,285 +1464,333 @@ export function Monitoring() {
 
                 </div>
 
+              </div>
 
 
-                <div className="h-12 w-full">
 
-                  <ResponsiveContainer width="100%" height="100%">
+              <div className="h-16 w-full glass-card rounded-xl border-border/40 bg-background/20 overflow-hidden">
 
-                    <AreaChart data={dynamicTimeSeriesData}>
+                <ResponsiveContainer width="100%" height="100%">
 
-                      <defs>
+                  <AreaChart data={dynamicTimeSeriesData}>
 
-                        <linearGradient id="usageGradient" x1="0" y1="0" x2="0" y2="1">
+                    <defs>
 
-                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                      <linearGradient id="usageGradient" x1="0" y1="0" x2="0" y2="1">
 
-                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                        <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.4} />
 
-                        </linearGradient>
+                        <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0.0} />
 
-                      </defs>
+                      </linearGradient>
 
-                      <XAxis hide dataKey="time" />
+                    </defs>
 
-                      <YAxis hide />
+                    <XAxis hide dataKey="time" />
 
-                      <Area type="monotone" dataKey="usage" stroke="#3b82f6" fill="url(#usageGradient)" />
+                    <YAxis hide />
 
-                    </AreaChart>
+                    <Area type="monotone" dataKey="usage" stroke="hsl(var(--primary))" strokeWidth={2} fill="url(#usageGradient)" />
 
-                  </ResponsiveContainer>
+                  </AreaChart>
 
-                </div>
+                </ResponsiveContainer>
 
               </div>
 
-            </MonitoringCard>
+            </div>
 
-          </div>}
+          </MonitoringCard>
 
-        </section>
+        </div>}
+
+      </section>
 
 
 
-        {/* ROW 3 */}
+      {/* ── ROW 3: Bloat + Unused Indexes ── */}
 
-        <section>
+      <section>
 
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 
-            {/* TABLE BLOAT (Check ID: 3) */}
+          {/* TABLE BLOAT (Check ID: 3) */}
 
-            {isActive(3) && <MonitoringCard
+          {isActive(3) && <MonitoringCard
 
-              title="Table Bloat"
+            title="Table Bloat"
 
-              icon={Layers}
+            icon={Layers}
 
-              status={getStatus(3, 20, 50)}
+            status={getStatus(3, 20, 50)}
 
-              onClick={() => openDrawer(3)}
+            onClick={() => openDrawer(3)}
 
-            >
+          >
 
-              <div className="flex flex-col gap-2">
+            <div className="flex flex-col h-full gap-3">
 
-                <div className="flex items-center justify-between">
+              <div className="glass-card bg-muted/20 px-4 py-3 rounded-xl border border-border/40 flex items-center justify-between">
 
-                  <span className="text-xl font-black text-emerald-600">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Total Bloat</span>
 
-                    {getMetadataValue(3, 'bloat_pct') !== undefined
+                <span className="text-2xl font-black text-warning tabular-nums shadow-glow-sm">
 
-                      ? `${Number(getMetadataValue(3, 'bloat_pct')).toFixed(1)}%`
+                  {getMetadataValue(3, 'bloat_pct') !== undefined
 
-                      : '—'}
+                    ? `${Number(getMetadataValue(3, 'bloat_pct')).toFixed(1)}%`
 
-                  </span>
+                    : '—'}
 
-                  <span className="text-[9px] font-bold text-slate-400 uppercase">Bloat %</span>
+                </span>
 
-                </div>
+              </div>
 
-                {(() => {
+              {(() => {
 
-                  const rawResult = getMetadataValue(3, 'raw_result')
+                const rawResult = getMetadataValue(3, 'raw_result')
 
-                  const allRows: any[] = Array.isArray(rawResult?.rows) ? rawResult.rows : []
+                const allRows: any[] = Array.isArray(rawResult?.rows) ? rawResult.rows : []
 
-                  const top = allRows.slice(0, 4)
+                const top = allRows.slice(0, 3)
 
-                  return top.length > 0 ? (
+                return top.length > 0 ? (
 
-                    <div className="space-y-1 max-h-28 overflow-y-auto">
+                  <div className="flex-1 space-y-2 overflow-y-auto pr-1 custom-scrollbar">
 
-                      {top.map((t: any, i: number) => (
+                    {top.map((t: any, i: number) => (
 
-                        <div key={i} className="rounded-lg bg-slate-50 px-2 py-1.5 text-[9px]">
+                      <div key={i} className="glass-card rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors border border-border/40 p-2.5">
 
-                          <div className="font-mono font-bold text-slate-800 truncate">
+                        <div className="flex justify-between items-center mb-1.5">
+
+                          <div className="font-mono text-xs font-bold text-foreground truncate max-w-[150px]">
 
                             {t.table || t.table_name || 'Unknown Table'}
 
                           </div>
 
-                          <div className="flex flex-wrap gap-x-2 text-slate-500">
+                          <Badge variant="outline" className="text-[9px] h-4 text-warning border-warning/30 bg-warning/10 px-1.5">
 
-                            <span>Bloat: <span className="font-bold text-amber-600">{t.bloat_pct ?? t.table_bloat_pct ?? 0}%</span></span>
+                            {t.bloat_pct ?? t.table_bloat_pct ?? 0}%
 
-                            <span>Dead: <span className="font-bold">{t.dead_tuples ?? 0}</span></span>
-
-                            <span>Live: <span className="font-bold">{t.live_tuples ?? 0}</span></span>
-
-                          </div>
+                          </Badge>
 
                         </div>
 
-                      ))}
+                        <div className="flex gap-4 text-[10px] text-muted-foreground font-medium">
 
-                    </div>
+                          <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-destructive/60"></div>Dead: {t.dead_tuples ?? 0}</div>
 
-                  ) : (
+                          <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-success/60"></div>Live: {t.live_tuples ?? 0}</div>
 
-                    <p className="text-[10px] text-slate-400">No bloated tables detected</p>
+                        </div>
 
-                  )
+                      </div>
 
-                })()}
+                    ))}
+
+                  </div>
+
+                ) : (
+
+                  <div className="flex-1 flex items-center justify-center glass-card bg-muted/10 rounded-xl border-dashed border-border/40">
+
+                    <p className="text-xs text-muted-foreground font-medium flex items-center gap-2">
+
+                      <span className="w-2 h-2 rounded-full bg-success"></span>
+
+                      No bloated tables detected
+
+                    </p>
+
+                  </div>
+
+                )
+
+              })()}
+
+            </div>
+
+          </MonitoringCard>}
+
+
+
+          {/* UNUSED INDEXES (Check ID: 5) */}
+
+          {isActive(5) && <MonitoringCard
+
+            title="Unused Indexes"
+
+            icon={Search}
+
+            status={getStatus(5, 5, 15)}
+
+            onClick={() => openDrawer(5)}
+
+          >
+
+            <div className="flex flex-col h-full gap-3">
+
+              <div className="glass-card bg-muted/20 px-4 py-3 rounded-xl border border-border/40 flex items-center justify-between">
+
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Unused Count</span>
+
+                <span className="text-2xl font-black text-destructive tabular-nums shadow-glow-sm">
+
+                  {getMetadataValue(5, 'unused_count', 0)}
+
+                </span>
 
               </div>
 
-            </MonitoringCard>}
+              {(() => {
 
+                const indexes = getMetadataValue(5, 'indexes') ?? []
 
+                const top = Array.isArray(indexes) ? indexes.slice(0, 3) : []
 
-            {/* UNUSED INDEXES (Check ID: 5) */}
+                return top.length > 0 ? (
 
-            {isActive(5) && <MonitoringCard
+                  <div className="flex-1 space-y-2 overflow-y-auto pr-1 custom-scrollbar">
 
-              title="Unused Indexes"
+                    {top.map((idx: any, i: number) => (
 
-              icon={Search}
+                      <div key={i} className="glass-card rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors border border-border/40 p-2.5 flex flex-col justify-center">
 
-              status={getStatus(5, 5, 15)}
+                        <div className="font-mono text-[11px] font-bold text-foreground truncate mb-1">
 
-              onClick={() => openDrawer(5)}
+                          {idx.index || idx.index_name || 'Unnamed Index'}
 
-            >
+                        </div>
 
-              <div className="flex flex-col gap-2">
+                        <div className="flex items-center justify-between text-[10px] font-medium">
 
-                <div className="flex items-center justify-between">
+                          <span className="text-muted-foreground truncate max-w-[120px] bg-muted px-1.5 py-0.5 rounded-md">
 
-                  <span className="text-xl font-black">
+                            {idx.table || idx.table_name || '—'}
 
-                    {getMetadataValue(5, 'unused_count', 0)}
+                          </span>
 
-                  </span>
+                          {idx.size && (
 
-                  <span className="text-[9px] font-bold text-slate-400 uppercase">Dead Indexes</span>
+                            <span className="font-mono text-primary font-bold bg-primary/10 px-1.5 py-0.5 rounded-md">
 
-                </div>
-
-                {(() => {
-
-                  const indexes = getMetadataValue(5, 'indexes') ?? []
-
-                  const top = Array.isArray(indexes) ? indexes.slice(0, 4) : []
-
-                  return top.length > 0 ? (
-
-                    <div className="space-y-1 max-h-24 overflow-y-auto">
-
-                      {top.map((idx: any, i: number) => (
-
-                        <div key={i} className="rounded-lg bg-slate-50 px-2 py-1.5 text-[9px]">
-
-                          <div className="font-mono font-bold text-slate-800 truncate">
-
-                            {idx.index || idx.index_name || 'Unnamed Index'}
-
-                          </div>
-
-                          <div className="flex items-center justify-between">
-
-                            <span className="text-slate-400 truncate">
-
-                              {idx.table || idx.table_name || '—'}
+                              {idx.size}
 
                             </span>
 
-                            {idx.size && (
-
-                              <span className="font-mono font-bold text-slate-600 shrink-0 ml-1">
-
-                                {idx.size}
-
-                              </span>
-
-                            )}
-
-                          </div>
+                          )}
 
                         </div>
 
-                      ))}
+                      </div>
 
-                    </div>
+                    ))}
 
-                  ) : (
+                  </div>
 
-                    <p className="text-[10px] text-slate-400">No unused indexes detected</p>
+                ) : (
 
-                  )
+                  <div className="flex-1 flex items-center justify-center glass-card bg-muted/10 rounded-xl border-dashed border-border/40">
 
-                })()}
+                    <p className="text-xs text-muted-foreground font-medium flex items-center gap-2">
 
-              </div>
+                      <span className="w-2 h-2 rounded-full bg-success"></span>
 
-            </MonitoringCard>}
+                      No unused indexes detected
 
-          </div>
+                    </p>
 
-        </section>
+                  </div>
 
-        {/* ROW 4 — Additional Metrics */}
+                )
 
-        <section>
+              })()}
 
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+            </div>
 
-            {/* TABLE COUNT (Check ID: 10) */}
+          </MonitoringCard>}
 
-            {isActive(10) && <MonitoringCard
+        </div>
 
-              title="Table Count"
+      </section>
 
-              icon={Database}
+      {/* ── ROW 4: Additional Metrics ── */}
 
-              status={getStatus(10, 0, 0)}
+      <section>
 
-              onClick={() => openDrawer(10)}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 
-            >
+          {/* TABLE COUNT (Check ID: 10) */}
 
-              <div className="flex items-center gap-3">
+          {isActive(10) && <MonitoringCard
 
-                <div className="text-xl font-black text-blue-600">
+            title="Table Count"
+
+            icon={Database}
+
+            status={getStatus(10, 0, 0)}
+
+            onClick={() => openDrawer(10)}
+
+          >
+
+            <div className="flex items-center justify-between h-full px-2">
+
+              <div>
+
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
+
+                  Active Tables
+
+                </p>
+
+                <div className="text-4xl font-extrabold text-foreground tabular-nums drop-shadow-sm">
 
                   {getMetadataValue(10, 'table_count') ?? '—'}
 
                 </div>
 
-                <p className="text-[10px] text-slate-400">
+              </div>
 
-                  Tables actively monitored
+              <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shadow-glow-sm">
 
-                </p>
+                <Database size={20} className="text-primary" />
 
               </div>
 
-            </MonitoringCard>}
+            </div>
+
+          </MonitoringCard>}
 
 
 
-            {/* DATABASE AGE (Check ID: 11) */}
+          {/* DATABASE AGE (Check ID: 11) */}
 
-            {isActive(11) && <MonitoringCard
+          {isActive(11) && <MonitoringCard
 
-              title="Database Age"
+            title="Database Age"
 
-              icon={ShieldCheck}
+            icon={ShieldCheck}
 
-              status={getStatus(11, 500000000, 1000000000)}
+            status={getStatus(11, 500000000, 1000000000)}
 
-              onClick={() => openDrawer(11)}
+            onClick={() => openDrawer(11)}
 
-            >
+          >
 
-              <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between h-full px-2">
 
-                <div className="text-xl font-black text-purple-600">
+              <div>
+
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
+
+                  XID Age
+
+                </p>
+
+                <div className="text-4xl font-extrabold text-info tabular-nums drop-shadow-sm">
 
                   {getMetadataValue(11, 'xid_age') != null
 
@@ -1746,61 +1800,79 @@ export function Monitoring() {
 
                 </div>
 
-                <p className="text-[10px] text-slate-400">
+              </div>
 
-                  XID age — risk of wraparound
+              <div className="text-[10px] font-semibold px-3 py-1.5 rounded-full bg-muted/40 border border-border/50 text-muted-foreground">
 
-                </p>
+                Wraparound Risk
 
               </div>
 
-            </MonitoringCard>}
+            </div>
 
-            {/* PARTITION COUNT (Check ID: 12) — live query, no persistence */}
+          </MonitoringCard>}
 
-            {isActiveOrUnknown(12) && <MonitoringCard
+          {/* PARTITION COUNT (Check ID: 12) — live query, no persistence */}
 
-              title="Partition Count"
+          {isActiveOrUnknown(12) && <MonitoringCard
 
-              icon={Layers}
+            title="Partition Count"
 
-              status={isPartitionLoading ? undefined : 'healthy'}
+            icon={Layers}
 
-              onClick={() => openDrawer(12)}
+            status={isPartitionLoading ? undefined : 'healthy'}
 
-            >
+            onClick={() => openDrawer(12)}
 
-              <div className="flex items-center gap-3">
+          >
 
-                <div className="text-xl font-black text-indigo-600">
+            <div className="flex items-center justify-between h-full px-2">
 
-                  {isPartitionLoading ? '...' : partitionData?.row_count ?? '—'}
+              <div>
+
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
+
+                  Total Partitions
+
+                </p>
+
+                <div className="text-4xl font-extrabold text-success tabular-nums drop-shadow-sm">
+
+                  {isPartitionLoading ? (
+
+                    <span className="inline-block w-12 h-8 skeleton rounded-lg"></span>
+
+                  ) : (
+
+                    partitionData?.row_count ?? '—'
+
+                  )}
 
                 </div>
 
-                <p className="text-[10px] text-slate-400">
+              </div>
 
-                  Partitions detected
+              <div className="w-12 h-12 rounded-full bg-success/10 border border-success/20 flex items-center justify-center shadow-glow-sm">
 
-                </p>
+                <Layers size={20} className="text-success" />
 
               </div>
 
-            </MonitoringCard>}
+            </div>
 
-          </div>
+          </MonitoringCard>}
 
-        </section>
+        </div>
 
-      </main>
+      </section>
 
 
 
-      {/* FOOTER */}
+      {/* ── Footer ── */}
 
-      <footer className="mx-auto flex max-w-[1600px] items-center justify-between gap-2 border-t border-slate-200 px-4 py-4 text-slate-400">
+      <footer className="flex items-center justify-between gap-2 border-t border-border/50 pt-6 text-muted-foreground">
 
-        <p className="text-[9px] font-bold uppercase tracking-[0.2em]">
+        <p className="text-[10px] font-semibold uppercase tracking-wider">
 
           © 2026 PG Utility Hub • v2.4.0
 
@@ -1808,13 +1880,13 @@ export function Monitoring() {
 
 
 
-        <div className="flex gap-4 text-[9px] font-black uppercase tracking-widest">
+        <div className="flex gap-4 text-[10px] font-semibold uppercase tracking-wider">
 
-          <span className="cursor-pointer transition-colors hover:text-blue-600">Documentation</span>
+          <span className="cursor-pointer transition-colors hover:text-primary">Documentation</span>
 
-          <span className="cursor-pointer transition-colors hover:text-blue-600">API Status</span>
+          <span className="cursor-pointer transition-colors hover:text-primary">API Status</span>
 
-          <span className="cursor-pointer transition-colors hover:text-blue-600">Support</span>
+          <span className="cursor-pointer transition-colors hover:text-primary">Support</span>
 
         </div>
 
@@ -1822,7 +1894,7 @@ export function Monitoring() {
 
 
 
-      {/* DRAWER */}
+      {/* ── Drawer ── */}
 
       <DetailDrawer context={drawerContext} onClose={() => setDrawerContext(null)} />
 

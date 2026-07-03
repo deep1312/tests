@@ -45,8 +45,8 @@ export function StatusTimelineChart({
     if (!active || !payload || !label) return null
 
     return (
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-4">
-        <p className="text-xs font-bold text-slate-500 mb-3 uppercase tracking-wide">
+      <div className="bg-card/90 backdrop-blur-sm border border-border rounded-2xl shadow-xl p-4">
+        <p className="text-xs font-bold text-muted-foreground mb-3 uppercase tracking-wide">
           {new Date(label).toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
@@ -70,7 +70,7 @@ export function StatusTimelineChart({
                 </span>
               </div>
 
-              <span className="text-sm font-black text-slate-900">
+              <span className="text-sm font-black text-foreground">
                 {entry.value}%
               </span>
             </div>
@@ -82,8 +82,8 @@ export function StatusTimelineChart({
 
   if (isLoading) {
     return (
-      <div className="w-full h-[420px] bg-white border border-slate-200 rounded-2xl flex items-center justify-center">
-        <div className="text-slate-400 text-sm font-medium">
+      <div className="w-full h-[420px] bg-card/90 backdrop-blur-sm border border-border rounded-2xl flex items-center justify-center">
+        <div className="text-muted-foreground text-sm font-medium">
           Loading live metrics...
         </div>
       </div>
@@ -92,8 +92,8 @@ export function StatusTimelineChart({
 
   if (!data || data.length === 0) {
     return (
-      <div className="w-full h-[420px] bg-white border border-slate-200 rounded-2xl flex items-center justify-center">
-        <div className="text-slate-400 text-sm font-medium">
+      <div className="w-full h-[420px] bg-card/90 backdrop-blur-sm border border-border rounded-2xl flex items-center justify-center">
+        <div className="text-muted-foreground text-sm font-medium">
           No live metrics available
         </div>
       </div>
@@ -101,16 +101,16 @@ export function StatusTimelineChart({
   }
 
   return (
-    <div className="w-full bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+    <div className="w-full bg-card/90 backdrop-blur-sm border border-border rounded-2xl p-6 shadow-sm">
 
       {/* HEADER */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-lg font-black text-slate-800 uppercase tracking-tight">
+          <h2 className="text-lg font-black text-foreground uppercase tracking-tight">
             Live Metrics
           </h2>
 
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Real-time backend resource monitoring
           </p>
         </div>
@@ -123,7 +123,7 @@ export function StatusTimelineChart({
               e.target.value as 'all' | 'cpu' | 'memory' | 'disk'
             )
           }
-          className="border border-slate-200 bg-white rounded-xl px-4 py-2 text-xs font-bold text-slate-600 uppercase outline-none"
+          className="border border-border bg-card/90 backdrop-blur-sm rounded-xl px-4 py-2 text-xs font-bold text-muted-foreground uppercase outline-none"
         >
           <option value="all">Display All Metrics</option>
           <option value="cpu">CPU Load %</option>

@@ -88,6 +88,13 @@ class DashboardService:
         )
         top_failing_rows = await dashboard_repo.get_top_failing_checks(conn)
 
+        def _parse_metrics(m):
+            if isinstance(m, str):
+                import json
+                try: return json.loads(m)
+                except Exception: return []
+            return m or []
+
         servers = [
             DashboardSummaryItem(
                 server_id=row["server_id"],
@@ -102,6 +109,7 @@ class DashboardService:
                 collector_state=row["collector_state"],
                 retention_metrics_days=int(row["retention_metrics_days"]),
                 retention_logs_days=int(row["retention_logs_days"]),
+                latest_metrics=_parse_metrics(row.get("latest_metrics")),
             )
             for row in summary_rows
         ]

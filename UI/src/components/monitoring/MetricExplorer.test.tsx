@@ -267,7 +267,7 @@ describe('MetricExplorer', () => {
       )
 
       const outerDiv = container.firstChild as HTMLElement
-      expect(outerDiv).toHaveClass('w-full', 'bg-white', 'rounded-lg', 'border', 'border-gray-200', 'p-6')
+      expect(outerDiv).toHaveClass('w-full', 'bg-card/90 backdrop-blur-sm', 'rounded-lg', 'border', 'border-border', 'p-6')
     })
 
     it('renders label filter section when metrics are selected', () => {
@@ -365,7 +365,7 @@ describe('MetricExplorer', () => {
       )
 
       const outerDiv = container.firstChild as HTMLElement
-      expect(outerDiv).toHaveClass('bg-white')
+      expect(outerDiv).toHaveClass('bg-card/90 backdrop-blur-sm')
     })
 
     it('renders with correct border classes', () => {
@@ -379,7 +379,7 @@ describe('MetricExplorer', () => {
       )
 
       const outerDiv = container.firstChild as HTMLElement
-      expect(outerDiv).toHaveClass('border', 'border-gray-200')
+      expect(outerDiv).toHaveClass('border', 'border-border')
     })
 
     it('handles null serverId gracefully', () => {

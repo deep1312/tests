@@ -55,8 +55,8 @@ const GaugeWidget = ({ value, label, color = "#3b82f6" }: { value: number, label
         </ResponsiveContainer>
       </div>
       <div className="text-center -mt-6">
-        <p className="text-2xl font-bold text-gray-800">{value}%</p>
-        <p className="text-xs text-gray-500 uppercase">{label}</p>
+        <p className="text-2xl font-bold text-foreground">{value}%</p>
+        <p className="text-xs text-muted-foreground uppercase">{label}</p>
       </div>
     </div>
   );
@@ -72,12 +72,12 @@ const ConnectionUsageView = ({ logs }: { logs: any[] }) => {
         <GaugeWidget value={latest.usage_pct || 0} label="Current Usage" color={latest.usage_pct > 85 ? '#ef4444' : '#3b82f6'} />
       </div>
       <div className="space-y-4">
-        <div className="p-4 bg-white border rounded-lg shadow-sm">
-          <p className="text-xs text-gray-500">Active Connections</p>
+        <div className="p-4 bg-card/90 backdrop-blur-sm border rounded-lg shadow-sm">
+          <p className="text-xs text-muted-foreground">Active Connections</p>
           <p className="text-xl font-bold">{latest.active_connections || 0}</p>
         </div>
-        <div className="p-4 bg-white border rounded-lg shadow-sm">
-          <p className="text-xs text-gray-500">Max Configured</p>
+        <div className="p-4 bg-card/90 backdrop-blur-sm border rounded-lg shadow-sm">
+          <p className="text-xs text-muted-foreground">Max Configured</p>
           <p className="text-xl font-bold">{latest.max_connections || 0}</p>
         </div>
       </div>
@@ -101,7 +101,7 @@ const TopQueriesView = ({ rows }: { rows: any[] }) => (
     </div>
     <div className="overflow-x-auto border rounded-lg">
       <table className="min-w-full text-xs">
-        <thead className="bg-gray-100">
+        <thead className="bg-muted">
           <tr>
             <th className="p-2 border-b">Query Snippet</th>
             <th className="p-2 border-b">Calls</th>
@@ -110,7 +110,7 @@ const TopQueriesView = ({ rows }: { rows: any[] }) => (
         </thead>
         <tbody>
           {rows.slice(0, 10).map((row, i) => (
-            <tr key={i} className="hover:bg-gray-50">
+            <tr key={i} className="hover:bg-muted">
               <td className="p-2 border-b font-mono text-blue-600 truncate max-w-xs">{row.query || row.queryid}</td>
               <td className="p-2 border-b">{row.calls}</td>
               <td className="p-2 border-b text-right font-bold">{Math.round(row.total_exec_time)}ms</td>
@@ -135,7 +135,7 @@ const BloatView = ({ rows }: { rows: any[] }) => (
             borderColor: row.bloat_ratio > 40 ? '#f87171' : '#bbf7d0'
           }}
         >
-          <span className={row.bloat_ratio > 50 ? 'text-white' : 'text-gray-800'}>{row.bloat_ratio}%</span>
+          <span className={row.bloat_ratio > 50 ? 'text-white' : 'text-foreground'}>{row.bloat_ratio}%</span>
           <div className="absolute inset-0 bg-black bg-opacity-80 text-white p-1 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center">
              <p className="truncate">{row.table_name}</p>
           </div>
@@ -180,17 +180,17 @@ export function AdaptiveInsightsPanel({ serverId, checkId, from, to }: AdaptiveI
   }, [latestLog]);
 
   if (!checkId) return (
-    <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 p-12 text-center">
-      <p className="text-gray-500">Select a health check to load dynamic metrics</p>
+    <div className="bg-muted rounded-xl border-2 border-dashed border-border p-12 text-center">
+      <p className="text-muted-foreground">Select a health check to load dynamic metrics</p>
     </div>
   );
 
-  if (isLoading) return <div className="p-8 text-center animate-pulse text-gray-400">Analyzing database metrics...</div>;
+  if (isLoading) return <div className="p-8 text-center animate-pulse text-muted-foreground">Analyzing database metrics...</div>;
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="bg-gray-50 px-6 py-4 border-b flex justify-between items-center">
-        <h3 className="font-bold text-gray-800">{checkName || 'Metric Insights'}</h3>
+    <div className="bg-card/90 backdrop-blur-sm rounded-xl border border-border shadow-sm overflow-hidden">
+      <div className="bg-muted px-6 py-4 border-b flex justify-between items-center">
+        <h3 className="font-bold text-foreground">{checkName || 'Metric Insights'}</h3>
         <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-1 rounded font-bold uppercase tracking-tighter">
           Live Data
         </span>
@@ -208,7 +208,7 @@ export function AdaptiveInsightsPanel({ serverId, checkId, from, to }: AdaptiveI
           /* Default Table View */
           <div className="overflow-x-auto max-h-96">
             <table className="min-w-full text-xs text-left">
-              <thead className="bg-gray-100 sticky top-0">
+              <thead className="bg-muted sticky top-0">
                 <tr>
                   {rows[0] && Object.keys(rows[0]).map(k => <th key={k} className="p-2 border-b uppercase">{k.replace(/_/g, ' ')}</th>)}
                 </tr>

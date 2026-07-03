@@ -3,8 +3,7 @@ import { useSpeedMonitoringSources, useSpeedMonitoringSourceDetails, useMultiSer
 import type { MonitoringSource } from '../api/monitoringSources'
 import { useServers } from '../api/servers'
 import { Button } from '../components/ui/button'
-import { Badge } from '../components/ui/badge'
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card'
+
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../components/ui/table'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '../components/ui/sheet'
 import { MultiSelect } from '../components/ui/multi-select'
@@ -37,14 +36,14 @@ const SOURCE_ORDER = [
 ]
 
 const STATUS_BG_COLORS = [
-  'bg-green-100 text-green-800',
-  'bg-yellow-100 text-yellow-800',
-  'bg-red-100 text-red-800',
-  'bg-blue-100 text-blue-800',
-  'bg-purple-100 text-purple-800',
-  'bg-orange-100 text-orange-800',
-  'bg-teal-100 text-teal-800',
-  'bg-pink-100 text-pink-800',
+  'bg-emerald-500/10 text-emerald-500',
+  'bg-amber-500/10 text-amber-500',
+  'bg-destructive/10 text-destructive',
+  'bg-blue-500/10 text-blue-500',
+  'bg-purple-500/10 text-purple-500',
+  'bg-orange-500/10 text-orange-500',
+  'bg-teal-500/10 text-teal-500',
+  'bg-pink-500/10 text-pink-500',
 ]
 
 function getStatusBadgeClass(status: string): string {
@@ -89,21 +88,21 @@ function SourceCard({
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left rounded-lg border transition-colors ${
+      className={`w-full text-left rounded-2xl border transition-all duration-200 ${
         isSelected
-          ? 'border-primary bg-primary/5 ring-1 ring-primary/20'
-          : 'border-border bg-card hover:border-primary/30'
+          ? 'border-primary bg-primary/5 ring-1 ring-primary/20 shadow-glow-sm'
+          : 'glass-card-hover'
       }`}
     >
-      <CardContent className="p-2">
+      <div className="p-3">
         <div className="flex items-center justify-between gap-1">
-          <div className="flex items-center gap-1.5 min-w-0 flex-1">
-            <span className={`h-1.5 w-1.5 rounded-full shrink-0 ${getStatusBadgeClass(source.status).split(' ')[0]}`} />
-            <span className="font-semibold text-[11px] text-foreground truncate">{source.di_name}</span>
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <span className={`h-2 w-2 rounded-full shrink-0 ${getStatusBadgeClass(source.status).split(' ')[0]}`} />
+            <span className="font-semibold text-xs text-foreground truncate">{source.di_name}</span>
           </div>
-          <ChevronRight className="w-2.5 h-2.5 shrink-0 text-muted-foreground/40" />
+          <ChevronRight className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isSelected ? 'text-primary rotate-90' : 'text-muted-foreground/40'}`} />
         </div>
-        <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground flex-wrap">
+        <div className="mt-1.5 flex items-center gap-2 text-[10px] text-muted-foreground flex-wrap">
           <span className="flex items-center gap-1">
             <Clock className="w-2.5 h-2.5" />
             {source.frequency}
@@ -113,12 +112,12 @@ function SourceCard({
           )}
           <span className="text-muted-foreground/40 truncate ml-auto">{source.server_label}</span>
         </div>
-        <div className="mt-1 flex items-center gap-1.5">
-          <Badge className={`text-[8px] font-medium px-1 py-0 h-3.5 ${getStatusBadgeClass(source.status)}`}>
+        <div className="mt-1.5 flex items-center gap-1.5">
+          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-semibold ${getStatusBadgeClass(source.status)}`}>
             {source.status}
-          </Badge>
+          </span>
         </div>
-      </CardContent>
+      </div>
     </button>
   )
 }
@@ -339,24 +338,26 @@ export function MonitoringDashboard() {
   )
 
   return (
-    <div className="p-3 h-full flex flex-col gap-3">
-      {/* Header */}
+    <div className="p-6 max-w-7xl mx-auto space-y-6 h-full flex flex-col">
+      {/* ── Page Header ── */}
       <div className="flex items-center justify-between shrink-0">
         <div>
-          <h1 className="text-lg font-bold text-foreground flex items-center gap-2">
-            <Activity className="w-5 h-5 text-primary" />
+          <h1 className="text-2xl font-bold text-foreground tracking-tight flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Activity className="w-5 h-5 text-primary" />
+            </div>
             Monitoring Dashboard
           </h1>
-          <p className="text-[11px] text-muted-foreground">
+          <p className="text-sm text-muted-foreground mt-1">
             Data Integration (DI) source monitoring & status overview
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {serversLoading ? (
             <>
-              <div className="h-8 w-28 animate-pulse bg-muted rounded-md" />
-              <div className="h-8 w-36 animate-pulse bg-muted rounded-md" />
-              <div className="h-8 w-32 animate-pulse bg-muted rounded-md" />
+              <div className="h-9 w-28 skeleton rounded-xl" />
+              <div className="h-9 w-36 skeleton rounded-xl" />
+              <div className="h-9 w-32 skeleton rounded-xl" />
             </>
           ) : (
             <>
@@ -391,9 +392,9 @@ export function MonitoringDashboard() {
               )}
             </>
           )}
-          <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground whitespace-nowrap">
-            <RefreshCw className={`w-3 h-3 ${isFetching ? 'animate-spin' : ''}`} />
-            Auto-refresh 30s
+          <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${isFetching ? 'glass-card text-primary' : 'text-muted-foreground'}`}>
+            <RefreshCw className={`w-3.5 h-3.5 ${isFetching ? 'animate-spin text-primary' : ''}`} />
+            <span className="text-[11px]">Auto-refresh 30s</span>
           </div>
         </div>
       </div>
@@ -404,62 +405,58 @@ export function MonitoringDashboard() {
 
       {showComparison ? (
         <>
-          {/* Summary Bar */}
+          {/* ── Comparison Summary Bar ── */}
           {activeServers.length >= 2 && (
-            <Card className="shrink-0">
+            <div className="glass-card p-4 shrink-0">
               {isFetching ? (
-                <CardContent className="p-2.5">
-                  <div className="flex items-center gap-3">
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                    <span className="text-[10px] text-muted-foreground">Loading comparison data...</span>
-                  </div>
-                </CardContent>
+                <div className="flex items-center gap-3">
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                  <span className="text-xs text-muted-foreground">Loading comparison data...</span>
+                </div>
               ) : (
-                <CardContent className="p-2.5">
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                    <div>
-                      <span className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground">Comparing</span>
-                      <p className="text-xs font-black text-foreground">
-                        {activeServers.length} server{activeServers.length !== 1 ? 's' : ''}
-                      </p>
-                      <p className="text-[9px] text-muted-foreground truncate max-w-[200px]">
-                        {activeServers.map((s) => s.server_label).join(', ')}
-                      </p>
-                    </div>
-                    <div className="h-6 w-px bg-border" />
-                    <div>
-                      <span className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground">Sources</span>
-                      <p className="text-xs font-black text-foreground">{totalSources.toLocaleString()}</p>
-                    </div>
-                    <div className="h-6 w-px bg-border" />
-                    <div>
-                      <span className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground">Mismatch</span>
-                      <p className={`text-xs font-black ${mismatchCount > 0 ? 'text-destructive' : 'text-emerald-600'}`}>
-                        {mismatchCount > 0 ? mismatchCount.toLocaleString() : '0'}
-                      </p>
-                      {mismatchCount > 0 && (
-                        <p className="text-[9px] text-destructive">Status differences detected</p>
-                      )}
-                    </div>
-                    <div className="h-6 w-px bg-border" />
-                    <div>
-                      <span className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground">Not Found</span>
-                      <p className={`text-xs font-black ${notFoundCount > 0 ? 'text-amber-600' : 'text-emerald-600'}`}>
-                        {notFoundCount > 0 ? notFoundCount.toLocaleString() : '0'}
-                      </p>
-                    </div>
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                  <div>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Comparing</span>
+                    <p className="text-sm font-bold text-foreground">
+                      {activeServers.length} server{activeServers.length !== 1 ? 's' : ''}
+                    </p>
+                    <p className="text-[10px] text-muted-foreground truncate max-w-[200px]">
+                      {activeServers.map((s) => s.server_label).join(', ')}
+                    </p>
                   </div>
-                </CardContent>
+                  <div className="h-8 w-px bg-border/50" />
+                  <div>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Sources</span>
+                    <p className="text-sm font-bold text-foreground tabular-nums">{totalSources.toLocaleString()}</p>
+                  </div>
+                  <div className="h-8 w-px bg-border/50" />
+                  <div>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Mismatch</span>
+                    <p className={`text-sm font-bold tabular-nums ${mismatchCount > 0 ? 'text-destructive' : 'text-success'}`}>
+                      {mismatchCount > 0 ? mismatchCount.toLocaleString() : '0'}
+                    </p>
+                    {mismatchCount > 0 && (
+                      <p className="text-[10px] text-destructive">Status differences detected</p>
+                    )}
+                  </div>
+                  <div className="h-8 w-px bg-border/50" />
+                  <div>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Not Found</span>
+                    <p className={`text-sm font-bold tabular-nums ${notFoundCount > 0 ? 'text-warning' : 'text-success'}`}>
+                      {notFoundCount > 0 ? notFoundCount.toLocaleString() : '0'}
+                    </p>
+                  </div>
+                </div>
               )}
-            </Card>
+            </div>
           )}
 
-          {/* Comparison Table */}
+          {/* ── Comparison Table ── */}
           {!hasServerSelection ? (
-            <div className="flex-1 flex items-center justify-center text-muted-foreground">
-              <div className="text-center">
-                <Server className="w-10 h-10 mx-auto mb-2 opacity-30" />
-                <p className="text-xs font-medium">Select environment & server to begin</p>
+            <div className="flex-1 flex items-center justify-center">
+              <div className="text-center glass-card p-10 rounded-2xl">
+                <Server className="w-12 h-12 mx-auto mb-3 text-muted-foreground/30" />
+                <p className="text-sm font-medium text-muted-foreground">Select environment & server to begin</p>
               </div>
             </div>
           ) : isFetching ? (
@@ -467,27 +464,27 @@ export function MonitoringDashboard() {
               <LoadingSpinner />
             </div>
           ) : comparisonRows.length === 0 ? (
-            <div className="flex-1 flex items-center justify-center text-muted-foreground">
-              <div className="text-center">
-                <Activity className="w-8 h-8 mx-auto mb-2 opacity-40" />
-                <p className="text-xs font-medium">No monitoring sources found</p>
+            <div className="flex-1 flex items-center justify-center">
+              <div className="text-center glass-card p-10 rounded-2xl">
+                <Activity className="w-10 h-10 mx-auto mb-3 text-muted-foreground/30" />
+                <p className="text-sm font-medium text-muted-foreground">No monitoring sources found</p>
               </div>
             </div>
           ) : (
             <div className="flex-1 min-h-0 overflow-auto">
-              <div className="overflow-x-auto rounded-lg border">
+              <div className="glass-card overflow-hidden">
                 <Table className="text-xs">
                   <TableHeader>
-                    <TableRow className="bg-muted/50">
-                      <TableHead className="sticky left-0 z-10 bg-muted/50 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-44 h-7 px-2">
+                    <TableRow className="bg-muted/50 border-b border-border/50">
+                      <TableHead className="sticky left-0 z-10 bg-muted/50 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground w-44 h-9 px-3">
                         <div className="flex items-center gap-1.5">
-                          <Layers className="w-3 h-3" />
+                          <Layers className="w-3.5 h-3.5" />
                           Source
                         </div>
                       </TableHead>
                       {activeServers.map((srv) => (
-                        <TableHead key={srv.server_id} className="text-center text-[9px] font-bold uppercase tracking-wider text-muted-foreground min-w-[140px] h-7 px-2">
-                          <div className="flex items-center justify-center gap-1">
+                        <TableHead key={srv.server_id} className="text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px] h-9 px-3">
+                          <div className="flex items-center justify-center gap-1.5">
                             <Server className="w-3 h-3" />
                             {srv.server_label}
                           </div>
@@ -504,22 +501,22 @@ export function MonitoringDashboard() {
                         <TableRow
                           key={row.di_name}
                           onClick={() => handleComparisonRowClick(row.di_name, row.servers)}
-                          className={`cursor-pointer ${
-                            isMismatchRow ? 'bg-red-50/40' : isNotFoundRow ? 'bg-amber-50/40' : ''
+                          className={`cursor-pointer transition-colors duration-200 ${
+                            isMismatchRow ? 'bg-destructive/5 hover:bg-destructive/10' : isNotFoundRow ? 'bg-warning/5 hover:bg-warning/10' : 'hover:bg-muted/30'
                           }`}
                         >
-                          <TableCell className="sticky left-0 z-10 bg-[inherit] font-semibold text-foreground py-1.5 px-2">
-                            <div className="flex items-center gap-1.5">
-                              <span className="text-[11px]">{row.di_name}</span>
+                          <TableCell className="sticky left-0 z-10 bg-[inherit] font-semibold text-foreground py-2 px-3">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs">{row.di_name}</span>
                               {isMismatchRow && (
-                                <Badge variant="destructive" className="text-[7px] px-1 py-0 h-3">
+                                <span className="px-1.5 py-0.5 rounded-full bg-destructive/10 text-destructive text-[8px] font-semibold border border-destructive/20">
                                   Mismatch
-                                </Badge>
+                                </span>
                               )}
                               {isNotFoundRow && (
-                                <Badge variant="outline" className="text-[7px] px-1 py-0 h-3 border-amber-300 text-amber-700 bg-amber-50">
+                                <span className="px-1.5 py-0.5 rounded-full bg-warning/10 text-warning text-[8px] font-semibold border border-warning/20">
                                   N/F
-                                </Badge>
+                                </span>
                               )}
                             </div>
                           </TableCell>
@@ -527,23 +524,23 @@ export function MonitoringDashboard() {
                             const cell = row.servers[srv.server_id]
                             if (!cell || !cell.source) {
                               return (
-                                <TableCell key={srv.server_id} className="text-center text-muted-foreground py-1.5 px-2">
-                                  <span className="text-[9px] font-medium text-amber-500">Not Found</span>
+                                <TableCell key={srv.server_id} className="text-center text-muted-foreground py-2 px-3">
+                                  <span className="text-[10px] font-medium text-warning">Not Found</span>
                                 </TableCell>
                               )
                             }
                             const src = cell.source
                             return (
-                              <TableCell key={srv.server_id} className="text-center py-1.5 px-2">
-                                <div className="flex flex-col items-center gap-0.5">
-                                  <Badge className={`text-[8px] font-semibold px-1.5 py-0 h-4 ${getStatusBadgeClass(src.status)}`}>
+                              <TableCell key={srv.server_id} className="text-center py-2 px-3">
+                                <div className="flex flex-col items-center gap-1">
+                                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-semibold ${getStatusBadgeClass(src.status)}`}>
                                     {src.status}
-                                  </Badge>
-                                  <span className="text-[8px] text-muted-foreground font-mono">
+                                  </span>
+                                  <span className="text-[9px] text-muted-foreground font-mono">
                                     {formatShortDate(src.latest_pulltimestamp)}
                                   </span>
-                                  <span className="text-[8px] text-muted-foreground/60 flex items-center gap-0.5">
-                                    <Clock className="w-2 h-2" />{src.frequency}
+                                  <span className="text-[9px] text-muted-foreground/60 flex items-center gap-0.5">
+                                    <Clock className="w-2.5 h-2.5" />{src.frequency}
                                   </span>
                                 </div>
                               </TableCell>
@@ -562,20 +559,20 @@ export function MonitoringDashboard() {
         <>
           {hasServerSelection && (
             <>
-              {/* Status Filter Tabs */}
+              {/* ── Status Filter Tabs ── */}
               {isFetching ? (
-                <div className="flex flex-wrap gap-1 shrink-0">
-                  <div className="h-6 w-16 animate-pulse bg-muted rounded-md" />
-                  <div className="h-6 w-20 animate-pulse bg-muted rounded-md" />
-                  <div className="h-6 w-16 animate-pulse bg-muted rounded-md" />
+                <div className="flex flex-wrap gap-2 shrink-0">
+                  <div className="h-8 w-20 skeleton rounded-xl" />
+                  <div className="h-8 w-24 skeleton rounded-xl" />
+                  <div className="h-8 w-20 skeleton rounded-xl" />
                 </div>
               ) : statusTabs.length > 0 ? (
-                <div className="flex flex-wrap gap-1 shrink-0">
+                <div className="flex flex-wrap gap-2 shrink-0">
                   <Button
                     variant={activeStatus === null ? 'default' : 'secondary'}
                     size="sm"
                     onClick={() => setActiveStatus(null)}
-                    className="text-[10px] font-bold uppercase tracking-wider h-6 px-2.5"
+                    className="text-[11px] font-semibold uppercase tracking-wider h-8 px-3.5 rounded-xl transition-all duration-200"
                   >
                     All ({filteredSources.length})
                   </Button>
@@ -585,7 +582,7 @@ export function MonitoringDashboard() {
                       variant={activeStatus === st ? 'default' : 'secondary'}
                       size="sm"
                       onClick={() => setActiveStatus(st)}
-                      className="text-[10px] font-bold uppercase tracking-wider h-6 px-2.5"
+                      className="text-[11px] font-semibold uppercase tracking-wider h-8 px-3.5 rounded-xl transition-all duration-200"
                     >
                       {st} ({statusCounts[st]})
                     </Button>
@@ -595,32 +592,30 @@ export function MonitoringDashboard() {
             </>
           )}
 
-          {/* Two-panel layout */}
-          <div className="flex gap-3 flex-1 min-h-0">
+          {/* ── Two-panel layout ── */}
+          <div className="flex gap-4 flex-1 min-h-0">
             {/* Left: Source List */}
-            <div className="w-80 shrink-0 overflow-y-auto space-y-1 pr-0.5">
+            <div className="w-80 shrink-0 overflow-y-auto space-y-2 pr-1">
               {!hasServerSelection ? (
-                <div className="flex items-center justify-center h-full text-muted-foreground">
-                  <div className="text-center">
-                    <Server className="w-10 h-10 mx-auto mb-2 opacity-30" />
-                    <p className="text-xs font-medium">Select environment & server to begin</p>
+                <div className="flex items-center justify-center h-full">
+                  <div className="text-center glass-card p-8 rounded-2xl">
+                    <Server className="w-12 h-12 mx-auto mb-3 text-muted-foreground/30" />
+                    <p className="text-sm font-medium text-muted-foreground">Select environment & server to begin</p>
                   </div>
                 </div>
               ) : isFetching ? (
                 Array.from({ length: 6 }).map((_, i) => (
-                  <Card key={i} className="animate-pulse">
-                    <CardContent className="p-2">
-                      <div className="h-3 bg-muted rounded w-2/3 mb-1.5" />
-                      <div className="h-2 bg-muted rounded w-1/2 mb-1" />
-                      <div className="h-2 bg-muted rounded w-1/3" />
-                    </CardContent>
-                  </Card>
+                  <div key={i} className="glass-card p-3 space-y-2">
+                    <div className="h-4 skeleton rounded-lg w-2/3" />
+                    <div className="h-3 skeleton rounded-lg w-1/2" />
+                    <div className="h-3 skeleton rounded-lg w-1/3" />
+                  </div>
                 ))
               ) : filteredSources.length === 0 ? (
-                <div className="flex items-center justify-center h-full text-muted-foreground">
-                  <div className="text-center">
-                    <Activity className="w-8 h-8 mx-auto mb-2 opacity-40" />
-                    <p className="text-xs font-medium">No monitoring sources found</p>
+                <div className="flex items-center justify-center h-full">
+                  <div className="text-center glass-card p-8 rounded-2xl">
+                    <Activity className="w-10 h-10 mx-auto mb-3 text-muted-foreground/30" />
+                    <p className="text-sm font-medium text-muted-foreground">No monitoring sources found</p>
                   </div>
                 </div>
               ) : (
@@ -636,63 +631,63 @@ export function MonitoringDashboard() {
             </div>
 
             {/* Right: Details Panel */}
-            <div className="flex-1 bg-card rounded-lg border border-border overflow-y-auto">
+            <div className="flex-1 glass-card overflow-y-auto">
               {!selectedDiName ? (
                 <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
-                  <Activity className="w-10 h-10 mb-2 opacity-30" />
-                  <p className="text-xs font-medium">Select a source to view details</p>
+                  <Activity className="w-12 h-12 mb-3 opacity-20" />
+                  <p className="text-sm font-medium">Select a source to view details</p>
                 </div>
               ) : detailsLoading ? (
                 <div className="flex flex-col items-center justify-center h-full">
                   <LoadingSpinner />
-                  <p className="text-xs text-muted-foreground mt-2">Loading details...</p>
+                  <p className="text-xs text-muted-foreground mt-3">Loading details...</p>
                 </div>
               ) : detailsError ? (
-                <div className="p-3"><ErrorBanner message="Unable to load source details. Please retry." /></div>
+                <div className="p-5"><ErrorBanner message="Unable to load source details. Please retry." /></div>
               ) : errorMessage ? (
-                <div className="p-3">
-                  <div className="flex items-center justify-between mb-3">
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-4">
                     <div>
-                      <h2 className="text-base font-bold text-foreground">{selectedDiName}</h2>
+                      <h2 className="text-lg font-bold text-foreground">{selectedDiName}</h2>
                       {selectedSourceObj && (
-                        <p className="text-[10px] text-muted-foreground">{selectedSourceObj.server_label}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{selectedSourceObj.server_label}</p>
                       )}
                     </div>
-                    <span className="text-[10px] text-muted-foreground">{details.length} records</span>
+                    <span className="px-2.5 py-1 rounded-full bg-muted text-muted-foreground text-[11px] font-semibold">{details.length} records</span>
                   </div>
                   <ErrorBanner message={errorMessage} />
                 </div>
               ) : (
-                <div className="p-3">
-                  <div className="flex items-center justify-between mb-3">
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-5">
                     <div>
-                      <h2 className="text-base font-bold text-foreground">{selectedDiName}</h2>
+                      <h2 className="text-lg font-bold text-foreground">{selectedDiName}</h2>
                       {selectedSourceObj && (
-                        <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-                          <Server className="w-2.5 h-2.5" />{selectedSourceObj.server_label}
-                          <span className="mx-1">|</span>
-                          <Clock className="w-2.5 h-2.5" />{selectedSourceObj.frequency}
+                        <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1.5">
+                          <Server className="w-3 h-3" />{selectedSourceObj.server_label}
+                          <span className="text-border">•</span>
+                          <Clock className="w-3 h-3" />{selectedSourceObj.frequency}
                           {selectedSourceObj.latest_pulltimestamp && (
-                            <><span className="mx-1">|</span>Last: {formatTime(selectedSourceObj.latest_pulltimestamp)}</>
+                            <><span className="text-border">•</span>Last: {formatTime(selectedSourceObj.latest_pulltimestamp)}</>
                           )}
                         </p>
                       )}
                     </div>
-                    <span className="text-[10px] text-muted-foreground">{details.length} records</span>
+                    <span className="px-2.5 py-1 rounded-full bg-muted text-muted-foreground text-[11px] font-semibold">{details.length} records</span>
                   </div>
                   {details.length === 0 ? (
-                    <div className="text-center py-8 text-muted-foreground">
-                      <p className="text-xs">No detailed records available</p>
+                    <div className="text-center py-12 text-muted-foreground">
+                      <p className="text-sm">No detailed records available</p>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto rounded-lg border">
+                    <div className="overflow-x-auto rounded-xl border border-border/50">
                       <Table className="text-xs">
                         <TableHeader>
-                          <TableRow className="bg-muted/50">
+                          <TableRow className="bg-muted/50 border-b border-border/50">
                             {Object.keys(details[0]).map((key) => (
                               <TableHead
                                 key={key}
-                                className="text-[9px] font-semibold uppercase tracking-wider h-7 px-2 whitespace-nowrap"
+                                className="text-[10px] font-semibold uppercase tracking-wider h-9 px-3 whitespace-nowrap text-muted-foreground"
                               >
                                 {key.replace(/_/g, ' ')}
                               </TableHead>
@@ -701,9 +696,9 @@ export function MonitoringDashboard() {
                         </TableHeader>
                         <TableBody>
                           {details.map((record, idx) => (
-                            <TableRow key={idx}>
+                            <TableRow key={idx} className="hover:bg-muted/30 transition-colors duration-200">
                               {Object.values(record).map((val, cIdx) => (
-                                <TableCell key={cIdx} className="text-foreground p-1.5 text-[10px]">
+                                <TableCell key={cIdx} className="text-foreground py-2 px-3 text-[11px]">
                                   {formatDetailCell(val)}
                                 </TableCell>
                               ))}
@@ -720,46 +715,46 @@ export function MonitoringDashboard() {
         </>
       )}
 
-      {/* Detail Sheet for Comparison View */}
+      {/* ── Detail Sheet for Comparison View ── */}
       <Sheet open={!!detailDrawer} onOpenChange={(open) => { if (!open) setDetailDrawer(null) }}>
         <SheetContent className="w-full max-w-4xl sm:max-w-4xl overflow-y-auto p-0">
-          <SheetHeader className="px-4 py-2.5 border-b sticky top-0 z-10 bg-background">
-            <SheetTitle className="text-sm">{detailDrawer?.diName ?? ''}</SheetTitle>
-            <p className="text-[10px] text-muted-foreground">
+          <SheetHeader className="px-5 py-4 border-b border-border/50 sticky top-0 z-10 bg-background/80 backdrop-blur-xl">
+            <SheetTitle className="text-base font-bold text-foreground">{detailDrawer?.diName ?? ''}</SheetTitle>
+            <p className="text-xs text-muted-foreground">
               {detailDrawer?.serverIds.length ?? 0} server{detailDrawer?.serverIds.length !== 1 ? 's' : ''}
             </p>
           </SheetHeader>
-          <div className="p-3">
+          <div className="p-5">
             {multiDetailQuery.isLoading ? (
-              <div className="flex justify-center py-8"><LoadingSpinner /></div>
+              <div className="flex justify-center py-12"><LoadingSpinner /></div>
             ) : multiDetailResults.length === 0 ? (
-              <p className="text-xs text-muted-foreground py-6 text-center">No detailed records</p>
+              <p className="text-sm text-muted-foreground py-10 text-center">No detailed records</p>
             ) : (
-              <div className="flex gap-3 overflow-x-auto pb-1">
+              <div className="flex gap-4 overflow-x-auto pb-2">
                 {multiDetailResults.map(({ server_id, server_label, records }) => (
-                  <Card key={server_id} className="flex-1 min-w-[260px] shrink-0">
-                    <CardHeader className="px-3 py-2 border-b">
-                      <CardTitle className="text-xs font-bold text-foreground">{server_label}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-0 overflow-x-auto">
+                  <div key={server_id} className="glass-card flex-1 min-w-[280px] shrink-0 overflow-hidden">
+                    <div className="px-4 py-3 border-b border-border/50 bg-muted/30">
+                      <h3 className="text-sm font-bold text-foreground">{server_label}</h3>
+                    </div>
+                    <div className="overflow-x-auto">
                       {records.length === 0 ? (
-                        <p className="text-[10px] text-muted-foreground px-3 py-4 text-center">No records</p>
+                        <p className="text-xs text-muted-foreground px-4 py-6 text-center">No records</p>
                       ) : (
-                        <table className="w-full text-[9px]">
+                        <table className="w-full text-[10px]">
                           <thead>
-                            <tr className="border-b bg-muted/50">
+                            <tr className="border-b border-border/50 bg-muted/50">
                               {Object.keys(records[0]).map((key) => (
-                                <th key={key} className="px-2 py-1 text-left font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">
+                                <th key={key} className="px-3 py-2 text-left font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap text-[9px]">
                                   {key === 'pulltime' ? 'Timestamp' : key.replace(/_/g, ' ')}
                                 </th>
                               ))}
                             </tr>
                           </thead>
-                          <tbody className="divide-y">
+                          <tbody className="divide-y divide-border/50">
                             {records.map((record, ri) => (
-                              <tr key={ri} className="hover:bg-muted/30">
+                              <tr key={ri} className="hover:bg-muted/30 transition-colors duration-200">
                                 {Object.entries(record).map(([key, val]) => (
-                                  <td key={key} className="px-2 py-1 font-mono whitespace-nowrap">
+                                  <td key={key} className="px-3 py-1.5 font-mono whitespace-nowrap text-foreground">
                                     {key === 'pulltime' ? formatDetailCell(val) : String(val ?? '\u2014')}
                                   </td>
                                 ))}
@@ -768,8 +763,8 @@ export function MonitoringDashboard() {
                           </tbody>
                         </table>
                       )}
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
             )}

@@ -122,14 +122,14 @@ describe('CheckHealthMatrix', () => {
 
     // Find and click a data cell (not header) - look for cells with status colors
     const cells = container.querySelectorAll('tbody td')
-    // Filter to only data cells (those with bg-green-100, bg-red-100, bg-yellow-100, or bg-gray-100)
+    // Filter to only data cells (those with bg-green-100, bg-red-100, bg-yellow-100, or bg-muted)
     const dataCells = Array.from(cells).filter((cell) => {
       const classes = cell.className
       return (
         classes.includes('bg-green-100') ||
         classes.includes('bg-red-100') ||
         classes.includes('bg-yellow-100') ||
-        classes.includes('bg-gray-100')
+        classes.includes('bg-muted')
       )
     })
     
@@ -318,7 +318,7 @@ describe('CheckHealthMatrix', () => {
 
     const cells = container.querySelectorAll('td, th')
     cells.forEach((cell) => {
-      expect(cell).toHaveClass('border', 'border-gray-200')
+      expect(cell).toHaveClass('border', 'border-border')
     })
   })
 

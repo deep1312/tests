@@ -43,7 +43,7 @@ export function SuccessRateChart({
     const sampleCount = dataPoint?.total_count ?? 0
 
     return (
-      <div className="bg-white border border-gray-300 rounded-lg p-3 shadow-lg">
+      <div className="bg-card/90 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg">
         <p className="text-sm font-semibold text-gray-700 mb-2">
           {formatInTZ(label)}
         </p>
@@ -59,22 +59,22 @@ export function SuccessRateChart({
 
   if (isLoading) {
     return (
-      <div className="w-full h-80 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center">
-        <div className="text-gray-500">Loading chart...</div>
+      <div className="w-full h-80 bg-muted rounded-lg border border-border flex items-center justify-center">
+        <div className="text-muted-foreground">Loading chart...</div>
       </div>
     )
   }
 
   if (!data || data.length === 0) {
     return (
-      <div className="w-full h-80 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center">
-        <div className="text-gray-500">No data available</div>
+      <div className="w-full h-80 bg-muted rounded-lg border border-border flex items-center justify-center">
+        <div className="text-muted-foreground">No data available</div>
       </div>
     )
   }
 
   return (
-    <div className="w-full h-80 bg-white rounded-lg border border-gray-200 p-4">
+    <div className="w-full h-80 bg-card/90 backdrop-blur-sm rounded-lg border border-border p-4">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}

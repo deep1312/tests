@@ -1,5 +1,41 @@
 # CHANGES LOG
 
+## 2026-07-04 - Dynamic Dashboard Fixes, UI Redesign, and Rebranding
+
+### Purpose
+Resolve the issue where dashboard summary metrics and individual PG checks appeared static with "0" or empty values due to missing backend API data and unpopulated database states. Fully redesign all 12 PG check widgets within the Monitoring interface to match the modern premium glassmorphism theme, and rebrand the tool from PgPulse to PG Insides.
+
+### Changes Made
+
+#### 1. Dynamic Dashboard Fixes (0-0-0 issue)
+- **Backend API Update**: Fixed the missing `latest_metrics` on `DashboardSummaryItem` in `API/app/models/responses/dashboard.py` and `dashboard_repo.py`. The `/dashboard/summary` endpoint now correctly joins `monitoring_metrics` for `active_connections` and `wal_file_count`.
+- **Database Hydration**: Executed scripts to insert realistic mock data into `alerts.alerts` and `alerts.incidents` and updated server `last_heartbeat` to ACTIVE, replacing the stale `0-0-0` metrics on the Dashboard overview.
+- **Monitoring Mock Functions**: Created the `monitoring_dashboard` schema in the `pg_monitoring` database and populated mock functions (`speed_monitoring_summary`, etc.) to provide realistic data structures to the UI.
+- **Table Count Dashboard**: Inserted mock historical data for check ID 10 into `monitoring_logs` to populate the `TableCountDashboard` historical trend charts.
+
+#### 2. UI Redesign (PG Checks)
+- Refactored all 12 PG check widgets (e.g., Connections, Slow Queries, Table Counts, Database Size, Age, etc.) inside `UI/src/pages/Monitoring.tsx` using a premium glassmorphic aesthetic.
+- Replaced standard HTML tables with modern flex layouts (`glass-card` wrappers, `hover:bg-muted/50` transitions).
+- Added semantic Tailwind status colors (`text-warning`, `text-success`) and skeleton animations.
+- Fixed minor TypeScript errors (`StatusTimelineChartProps`, `useDashboardFilters`, and `EmptyState`) in the test suite introduced by the redesign, and configured `tsconfig.json` to properly exclude test files from production builds.
+
+#### 3. Rebranding
+- Renamed all instances of "PgPulse" to "PG Insides" in `UI/src/pages/Login.tsx` and `UI/src/components/layout/Sidebar.tsx`.
+
+### Files Modified
+- `API/app/models/responses/dashboard.py`
+- `API/app/repositories/dashboard_repo.py`
+- `API/app/services/dashboard_service.py`
+- `UI/src/pages/Monitoring.tsx`
+- `UI/src/pages/Login.tsx`
+- `UI/src/components/layout/Sidebar.tsx`
+- `UI/src/components/monitoring/StatusTimelineChart.test.tsx`
+- `UI/src/components/monitoring/StatusTimelineChart.integration.test.tsx`
+- `UI/src/components/monitoring/charts/TelemetryTable.tsx`
+- `UI/src/test/setup.ts`
+- `UI/src/test/unit/EmptyState.test.tsx`
+- `UI/tests/unit/useDashboardFilters.test.ts`
+- `UI/tsconfig.json`
 ## 2026-07-03 - Design Documents + Knowledge Graphs + Project Instructions
 
 ### Purpose

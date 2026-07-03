@@ -71,63 +71,68 @@ function ServerForm({ initial, onSubmit, onCancel, isLoading }: ServerFormProps)
     onSubmit(payload)
   }
 
+  const inputClass = 'w-full h-10 px-3 rounded-xl bg-muted/50 border border-border text-foreground text-sm focus:ring-2 focus:ring-ring outline-none transition-all duration-200 placeholder:text-muted-foreground/50'
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="space-y-2">
-          <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100 pb-1">Identification</h3>
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Identification */}
+        <div className="space-y-4">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground border-b border-border/50 pb-2">Identification</h3>
           <div>
-            <label className="block text-[10px] font-bold text-slate-500 uppercase">Label *</label>
-            <input required className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" placeholder="Production Cluster A" value={form.server_label} onChange={e => set('server_label', e.target.value)} />
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">Label *</label>
+            <input required className={inputClass} placeholder="Production Cluster A" value={form.server_label} onChange={e => set('server_label', e.target.value)} />
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-3">
             <div className="col-span-2">
-              <label className="block text-[10px] font-bold text-slate-500 uppercase">Host / IP *</label>
-              <input required className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" value={form.server_ip} onChange={e => set('server_ip', e.target.value)} />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">Host / IP *</label>
+              <input required className={inputClass} value={form.server_ip} onChange={e => set('server_ip', e.target.value)} />
             </div>
             <div>
-              <label className="block text-[10px] font-bold text-slate-500 uppercase">Port *</label>
-              <input required type="number" className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" value={form.port} onChange={e => set('port', e.target.value)} />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">Port *</label>
+              <input required type="number" className={inputClass} value={form.port} onChange={e => set('port', e.target.value)} />
             </div>
           </div>
         </div>
 
-        <div className="space-y-2">
-          <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100 pb-1">Database Credentials</h3>
+        {/* Credentials */}
+        <div className="space-y-4">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground border-b border-border/50 pb-2">Database Credentials</h3>
           <div>
-            <label className="block text-[10px] font-bold text-slate-500 uppercase">Database *</label>
-            <input required className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" value={form.db_name} onChange={e => set('db_name', e.target.value)} />
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">Database *</label>
+            <input required className={inputClass} value={form.db_name} onChange={e => set('db_name', e.target.value)} />
           </div>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-[10px] font-bold text-slate-500 uppercase">Username *</label>
-              <input required className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" value={form.username} onChange={e => set('username', e.target.value)} />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">Username *</label>
+              <input required className={inputClass} value={form.username} onChange={e => set('username', e.target.value)} />
             </div>
             <div>
-              <label className="block text-[10px] font-bold text-slate-500 uppercase">Password {initial ? '(Unchanged)' : '*'}</label>
-              <input type="password" required={!initial} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" value={form.password} onChange={e => set('password', e.target.value)} />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">Password {initial ? '(Unchanged)' : '*'}</label>
+              <input type="password" required={!initial} className={inputClass} value={form.password} onChange={e => set('password', e.target.value)} />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="space-y-2">
-        <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100 pb-1">Server Classification</h3>
+      {/* Classification */}
+      <div className="space-y-4">
+        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground border-b border-border/50 pb-2">Server Classification</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
-            <label className="block text-[10px] font-bold text-slate-500 uppercase">Environment Type</label>
-            <input className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" placeholder="e.g. production, staging, uat" value={form.env_type} onChange={e => set('env_type', e.target.value)} />
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">Environment Type</label>
+            <input className={inputClass} placeholder="e.g. production, staging, uat" value={form.env_type} onChange={e => set('env_type', e.target.value)} />
           </div>
           <div>
-            <label className="block text-[10px] font-bold text-slate-500 uppercase">Server Role</label>
-            <input className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" placeholder="e.g. primary, secondary, standalone" value={form.server_role} onChange={e => set('server_role', e.target.value)} />
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">Server Role</label>
+            <input className={inputClass} placeholder="e.g. primary, secondary, standalone" value={form.server_role} onChange={e => set('server_role', e.target.value)} />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
-        <button type="button" onClick={onCancel} className="px-4 py-1.5 text-[10px] font-bold text-slate-500 hover:text-slate-700 transition-colors">Cancel</button>
-        <button type="submit" disabled={isLoading} className="px-4 py-1.5 text-[10px] font-black uppercase tracking-widest bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-sm shadow-blue-200 disabled:opacity-50 transition-all active:scale-95">
+      <div className="flex justify-end gap-3 pt-4 border-t border-border/50">
+        <button type="button" onClick={onCancel} className="px-4 py-2 rounded-xl bg-muted text-foreground font-medium hover:bg-muted/80 transition-all duration-200 text-sm">Cancel</button>
+        <button type="submit" disabled={isLoading} className="px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold shadow-glow-sm hover:shadow-glow-md transition-all duration-300 disabled:opacity-50 text-sm">
           {isLoading ? 'Validating...' : 'Save'}
         </button>
       </div>
@@ -170,32 +175,32 @@ function FreqEditor({ mapping, checkName, defaultFreqSec, onSave, onToggleEnable
   }
 
   return (
-    <div className="flex items-center gap-1.5 py-1.5 border-b border-slate-50 last:border-0">
+    <div className="flex items-center gap-2 py-2 border-b border-border/30 last:border-0 hover:bg-muted/20 px-1 rounded-lg transition-colors duration-200">
       <button
         onClick={() => onToggleEnabled(mapping.mapping_id, !mapping.is_enabled)}
         disabled={isSaving}
-        className={`relative inline-flex h-3.5 w-6 items-center rounded-full transition-colors shrink-0 ${
-          mapping.is_enabled ? 'bg-emerald-400' : 'bg-slate-300'
+        className={`relative inline-flex h-4 w-7 items-center rounded-full transition-all duration-200 shrink-0 ${
+          mapping.is_enabled ? 'bg-success' : 'bg-muted-foreground/20'
         }`}
         title={mapping.is_enabled ? 'Disable check' : 'Enable check'}
       >
-        <span className={`inline-block h-2.5 w-2.5 transform rounded-full bg-white shadow-sm transition-transform ${
-          mapping.is_enabled ? 'translate-x-[12px]' : 'translate-x-[1px]'
+        <span className={`inline-block h-3 w-3 transform rounded-full bg-card shadow-sm transition-transform duration-200 ${
+          mapping.is_enabled ? 'translate-x-[12px]' : 'translate-x-[2px]'
         }`} />
       </button>
-      <span className="text-[11px] font-medium text-slate-700 truncate max-w-[90px]">{checkName}</span>
-      <span className="text-[8px] font-mono text-slate-400 shrink-0">({formatFreq(defaultFreqSec)})</span>
+      <span className="text-xs font-medium text-foreground truncate max-w-[100px]">{checkName}</span>
+      <span className="text-[9px] font-mono text-muted-foreground shrink-0">({formatFreq(defaultFreqSec)})</span>
       {mapping.is_enabled ? (
-        <div className="flex items-center gap-1 shrink-0 ml-auto">
+        <div className="flex items-center gap-1.5 shrink-0 ml-auto">
           <input
             type="number"
             min={1}
-            className="w-12 border border-slate-200 rounded px-1 py-1 text-[9px] font-mono text-slate-700 bg-white focus:ring-2 focus:ring-blue-500/20 outline-none"
+            className="w-14 h-7 border border-border rounded-lg px-1.5 text-[10px] font-mono text-foreground bg-muted/50 focus:ring-2 focus:ring-ring outline-none transition-all duration-200"
             value={editValue}
             onChange={e => { setEditValue(Number(e.target.value)); setDirty(true) }}
           />
           <select
-            className="border border-slate-200 rounded px-0.5 py-1 text-[9px] bg-white outline-none"
+            className="h-7 border border-border rounded-lg px-1 text-[10px] bg-muted/50 text-foreground outline-none transition-all duration-200"
             value={editUnit}
             onChange={e => { setEditUnit(e.target.value as TimeUnit); setDirty(true) }}
           >
@@ -207,22 +212,22 @@ function FreqEditor({ mapping, checkName, defaultFreqSec, onSave, onToggleEnable
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="px-1.5 py-1 text-[8px] font-black uppercase bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 transition-all"
+                className="px-2 py-1 text-[9px] font-semibold uppercase bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 transition-all duration-200"
               >
-                {isSaving ? '..' : 'Sv'}
+                {isSaving ? '..' : 'Save'}
               </button>
               <button
                 onClick={() => { setEditValue(effective.value); setEditUnit(effective.unit); setDirty(false) }}
-                className="px-1 py-1 text-[8px] font-bold text-slate-400 hover:text-slate-600 transition-colors"
+                className="px-1.5 py-1 text-[9px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
-                X
+                ✕
               </button>
             </>
           )}
           {mapping.custom_frequency_sec != null && !dirty && (
             <button
               onClick={handleClear}
-              className="px-1 py-1 text-[8px] font-bold text-rose-300 hover:text-rose-500 transition-colors"
+              className="px-1.5 py-1 text-[9px] font-medium text-destructive/70 hover:text-destructive transition-colors duration-200"
               title="Clear override"
             >
               &times;
@@ -230,7 +235,7 @@ function FreqEditor({ mapping, checkName, defaultFreqSec, onSave, onToggleEnable
           )}
         </div>
       ) : (
-        <span className="text-[8px] text-slate-300 italic ml-auto">off</span>
+        <span className="text-[9px] text-muted-foreground/60 italic ml-auto">off</span>
       )}
     </div>
   )
@@ -268,7 +273,7 @@ function ServerCard({
   onToggleMappingEnabled,
   checkNameMap,
   checkDefaultFreqMap,
-  onError,
+
 }: ServerCardProps) {
   const [expanded, setExpanded] = useState(false)
 
@@ -282,87 +287,92 @@ function ServerCard({
   const mappings = mappingsData?.data ?? []
 
   return (
-    <div className="group bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 relative overflow-hidden">
-      <div className={`absolute top-0 right-0 w-16 h-16 -mr-5 -mt-5 rounded-full opacity-5 ${s.is_active ? 'bg-emerald-500' : 'bg-slate-500'}`} />
-      
-      <div className="p-3">
-        <div className="flex justify-between items-start mb-2">
-          <div className="flex items-center gap-2">
-            <div className={`p-1.5 rounded-lg ${s.is_active ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-50 text-slate-400'}`}>
-              <Database className="w-4 h-4" />
+    <div className={`glass-card-hover group flex flex-col relative transition-all duration-300 ${expanded ? 'z-50 ring-2 ring-primary/20 shadow-lg' : 'z-10 hover:z-20'}`}>
+      {/* Card Body */}
+      <div className="p-4 flex-1">
+        {/* Header Row */}
+        <div className="flex justify-between items-start mb-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${s.is_active ? 'bg-success/10' : 'bg-muted'}`}>
+              <Database className={`w-5 h-5 ${s.is_active ? 'text-success' : 'text-muted-foreground'}`} />
             </div>
-            <div>
-              <h3 className="text-sm font-black text-slate-800 truncate max-w-[130px]">{s.server_label}</h3>
-              <div className="flex items-center gap-1 mt-0.5">
+            <div className="min-w-0">
+              <h3 className="text-sm font-semibold text-foreground truncate">{s.server_label}</h3>
+              <div className="flex items-center gap-1.5 mt-1">
                 {s.is_active ? (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[8px] font-bold leading-tight">
-                    <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-success/10 text-success text-[10px] font-semibold border border-success/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
                     Active
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[8px] font-bold leading-tight">
-                    <span className="w-1 h-1 rounded-full bg-slate-300" />
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-muted text-muted-foreground text-[10px] font-semibold border border-border">
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
                     Inactive
                   </span>
                 )}
                 {s.is_di_server && (
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-full bg-purple-50 text-purple-700 text-[8px] font-bold leading-tight">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-info/10 text-info text-[10px] font-semibold border border-info/20">
                     DI Server
                   </span>
                 )}
               </div>
             </div>
           </div>
-          
-          <div className="flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+
+          {/* Action Buttons */}
+          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             {role === 'admin' && (
               <>
-                <button onClick={() => onEdit(s)} className="p-1 hover:bg-blue-50 text-slate-400 hover:text-blue-600 rounded transition-colors"><Pencil className="w-3.5 h-3.5" /></button>
-                <button onClick={() => onDelete(s.server_id)} className="p-1 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded transition-colors"><Trash2 className="w-3.5 h-3.5" /></button>
+                <button onClick={() => onEdit(s)} className="p-1.5 hover:bg-muted rounded-lg text-muted-foreground hover:text-primary transition-all duration-200"><Pencil className="w-3.5 h-3.5" /></button>
+                <button onClick={() => onDelete(s.server_id)} className="p-1.5 hover:bg-destructive/10 text-muted-foreground hover:text-destructive rounded-lg transition-all duration-200"><Trash2 className="w-3.5 h-3.5" /></button>
               </>
             )}
           </div>
         </div>
 
-        <div className="space-y-1 mb-2">
-          <div className="flex items-center justify-between text-[11px] font-medium">
-            <span className="text-slate-400 flex items-center gap-1"><Globe className="w-3 h-3" /> Endpoint</span>
-            <span className="text-slate-700 font-mono">{s.server_ip}:{s.port}</span>
+        {/* Server Details */}
+        <div className="space-y-2 mb-3">
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-muted-foreground flex items-center gap-1.5"><Globe className="w-3.5 h-3.5" /> Endpoint</span>
+            <span className="text-foreground font-mono font-medium">{s.server_ip}:{s.port}</span>
           </div>
-          <div className="flex items-center justify-between text-[11px] font-medium">
-            <span className="text-slate-400 flex items-center gap-1"><ShieldCheck className="w-3 h-3" /> Environment</span>
-            <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${s.env_type === 'prod' ? 'bg-rose-50 text-rose-600' : 'bg-blue-50 text-blue-600'}`}>
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-muted-foreground flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Environment</span>
+            <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${
+              s.env_type === 'prod' ? 'bg-destructive/10 text-destructive border border-destructive/20' : 'bg-info/10 text-info border border-info/20'
+            }`}>
               {s.env_type?.toUpperCase() || 'N/A'}
             </span>
           </div>
-          <div className="flex items-center justify-between text-[11px] font-medium">
-            <span className="text-slate-400 flex items-center gap-1"><Activity className="w-3 h-3" /> Role</span>
-            <span className="text-slate-700">{s.server_role || 'Standalone'}</span>
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-muted-foreground flex items-center gap-1.5"><Activity className="w-3.5 h-3.5" /> Role</span>
+            <span className="text-foreground font-medium">{s.server_role || 'Standalone'}</span>
           </div>
         </div>
 
-        <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">DB: {s.db_name}</span>
-          <div className="flex items-center gap-1.5">
+        {/* Footer */}
+        <div className="pt-3 border-t border-border/50 flex items-center justify-between">
+          <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">DB: {s.db_name}</span>
+          <div className="flex items-center gap-2">
             {role === 'admin' ? (
               <>
                 <button
                   onClick={() => s.is_active ? onDeactivate(s.server_id) : onActivate(s.server_id)}
                   disabled={deactivate.isPending || activate.isPending}
-                  className={`relative inline-flex h-4 w-7 items-center rounded-full transition-colors ${
-                    s.is_active ? 'bg-emerald-500' : 'bg-slate-300'
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-all duration-200 ${
+                    s.is_active ? 'bg-success' : 'bg-muted-foreground/20'
                   }`}
                 >
-                  <span className={`inline-block h-3 w-3 transform rounded-full bg-white shadow-sm transition-transform ${
-                    s.is_active ? 'translate-x-[14px]' : 'translate-x-[1px]'
+                  <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-card shadow-sm transition-transform duration-200 ${
+                    s.is_active ? 'translate-x-[18px]' : 'translate-x-[2px]'
                   }`} />
                 </button>
-                <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">
+                <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
                   {s.is_active ? 'Active' : 'Inactive'}
                 </span>
               </>
             ) : (
-              <span className={`text-[9px] font-bold uppercase tracking-wider ${s.is_active ? 'text-emerald-600' : 'text-slate-400'}`}>
+              <span className={`text-[10px] font-semibold uppercase tracking-wider ${s.is_active ? 'text-success' : 'text-muted-foreground'}`}>
                 {s.is_active ? 'Active' : 'Inactive'}
               </span>
             )}
@@ -370,44 +380,83 @@ function ServerCard({
         </div>
       </div>
 
-      <button
-        onClick={() => setExpanded(e => !e)}
-        className="w-full flex items-center justify-between px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border-t border-slate-100 transition-colors text-[10px] font-bold text-slate-500 uppercase tracking-wider"
-      >
-        <span className="flex items-center gap-1.5">
-          <Clock className="w-3 h-3" />
-          Check Frequencies
-        </span>
-        {expanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
-      </button>
+      {/* Expandable Frequencies Section */}
+      <div className="relative mt-auto border-t border-border/50">
+        <button
+          onClick={() => setExpanded(e => !e)}
+          className={`w-full flex items-center justify-between px-4 py-2.5 transition-all duration-200 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider ${expanded ? 'bg-muted/50' : 'bg-muted/30 hover:bg-muted/50'}`}
+        >
+          <span className="flex items-center gap-2">
+            <Clock className="w-3.5 h-3.5" />
+            Check Frequencies
+          </span>
+          {expanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+        </button>
 
-      {expanded && (
-        <div className="border-t border-slate-100 bg-white px-3 py-2 max-h-64 overflow-y-auto">
-          {mappingsLoading ? (
-            <div className="py-2"><LoadingSpinner /></div>
-          ) : mappings.length === 0 ? (
-            <p className="text-[10px] text-slate-400 py-1 italic">No checks mapped to this server.</p>
-          ) : (
-            <div>
-              <div className="flex items-center justify-between text-[8px] font-bold text-slate-400 uppercase tracking-wider pb-1 border-b border-slate-100 mb-1">
-                <span>Check</span>
-                <span>Frequency Override</span>
-              </div>
-              {mappings.map(m => (
-                <FreqEditor
-                  key={m.mapping_id}
-                  mapping={m}
-                  checkName={checkNameMap.get(m.check_id) ?? `Check #${m.check_id}`}
-                  defaultFreqSec={checkDefaultFreqMap.get(m.check_id)}
-                  onSave={onSaveMappingFreq}
-                  onToggleEnabled={onToggleMappingEnabled}
-                  isSaving={updateMapping.isPending}
-                />
-              ))}
+        {expanded && (
+          <div className="absolute top-full left-0 w-full glass-card border-t-0 rounded-t-none rounded-b-2xl shadow-2xl z-50 animate-in fade-in slide-in-from-top-1 duration-200">
+            <div className="bg-muted/30 px-4 py-3 max-h-64 overflow-y-auto rounded-b-2xl backdrop-blur-xl">
+              {mappingsLoading ? (
+                <div className="py-3"><LoadingSpinner /></div>
+              ) : mappings.length === 0 ? (
+                <p className="text-xs text-muted-foreground py-2 italic">No checks mapped to this server.</p>
+              ) : (
+                <div>
+                  <div className="flex items-center justify-between text-[9px] font-semibold text-muted-foreground uppercase tracking-wider pb-2 border-b border-border/30 mb-1">
+                    <span>Check</span>
+                    <span>Frequency Override</span>
+                  </div>
+                  {mappings.map(m => (
+                    <FreqEditor
+                      key={m.mapping_id}
+                      mapping={m}
+                      checkName={checkNameMap.get(m.check_id) ?? `Check #${m.check_id}`}
+                      defaultFreqSec={checkDefaultFreqMap.get(m.check_id)}
+                      onSave={onSaveMappingFreq}
+                      onToggleEnabled={onToggleMappingEnabled}
+                      isSaving={updateMapping.isPending}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+/* ── Skeleton ── */
+function ServersSkeleton() {
+  return (
+    <div className="p-6 max-w-7xl mx-auto space-y-6" aria-hidden="true">
+      <div className="flex justify-between items-end">
+        <div className="space-y-2">
+          <div className="h-7 w-44 skeleton" />
+          <div className="h-4 w-32 skeleton" />
         </div>
-      )}
+        <div className="h-10 w-36 skeleton rounded-xl" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} className="glass-card p-4 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 skeleton rounded-xl" />
+              <div className="space-y-2 flex-1">
+                <div className="h-4 w-24 skeleton" />
+                <div className="h-3 w-16 skeleton rounded-full" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="h-3 w-full skeleton" />
+              <div className="h-3 w-3/4 skeleton" />
+              <div className="h-3 w-1/2 skeleton" />
+            </div>
+            <div className="h-8 w-full skeleton rounded-lg" />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -523,7 +572,7 @@ export function Servers() {
 
   const handleSaveMappingFreq = async (mappingId: number, customFrequencySec: number | null) => {
     try {
-      await updateMapping.mutateAsync({ mappingId, data: { custom_frequency_sec: customFrequencySec } })
+      await updateMapping.mutateAsync({ mappingId, data: { custom_frequency_sec: customFrequencySec ?? undefined } })
       setError('')
     } catch (e: any) {
       handleApiError(e)
@@ -539,33 +588,41 @@ export function Servers() {
     }
   }
 
+  if (isLoading && !data) return <ServersSkeleton />
+
   return (
-    <div className="p-4 max-w-7xl mx-auto space-y-4">
-      <div className="flex flex-row items-center justify-between gap-3">
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
+      {/* ── Page Header ── */}
+      <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-black text-slate-900 tracking-tight">Infrastructure</h1>
-          <p className="text-xs text-slate-500 font-medium">{total} server node{total === 1 ? '' : 's'}</p>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Infrastructure</h1>
+          <p className="text-sm text-muted-foreground mt-1">{total} server node{total === 1 ? '' : 's'} registered</p>
         </div>
         {role === 'admin' && (
           <button 
             onClick={() => { setShowForm(true); setError('') }} 
-            className="flex items-center justify-center gap-1.5 px-3 py-2 bg-slate-900 text-white rounded-xl hover:bg-blue-600 transition-all shadow-md shadow-slate-200 group text-xs font-bold"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold shadow-glow-sm hover:shadow-glow-md transition-all duration-300 text-sm group"
           >
-            <Plus className="w-3.5 h-3.5 transition-transform group-hover:rotate-90" /> 
+            <Plus className="w-4 h-4 transition-transform duration-200 group-hover:rotate-90" /> 
             Register Server
           </button>
         )}
       </div>
 
-      {error && <div className="mb-2"><ErrorBanner message={error} /></div>}
+      {/* ── Error ── */}
+      {error && <ErrorBanner message={error} />}
 
+      {/* ── Form Panel ── */}
       {(showForm || editing) && (
-        <div className="bg-white rounded-xl border border-blue-100 p-4 shadow-lg animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="p-1.5 bg-blue-50 rounded-lg text-blue-600">
-              <ServerIcon className="w-4 h-4" />
+        <div className="glass-card p-6 border-primary/20 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <ServerIcon className="w-5 h-5 text-primary" />
             </div>
-            <h2 className="text-sm font-black text-slate-800">{editing ? 'Modify Instance' : 'New Instance'}</h2>
+            <div>
+              <h2 className="text-base font-semibold text-foreground">{editing ? 'Modify Instance' : 'New Instance'}</h2>
+              <p className="text-xs text-muted-foreground">{editing ? 'Update the server configuration' : 'Connect a new PostgreSQL database'}</p>
+            </div>
           </div>
           <ServerForm
             initial={editing ?? undefined}
@@ -576,22 +633,21 @@ export function Servers() {
         </div>
       )}
 
+      {/* ── Server Grid ── */}
       <div className="min-h-[300px]">
-        {isLoading && !data ? (
-          <div className="flex items-center justify-center h-48"><LoadingSpinner /></div>
-        ) : isError && !servers.length ? (
+        {isError && !servers.length ? (
           <div className="max-w-md mx-auto"><ErrorBanner message="Failed to synchronize with infrastructure API." /></div>
         ) : servers.length === 0 ? (
-          <div className="bg-white rounded-xl p-8 border-2 border-dashed border-slate-200">
+          <div className="glass-card p-10 border-2 border-dashed border-border/50">
             <EmptyState icon={ServerIcon} title="No Active Nodes" description="Get started by connecting your first PostgreSQL database." />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {servers.map(s => (
               <ServerCard
                 key={s.server_id}
                 server={s}
-                role={role}
+                role={role ?? undefined}
                 deactivate={deactivate}
                 activate={activate}
                 deleteServer={deleteServer}
@@ -610,14 +666,15 @@ export function Servers() {
           </div>
         )}
 
+        {/* ── Pagination ── */}
         {totalPages > 1 && (
-          <div className="mt-4 flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-slate-200">
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+          <div className="mt-4 glass-card px-5 py-3 flex items-center justify-between">
+            <span className="text-xs font-medium text-muted-foreground">
               Page {page + 1} of {totalPages}
             </span>
-            <div className="flex gap-1.5">
-              <button disabled={page === 0} onClick={() => setPage(p => p - 1)} className="px-3 py-1.5 text-[10px] font-black uppercase border border-slate-200 rounded-lg disabled:opacity-30 hover:bg-slate-50 transition-colors">Previous</button>
-              <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)} className="px-3 py-1.5 text-[10px] font-black uppercase bg-slate-900 text-white rounded-lg disabled:opacity-30 hover:bg-slate-800 transition-colors shadow-sm shadow-slate-200">Next</button>
+            <div className="flex gap-2">
+              <button disabled={page === 0} onClick={() => setPage(p => p - 1)} className="px-4 py-2 rounded-xl bg-muted text-foreground font-medium hover:bg-muted/80 transition-all duration-200 text-sm disabled:opacity-30">Previous</button>
+              <button disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)} className="px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold shadow-glow-sm hover:shadow-glow-md transition-all duration-300 text-sm disabled:opacity-30">Next</button>
             </div>
           </div>
         )}

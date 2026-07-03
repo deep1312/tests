@@ -1,6 +1,6 @@
 postgres:
   host: localhost
-  port: 5433
+  port: 5432
   database: "pg_monitoring"
   user: "postgres"
   password: "postgres"

@@ -35,7 +35,7 @@ export function SummaryPanel({
   // Logic to determine color based on severity
   const getUsageColor = (value: number | null | undefined): string => {
     if (value === null || value === undefined) {
-      return 'text-gray-700 bg-gray-50 border-gray-200'
+      return 'text-gray-700 bg-muted border-border'
     }
     if (value >= 90) return 'text-red-700 bg-red-50 border-red-100'
     if (value >= 70) return 'text-amber-700 bg-amber-50 border-amber-100'
@@ -51,7 +51,7 @@ export function SummaryPanel({
     label,
     value,
     icon: Icon,
-    colorClass = 'text-gray-700 bg-gray-50 border-gray-200',
+    colorClass = 'text-gray-700 bg-muted border-border',
   }: {
     label: string
     value: string | number
@@ -77,7 +77,7 @@ export function SummaryPanel({
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="rounded-xl border border-gray-100 p-4 bg-gray-50 animate-pulse"
+              className="rounded-xl border border-gray-100 p-4 bg-muted animate-pulse"
             >
               <div className="h-3 bg-gray-200 rounded w-1/2 mb-3" />
               <div className="h-8 bg-gray-200 rounded w-3/4" />

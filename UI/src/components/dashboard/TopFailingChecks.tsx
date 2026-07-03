@@ -17,26 +17,26 @@ export function TopFailingChecks({ checks }: TopFailingChecksProps) {
   const maxFailures = Math.max(...checks.map((c) => c.failure_count))
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div className="bg-card/90 backdrop-blur-sm rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1">
       <div className="flex items-center space-x-2 mb-4">
-        <AlertTriangle className="w-5 h-5 text-red-600" />
-        <h3 className="text-lg font-semibold text-gray-900">Top Failing Checks</h3>
+        <AlertTriangle className="w-5 h-5 text-destructive" />
+        <h3 className="text-lg font-semibold text-foreground">Top Failing Checks</h3>
       </div>
 
       <div className="space-y-4">
         {checks.map((check) => (
           <div key={check.check_id}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-medium text-gray-900">
+              <span className="text-sm font-medium text-foreground">
                 {check.check_name}
               </span>
-              <span className="text-sm font-semibold text-red-600">
+              <span className="text-sm font-semibold text-destructive">
                 {check.failure_count} failures
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-muted rounded-full h-2">
               <div
-                className="bg-red-600 h-2 rounded-full transition-all"
+                className="bg-destructive h-2 rounded-full transition-all"
                 style={{
                   width: `${(check.failure_count / maxFailures) * 100}%`,
                 }}

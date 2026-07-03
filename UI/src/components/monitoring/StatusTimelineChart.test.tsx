@@ -41,7 +41,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={[]}
         isLoading={true}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
     expect(screen.getByText('Loading chart...')).toBeInTheDocument()
@@ -53,7 +54,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={[]}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
     expect(screen.getByText('No data available')).toBeInTheDocument()
@@ -65,7 +67,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
     // Check that the chart container is rendered
@@ -79,7 +82,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -95,7 +99,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -113,7 +118,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -132,7 +138,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -146,7 +153,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -160,7 +168,8 @@ describe('StatusTimelineChart', () => {
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
+        selectedMetric="all"
+        onMetricChange={vi.fn()}
       />
     )
 
@@ -170,12 +179,10 @@ describe('StatusTimelineChart', () => {
   })
 
   it('renders CartesianGrid', () => {
-    const mockOnBarClick = vi.fn()
     const { container } = render(
       <StatusTimelineChart
         data={mockData}
         isLoading={false}
-        onBarClick={mockOnBarClick}
       />
     )
 

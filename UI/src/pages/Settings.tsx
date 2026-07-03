@@ -25,51 +25,70 @@ export function Settings() {
   }
 
   return (
-    <div className="p-4 space-y-4">
-      <div>
-        <h1 className="text-lg font-bold text-gray-900">Settings</h1>
-        <p className="text-[11px] text-gray-500">Platform administration and configuration</p>
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
+      {/* ── Page Header ── */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Settings</h1>
+          <p className="text-sm text-muted-foreground mt-1">Platform administration and configuration</p>
+        </div>
       </div>
 
+      {/* ── Error ── */}
       {error && <ErrorBanner message={error} />}
 
-      <div className="bg-white rounded-lg shadow divide-y">
-        <div className="p-4">
-          <div className="flex items-start justify-between">
-            <div>
-              <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
-                <RotateCcw className="w-3.5 h-3.5" /> Credential Rotation
-              </h2>
-              <p className="mt-1 text-xs text-gray-500">
-                Re-encrypt all stored server passwords with the current encryption key.
-                Use this after rotating the <code className="bg-gray-100 px-0.5 rounded text-[10px]">CREDENTIAL_ENCRYPTION_KEY</code>.
-              </p>
-              {rotateResult && (
-                <p className="mt-1 text-xs text-green-600 font-medium">{rotateResult}</p>
-              )}
+      {/* ── Credential Rotation ── */}
+      <div className="glass-card overflow-hidden">
+        <div className="p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex gap-4">
+              <div className="w-10 h-10 rounded-xl bg-warning/10 flex items-center justify-center shrink-0">
+                <RotateCcw className="w-5 h-5 text-warning" />
+              </div>
+              <div>
+                <h2 className="text-base font-semibold text-foreground">Credential Rotation</h2>
+                <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                  Re-encrypt all stored server passwords with the current encryption key.
+                  Use this after rotating the <code className="bg-muted px-1.5 py-0.5 rounded-lg text-xs font-mono text-foreground">CREDENTIAL_ENCRYPTION_KEY</code>.
+                </p>
+                {rotateResult && (
+                  <p className="mt-2 text-sm text-success font-medium flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                    {rotateResult}
+                  </p>
+                )}
+              </div>
             </div>
             <button
               onClick={handleRotateCredentials}
               disabled={rotating}
-              className="ml-4 px-3 py-1.5 text-xs bg-yellow-600 text-white rounded hover:bg-yellow-700 disabled:opacity-50 whitespace-nowrap"
+              className="px-4 py-2 rounded-xl bg-warning text-primary-foreground font-semibold shadow-glow-sm hover:shadow-glow-md transition-all duration-300 disabled:opacity-50 whitespace-nowrap text-sm shrink-0"
             >
               {rotating ? 'Rotating\u2026' : 'Rotate Credentials'}
             </button>
           </div>
         </div>
 
-        <div className="p-4">
-          <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
-            <SettingsIcon className="w-3.5 h-3.5" /> Platform Info
-          </h2>
-          <div className="mt-2 grid grid-cols-2 gap-3 text-xs">
-            <div>
-              <p className="text-gray-500">API Version</p>
-              <p className="font-medium">v1</p>
+        {/* ── Platform Info ── */}
+        <div className="p-6 border-t border-border/50">
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-xl bg-info/10 flex items-center justify-center shrink-0">
+              <SettingsIcon className="w-5 h-5 text-info" />
             </div>
-            <div>
-              <p className="text-gray-500">Docs</p>
-              <a href="/docs" target="_blank" className="text-blue-600 hover:underline font-medium">Swagger UI \u2192</a>
+            <div className="flex-1">
+              <h2 className="text-base font-semibold text-foreground">Platform Info</h2>
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">API Version</p>
+                  <p className="text-lg font-bold text-foreground mt-1">v1</p>
+                </div>
+                <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Documentation</p>
+                  <a href="/docs" target="_blank" className="text-lg font-bold text-primary hover:text-primary/80 transition-colors duration-200 mt-1 inline-flex items-center gap-1">
+                    Swagger UI <span className="text-sm">→</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

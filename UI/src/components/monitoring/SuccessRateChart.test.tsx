@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { SuccessRateChart } from './SuccessRateChart'
 import { RunsAggregatePoint } from '../../api/monitoring'
@@ -78,7 +78,7 @@ describe('SuccessRateChart', () => {
   })
 
   it('renders reference line at 95%', () => {
-    const { container } = render(
+    render(
       <SuccessRateChart
         data={mockData}
         isLoading={false}
@@ -166,7 +166,7 @@ describe('SuccessRateChart', () => {
       />
     )
     const outerDiv = container.firstChild as HTMLElement
-    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-white', 'rounded-lg', 'border', 'border-gray-200', 'p-4')
+    expect(outerDiv).toHaveClass('w-full', 'h-80', 'bg-card/90 backdrop-blur-sm', 'rounded-lg', 'border', 'border-border', 'p-4')
   })
 
   it('handles data with null success_rate_pct', () => {
