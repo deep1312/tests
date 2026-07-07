@@ -15,7 +15,7 @@ import type { Incident } from '../api/incidents'
 
 const STATUS_COLORS: Record<string, string> = {
   OPEN: 'bg-destructive/10 text-destructive border-destructive/20',
-  RESOLVED: 'bg-success/10 text-success border-success/20',
+  RESOLVED: 'bg-primary/10 text-primary border-primary/20',
 }
 
 /* ── Skeleton ── */
@@ -168,8 +168,8 @@ export function Incidents() {
 
           <div className="glass-card p-5">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
-                <CheckCircle className="w-5 h-5 text-success" />
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-primary" />
               </div>
               <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Resolved</span>
             </div>
@@ -226,7 +226,7 @@ export function Incidents() {
                       <td className="px-4 py-3">
                         <span className={`inline-flex items-center px-2.5 py-1 rounded-full border text-[11px] font-semibold ${STATUS_COLORS[i.status] ?? 'bg-muted text-muted-foreground border-border'}`}>
                           <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
-                            i.status === 'OPEN' ? 'bg-destructive' : 'bg-success'
+                            i.status === 'OPEN' ? 'bg-destructive' : 'bg-primary'
                           }`} />
                           {i.status}
                         </span>

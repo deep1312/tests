@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { Server, TrendingUp, TrendingDown, Minus, Activity, Zap, Layers, RefreshCw, ArrowRight, AlertCircle, Database, Shield } from 'lucide-react'
 import { useDashboardSummary } from '../api/dashboard'
+import { useLegendConfigs } from '../api/settings'
+import { useServers } from '../api/servers'
 import { ErrorBanner } from '../components/shared/ErrorBanner'
 import { EmptyState } from '../components/shared/EmptyState'
+import { Tooltip } from '../components/shared/Tooltip'
 
 /* ── Skeleton ── */
 function DashboardSkeleton() {
@@ -54,27 +57,11 @@ function DashboardSkeleton() {
 /* ── Helpers ── */
 function HealthTrendIcon({ trend }: { trend: string }) {
   const norm = String(trend).toUpperCase()
-  if (norm === 'IMPROVING') return <TrendingUp className="w-4 h-4 text-success" />
+  if (norm === 'IMPROVING') return <TrendingUp className="w-4 h-4 text-primary" />
   if (norm === 'DEGRADING') return <TrendingDown className="w-4 h-4 text-destructive" />
   return <Minus className="w-4 h-4 text-muted-foreground" />
 }
 
-function StatusBadge({ status }: { status: string }) {
-  const norm = String(status).toUpperCase()
-  const styles: Record<string, string> = {
-    ACTIVE: 'bg-success/10 text-success border-success/20',
-    STALE: 'bg-warning/10 text-warning border-warning/20',
-    OFFLINE: 'bg-destructive/10 text-destructive border-destructive/20',
-  }
-  return (
-    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-semibold ${styles[norm] ?? 'bg-muted text-muted-foreground border-border'}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${
-        norm === 'ACTIVE' ? 'bg-success' : norm === 'STALE' ? 'bg-warning' : norm === 'OFFLINE' ? 'bg-destructive' : 'bg-muted-foreground'
-      }`} />
-      {norm || 'UNKNOWN'}
-    </span>
-  )
-}
 
 /* ── Live Metrics Strip ── */
 interface MetricItem { metric_name: string; metric_value: number }
@@ -115,6 +102,14 @@ function ServerLiveStats({ metrics = [] }: { metrics?: MetricItem[] }) {
 export function Dashboard() {
   const navigate = useNavigate()
   const { data, isLoading, error, isFetching } = useDashboardSummary()
+  const { data: legends = [] } = useLegendConfigs()
+  const { data: allServersMeta } = useServers(undefined, undefined, undefined, 1, 0)
+  const { data: inactiveServersMeta } = useServers(undefined, false, undefined, 1, 0)
+
+  const isLegendEnabled = (name: string) => {
+    const lg = legends.find(l => l.page_name === 'Dashboard' && l.legend_name === name)
+    return lg ? lg.is_enabled : true
+  }
 
   if (isLoading) return <DashboardSkeleton />
 
@@ -129,7 +124,8 @@ export function Dashboard() {
   const servers = Array.isArray(data?.data?.servers) ? data.data.servers : []
   const topFailing = Array.isArray(data?.data?.top_failing_checks) ? data.data.top_failing_checks : []
 
-  const activeCount = servers.filter((s: any) => String(s?.collector_state).toUpperCase() === 'ACTIVE').length
+  const totalServerCount = allServersMeta?.meta?.pagination?.total ?? servers.length
+  const inactiveServerCount = inactiveServersMeta?.meta?.pagination?.total ?? 0
   const totalIncidents = servers.reduce((acc: number, s: any) => acc + (s?.open_incident_count ?? 0), 0)
   const totalAlerts = servers.reduce((acc: number, s: any) => acc + (s?.unack_alert_count ?? 0), 0)
 
@@ -140,7 +136,7 @@ export function Dashboard() {
         <div>
           <h1 className="text-2xl font-bold text-foreground tracking-tight">Fleet Overview</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            {servers.length} server{servers.length === 1 ? '' : 's'} registered
+            {totalServerCount} server{totalServerCount === 1 ? '' : 's'} registered
           </p>
         </div>
 
@@ -159,10 +155,22 @@ export function Dashboard() {
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
               <Database className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Servers</span>
+            <Tooltip content="Total number of registered server nodes">
+              <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full cursor-help">Servers</span>
+            </Tooltip>
           </div>
-          <p className="text-3xl font-bold text-foreground tabular-nums">{activeCount}</p>
-          <p className="text-xs text-muted-foreground mt-1">{servers.length - activeCount} inactive</p>
+          {isLegendEnabled('Total Server Count') && (
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-extrabold text-foreground tabular-nums">{totalServerCount}</p>
+              <span className="text-sm font-semibold text-muted-foreground uppercase tracking-widest">Total</span>
+            </div>
+          )}
+          {isLegendEnabled('Inactive Server Count') && inactiveServerCount > 0 && (
+            <div className="flex items-center gap-2 mt-2 bg-destructive/10 px-3 py-1.5 rounded-lg border border-destructive/20 w-max">
+              <span className="w-2 h-2 rounded-full bg-destructive" />
+              <p className="text-xs font-bold text-destructive uppercase tracking-wide">{inactiveServerCount} Inactive</p>
+            </div>
+          )}
         </div>
 
         <div className="glass-card p-5">
@@ -170,7 +178,9 @@ export function Dashboard() {
             <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center">
               <AlertCircle className="w-5 h-5 text-destructive" />
             </div>
-            <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Incidents</span>
+            <Tooltip content="Currently open and unresolved system incidents">
+              <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full cursor-help">Incidents</span>
+            </Tooltip>
           </div>
           <p className="text-3xl font-bold text-foreground tabular-nums">{totalIncidents}</p>
           <p className="text-xs text-muted-foreground mt-1">open incidents</p>
@@ -181,7 +191,9 @@ export function Dashboard() {
             <div className="w-10 h-10 rounded-xl bg-warning/10 flex items-center justify-center">
               <Shield className="w-5 h-5 text-warning" />
             </div>
-            <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Alerts</span>
+            <Tooltip content="Unacknowledged alerts requiring attention">
+              <span className="text-xs font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-full cursor-help">Alerts</span>
+            </Tooltip>
           </div>
           <p className="text-3xl font-bold text-foreground tabular-nums">{totalAlerts}</p>
           <p className="text-xs text-muted-foreground mt-1">unacknowledged</p>
@@ -227,7 +239,6 @@ export function Dashboard() {
                         {s.env_type || 'unknown'} • {s.server_role || 'standalone'}
                       </p>
                     </div>
-                    <StatusBadge status={s.collector_state} />
                   </div>
 
                   {/* Metric Pills */}
@@ -266,7 +277,7 @@ export function Dashboard() {
       )}
 
       {/* ── Top Failing Checks ── */}
-      {topFailing.length > 0 && (
+      {topFailing.length > 0 && isLegendEnabled('Collector Failures') && (
         <div className="glass-card overflow-hidden">
           <div className="px-5 py-4 border-b border-border/50 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -274,7 +285,7 @@ export function Dashboard() {
                 <Activity className="w-4 h-4 text-destructive" />
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-foreground">Top Failures</h2>
+                <h2 className="text-sm font-semibold text-foreground">Collector Failures</h2>
                 <p className="text-[11px] text-muted-foreground">Checks requiring immediate attention</p>
               </div>
             </div>

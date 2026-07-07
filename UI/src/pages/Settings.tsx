@@ -1,12 +1,24 @@
 import { useState } from 'react'
 import apiClient from '../api/client'
 import { ErrorBanner } from '../components/shared/ErrorBanner'
-import { Settings as SettingsIcon, RotateCcw } from 'lucide-react'
+import { Settings as SettingsIcon, RotateCcw, LayoutTemplate } from 'lucide-react'
+import { useLegendConfigs, useUpdateLegendConfig } from '../api/settings'
 
 export function Settings() {
   const [rotating, setRotating] = useState(false)
   const [rotateResult, setRotateResult] = useState<string | null>(null)
   const [error, setError] = useState('')
+
+  const { data: legends = [], isLoading: legendsLoading } = useLegendConfigs()
+  const updateLegend = useUpdateLegendConfig()
+
+  const handleToggleLegend = async (pageName: string, legendName: string, currentState: boolean) => {
+    try {
+      await updateLegend.mutateAsync({ page_name: pageName, legend_name: legendName, is_enabled: !currentState })
+    } catch (e: any) {
+      setError(e?.response?.data?.error?.message ?? 'Failed to toggle legend')
+    }
+  }
 
   const handleRotateCredentials = async () => {
     if (!confirm('This will re-encrypt all server passwords with the current key. Continue?')) return
@@ -52,8 +64,8 @@ export function Settings() {
                   Use this after rotating the <code className="bg-muted px-1.5 py-0.5 rounded-lg text-xs font-mono text-foreground">CREDENTIAL_ENCRYPTION_KEY</code>.
                 </p>
                 {rotateResult && (
-                  <p className="mt-2 text-sm text-success font-medium flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                  <p className="mt-2 text-sm text-primary font-medium flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     {rotateResult}
                   </p>
                 )}
@@ -89,6 +101,47 @@ export function Settings() {
                   </a>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── UI Configuration ── */}
+        <div className="p-6 border-t border-border/50">
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+              <LayoutTemplate className="w-5 h-5 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-base font-semibold text-foreground">UI Legend Configuration</h2>
+              <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                Toggle the visibility of legends and widgets across the platform. Changes apply globally to all users.
+              </p>
+              
+              {legendsLoading ? (
+                <div className="mt-4 text-sm text-muted-foreground ">Loading configurations...</div>
+              ) : (
+                <div className="mt-5 space-y-4">
+                  {Array.from(new Set(legends.map(l => l.page_name))).map(pageName => (
+                    <div key={pageName} className="space-y-3">
+                      <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{pageName}</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                        {legends.filter(l => l.page_name === pageName).map(l => (
+                          <div key={l.legend_name} className="flex items-center justify-between p-3 rounded-xl bg-muted/50 border border-border/50">
+                            <span className="text-sm font-medium text-foreground">{l.legend_name}</span>
+                            <button
+                              onClick={() => handleToggleLegend(l.page_name, l.legend_name, l.is_enabled)}
+                              disabled={updateLegend.isPending}
+                              className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${l.is_enabled ? 'bg-primary' : 'bg-muted-foreground/30'}`}
+                            >
+                              <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${l.is_enabled ? 'translate-x-2' : '-translate-x-2'}`} />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

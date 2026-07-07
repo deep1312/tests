@@ -67,7 +67,7 @@ export function Login() {
           <div className="flex items-center justify-center gap-6 mt-10">
             {['Real-time Metrics', 'Smart Alerts', 'Deep Analytics'].map((feature) => (
               <div key={feature} className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-success" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 <span className="text-xs text-muted-foreground font-medium">{feature}</span>
               </div>
             ))}

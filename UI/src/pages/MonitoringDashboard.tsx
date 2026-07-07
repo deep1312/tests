@@ -368,6 +368,7 @@ export function MonitoringDashboard() {
                   onChange={setSelectedEnvs}
                   placeholder="Environments"
                   showSelectAll
+                  disabled={isFetching}
                 />
               )}
               {serverOptions.length > 0 && (
@@ -378,6 +379,7 @@ export function MonitoringDashboard() {
                   placeholder="Servers"
                   searchable
                   showSelectAll
+                  disabled={isFetching}
                 />
               )}
               {sourceOptions.length > 0 && (
@@ -388,6 +390,7 @@ export function MonitoringDashboard() {
                   placeholder="Sources"
                   searchable
                   showSelectAll
+                  disabled={isFetching}
                 />
               )}
             </>
@@ -401,6 +404,16 @@ export function MonitoringDashboard() {
 
       {isError && (
         <ErrorBanner message={(error as any)?.message ?? 'Failed to load monitoring sources.'} />
+      )}
+
+      {/* Global blocking overlay during fetching */}
+      {isFetching && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/50 backdrop-blur-[2px]">
+          <div className="glass-card flex flex-col items-center p-6 shadow-2xl">
+            <LoadingSpinner />
+            <p className="mt-4 text-sm font-semibold text-muted-foreground">Syncing Sources...</p>
+          </div>
+        </div>
       )}
 
       {showComparison ? (

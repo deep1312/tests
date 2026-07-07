@@ -30,33 +30,7 @@ import {
 
 
 
-import {
-
-  ResponsiveContainer,
-
-  LineChart,
-
-  Line,
-
-  AreaChart,
-
-  Area,
-
-  BarChart,
-
-  Bar,
-
-  Tooltip,
-
-  XAxis,
-
-  YAxis,
-
-} from 'recharts'
-
-
-
-import { useLatestPerCheck, useHistoricalPerCheck, useRunsAggregate, usePartitionCount } from '../api/monitoring'
+import { useLatestPerCheck, useHistoricalPerCheck, usePartitionCount } from '../api/monitoring'
 import { useChecks } from '../api/checks'
 
 import { FilterBar } from '../components/monitoring/FilterBar'
@@ -127,7 +101,7 @@ function MonitoringCard({
 
   const statusStyles = {
 
-    healthy: 'bg-success/10 text-success border-success/20',
+    healthy: 'bg-primary/10 text-primary border-primary/20',
 
     warning: 'bg-warning/10 text-warning border-warning/20',
 
@@ -317,22 +291,6 @@ export function Monitoring() {
     return map
   }, [historicalResponse])
 
-  const { data: aggregateResponse, isLoading: isAggregateLoading } = useRunsAggregate(
-
-    serverId,
-
-    undefined,
-
-    fromValue,
-
-    filters.to,
-
-    '5m'
-
-  )
-
-
-
   // Map raw data into the metrics lookup for all cards.
   // Always starts with latest-per-check data (provides detailed fields like
   // queries, indexes, etc.), then in historical mode overlays the bucketed
@@ -521,84 +479,6 @@ export function Monitoring() {
     return item[key] ?? fallback
 
   }
-
-
-
-  // Process dynamic historical datasets for Recharts trends
-
-  const dynamicTimeSeriesData = useMemo(() => {
-
-    const aggregateData = aggregateResponse?.data ?? []
-
-    const groups: Record<string, { time: string; conn: number; usage: number }> = {}
-
-      
-
-
-
-    aggregateData.forEach((row: any) => {
-
-      const timeStr = new Date(
-
-        row.started_at || row.bucket
-
-      ).toLocaleTimeString([], {
-
-        hour: '2-digit',
-
-        minute: '2-digit',
-
-      })
-
-        
-
-      if (!groups[timeStr]) {
-
-        groups[timeStr] = { time: timeStr, conn: 0, usage: 0 }
-
-      }
-
-        
-
-      if (row.check_id === 1) groups[timeStr].conn = row.metric_value ?? 0
-
-      if (row.check_id === 4) groups[timeStr].usage = row.metric_value ?? 0
-
-    })
-
-
-
-    return Object.values(groups).sort((a, b) => a.time.localeCompare(b.time))
-
-  }, [aggregateResponse])
-
-
-
-  // Build queries performance visualization data distribution placeholders safely matching data keys
-
-  const queryPerfData = useMemo(() => {
-
-    const rawResult = getMetadataValue(9, 'raw_result') || getMetadataValue(9, 'queries')
-
-    const targetRow = Array.isArray(rawResult?.rows) ? rawResult.rows[0] : rawResult
-
-    const queriesList = Array.isArray(targetRow?.queries) ? targetRow.queries : (Array.isArray(rawResult) ? rawResult : [])
-
-    const avgVal = targetRow?.avg_mean_ms ?? getMetadataValue(9, 'avg_mean_ms', 0)
-
-    
-
-    return [
-
-      { name: 'AVG', ms: Math.round(avgVal) },
-
-      { name: 'Max Query', ms: queriesList.length > 0 ? Math.round(queriesList[0]?.mean_ms ?? 0) : 0 },
-
-      { name: 'Execution', ms: metricsMap[9]?.execution_time_ms ?? 0 },
-
-    ]
-
-  }, [metricsMap])
 
 
 
@@ -1065,9 +945,9 @@ export function Monitoring() {
 
             </h1>
 
-            <p className={`flex items-center gap-1.5 text-sm mt-0.5 ${isHistorical ? 'text-warning' : 'text-success'}`}>
+            <p className={`flex items-center gap-1.5 text-sm mt-0.5 ${isHistorical ? 'text-warning' : 'text-primary'}`}>
 
-              <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${isHistorical ? 'bg-warning' : 'bg-success'}`} />
+              <span className={`h-1.5 w-1.5  rounded-full ${isHistorical ? 'bg-warning' : 'bg-primary'}`} />
 
               {isHistorical ? `Historical • ${filters.rangeHours}h` : 'Live System Metrics'}
 
@@ -1082,8 +962,8 @@ export function Monitoring() {
         <div className="flex items-center gap-2">
 
           <Badge variant="secondary" className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold">
-            <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${isHistorical ? 'bg-warning' : 'bg-info'}`} />
-            {isLatestLoading || isHistoricalLoading || isAggregateLoading
+            <span className={`h-1.5 w-1.5  rounded-full ${isHistorical ? 'bg-warning' : 'bg-info'}`} />
+            {isLatestLoading || isHistoricalLoading
               ? 'Syncing...'
               : isHistorical
                 ? `Historical • ${filters.rangeHours}h`
@@ -1095,7 +975,7 @@ export function Monitoring() {
           </Button>
 
           <Button variant="outline" size="sm" onClick={handleRefresh} className="h-8 w-8 p-0 rounded-xl">
-            <RefreshCw className={`h-3.5 w-3.5 ${isLatestLoading || isHistoricalLoading || isAggregateLoading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-3.5 w-3.5 ${isLatestLoading || isHistoricalLoading ? 'animate-spin' : ''}`} />
           </Button>
 
         </div>
@@ -1114,11 +994,11 @@ export function Monitoring() {
 
 
 
-      {/* ── ROW 1: Top Metrics ── */}
+      {/* ── Metrics Grid ── */}
 
       <section>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 
           {/* CONNECTIONS (Check ID: 1) */}
 
@@ -1134,24 +1014,34 @@ export function Monitoring() {
 
           >
 
-            <div className="flex h-full flex-col justify-between">
-
-
-
-              <div className="h-14 w-full mt-2 glass-card overflow-hidden rounded-xl border border-border/50 bg-background/30 p-1">
-
-                <ResponsiveContainer width="100%" height="100%">
-
-                  <LineChart data={dynamicTimeSeriesData}>
-
-                    <Line type="monotone" dataKey="conn" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} strokeOpacity={0.8} />
-
-                  </LineChart>
-
-                </ResponsiveContainer>
-
+            <div className="flex flex-col gap-3">
+              <div className="glass-card bg-muted/20 px-4 py-3 rounded-xl border border-border/40 flex items-center justify-between">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Usage</span>
+                <span className="text-2xl font-black text-primary tabular-nums drop-shadow-sm">
+                  {(() => {
+                    const total = getMetadataValue(1, 'total_connections')
+                    const max = getMetadataValue(1, 'max_connections')
+                    const pct = getMetadataValue(1, 'connection_pct')
+                    if (total != null && max > 0) return `${((total / max) * 100).toFixed(1)}%`
+                    return pct !== undefined ? `${Number(pct).toFixed(1)}%` : '—'
+                  })()}
+                </span>
               </div>
 
+              <div className="grid grid-cols-3 gap-2">
+                <div className="glass-card bg-muted/20 p-2 rounded-lg border border-border/40 text-center">
+                  <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Active</p>
+                  <p className="text-lg font-bold text-foreground tabular-nums">{getMetadataValue(1, 'active_connections', '—')}</p>
+                </div>
+                <div className="glass-card bg-muted/20 p-2 rounded-lg border border-border/40 text-center">
+                  <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Idle</p>
+                  <p className="text-lg font-bold text-foreground tabular-nums">{getMetadataValue(1, 'idle_connections', '—')}</p>
+                </div>
+                <div className="glass-card bg-muted/20 p-2 rounded-lg border border-border/40 text-center">
+                  <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Max</p>
+                  <p className="text-lg font-bold text-foreground tabular-nums">{getMetadataValue(1, 'max_connections', '—')}</p>
+                </div>
+              </div>
             </div>
 
           </MonitoringCard>}
@@ -1176,9 +1066,9 @@ export function Monitoring() {
 
               <div className="relative mb-2">
 
-                <div className={`absolute inset-0 blur-xl opacity-30 rounded-full ${getMetadataValue(2, 'blocking_count', 0) > 0 ? 'bg-destructive' : 'bg-success'}`}></div>
+                <div className={`absolute inset-0 blur-xl opacity-30 rounded-full ${getMetadataValue(2, 'blocking_count', 0) > 0 ? 'bg-destructive' : 'bg-primary'}`}></div>
 
-                <div className={`text-5xl font-black tabular-nums tracking-tighter drop-shadow-md relative ${getMetadataValue(2, 'blocking_count', 0) > 0 ? 'text-destructive' : 'text-success'}`}>
+                <div className={`text-5xl font-black tabular-nums tracking-tighter drop-shadow-md relative ${getMetadataValue(2, 'blocking_count', 0) > 0 ? 'text-destructive' : 'text-primary'}`}>
 
                   {getMetadataValue(2, 'blocking_count', 0)}
 
@@ -1326,21 +1216,9 @@ export function Monitoring() {
 
           </MonitoringCard>}
 
-        </div>
+          {/* QUERIES (Check ID: 9) */}
 
-      </section>
-
-
-
-      {/* ── ROW 2: Queries + Index Usage ── */}
-
-      <section className="grid grid-cols-1 gap-4 xl:grid-cols-3">
-
-        {/* QUERIES (Check ID: 9) */}
-
-        {isActive(9) && <div className="xl:col-span-2">
-
-          <MonitoringCard
+          {isActive(9) && <MonitoringCard
 
             title="Slow Queries"
 
@@ -1352,91 +1230,75 @@ export function Monitoring() {
 
           >
 
-            <div className="flex items-center h-full gap-4">
+            <div className="grid grid-cols-2 gap-3">
 
-              <div className="w-2/5 space-y-3">
+              {(() => {
 
-                {(() => {
+                const rawResult = getMetadataValue(9, 'raw_result') || getMetadataValue(9, 'queries')
 
-                  const rawResult = getMetadataValue(9, 'raw_result') || getMetadataValue(9, 'queries');
+                const targetRow = Array.isArray(rawResult?.rows) ? rawResult.rows[0] : rawResult
 
-                  const targetRow = Array.isArray(rawResult?.rows) ? rawResult.rows[0] : rawResult;
+                const queriesList = Array.isArray(targetRow?.queries) ? targetRow.queries : (Array.isArray(rawResult) ? rawResult : [])
 
-                  const queriesList = Array.isArray(targetRow?.queries) ? targetRow.queries : (Array.isArray(rawResult) ? rawResult : [])
+                const globalAvgMean = targetRow?.avg_mean_ms ?? getMetadataValue(9, 'avg_mean_ms', 0)
 
-                  const globalAvgMean = targetRow?.avg_mean_ms ?? getMetadataValue(9, 'avg_mean_ms', 0);
+                const maxMean = queriesList.length > 0 ? Math.round(queriesList[0]?.mean_ms ?? 0) : 0
 
+                return (
 
+                  <>
 
-                  return (
+                    <div className="glass-card bg-muted/20 p-2.5 rounded-xl border border-border/40 text-center">
 
-                    <>
+                      <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Avg Mean Time</p>
 
-                      <div className="glass-card bg-muted/20 p-2.5 rounded-xl border-border/40">
+                      <p className="text-lg font-extrabold text-warning tabular-nums">
 
-                        <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Avg Mean Time</p>
+                        {globalAvgMean > 0 ? `${Math.round(globalAvgMean).toLocaleString()}ms` : '—'}
 
-                        <p className="text-lg font-extrabold text-warning tabular-nums shadow-glow-sm">
+                      </p>
 
-                          {globalAvgMean > 0 ? `${Math.round(globalAvgMean).toLocaleString()}ms` : '—'}
+                    </div>
 
-                        </p>
+                    <div className="glass-card bg-muted/20 p-2.5 rounded-xl border border-border/40 text-center">
 
-                      </div>
+                      <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Active Logged</p>
 
+                      <p className="text-lg font-extrabold text-foreground tabular-nums">
 
+                        {queriesList.length}
 
-                      <div className="glass-card bg-muted/20 p-2.5 rounded-xl border-border/40">
+                      </p>
 
-                        <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Active Logged</p>
+                    </div>
 
-                        <p className="text-lg font-extrabold text-foreground tabular-nums">
+                    <div className="glass-card bg-muted/20 p-2.5 rounded-xl border border-border/40 text-center col-span-2">
 
-                          {queriesList.length}
+                      <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Slowest Query</p>
 
-                        </p>
+                      <p className="text-lg font-extrabold text-primary tabular-nums">
 
-                      </div>
+                        {maxMean > 0 ? `${maxMean.toLocaleString()}ms` : '—'}
 
-                    </>
+                      </p>
 
-                  );
+                    </div>
 
-                })()}
+                  </>
 
-              </div>
+                )
 
-
-
-              <div className="h-24 w-3/5 glass-card bg-background/40 rounded-xl p-2 border-border/30">
-
-                <ResponsiveContainer width="100%" height="100%">
-
-                  <BarChart data={queryPerfData}>
-
-                    <Tooltip cursor={{ fill: 'hsl(var(--muted)/0.5)' }} contentStyle={{ borderRadius: '12px', backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))' }} />
-
-                    <Bar dataKey="ms" fill="hsl(var(--primary))" radius={[6, 6, 6, 6]} />
-
-                  </BarChart>
-
-                </ResponsiveContainer>
-
-              </div>
+              })()}
 
             </div>
 
-          </MonitoringCard>
-
-        </div>}
+          </MonitoringCard>}
 
 
 
-        {/* INDEX USAGE (Check ID: 4) */}
+          {/* INDEX USAGE (Check ID: 4) */}
 
-        {isActive(4) && <div>
-
-          <MonitoringCard
+          {isActive(4) && <MonitoringCard
 
             title="Index Usage"
 
@@ -1448,13 +1310,13 @@ export function Monitoring() {
 
           >
 
-            <div className="flex h-full flex-col justify-between">
+            <div className="flex flex-col gap-3">
 
-              <div className="flex items-center justify-between mb-2 px-1">
+              <div className="glass-card bg-muted/20 px-4 py-3 rounded-xl border border-border/40 flex items-center justify-between">
 
-                <div className="text-sm font-semibold text-muted-foreground">Overall Usage</div>
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Overall Usage</span>
 
-                <div className="text-3xl font-extrabold text-primary tabular-nums drop-shadow-sm">
+                <span className="text-2xl font-black text-primary tabular-nums drop-shadow-sm">
 
                   {getMetadataValue(4, 'index_usage_pct') !== undefined
 
@@ -1462,57 +1324,36 @@ export function Monitoring() {
 
                     : '—'}
 
-                </div>
+                </span>
 
               </div>
 
-
-
-              <div className="h-16 w-full glass-card rounded-xl border-border/40 bg-background/20 overflow-hidden">
-
-                <ResponsiveContainer width="100%" height="100%">
-
-                  <AreaChart data={dynamicTimeSeriesData}>
-
-                    <defs>
-
-                      <linearGradient id="usageGradient" x1="0" y1="0" x2="0" y2="1">
-
-                        <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.4} />
-
-                        <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0.0} />
-
-                      </linearGradient>
-
-                    </defs>
-
-                    <XAxis hide dataKey="time" />
-
-                    <YAxis hide />
-
-                    <Area type="monotone" dataKey="usage" stroke="hsl(var(--primary))" strokeWidth={2} fill="url(#usageGradient)" />
-
-                  </AreaChart>
-
-                </ResponsiveContainer>
-
+              <div className="grid grid-cols-2 gap-2">
+                {(() => {
+                  const lowTables = getMetadataValue(4, 'low_index_tables') ?? []
+                  const worstSeqPct = lowTables.length > 0 ? lowTables[0]?.seq_pct : undefined
+                  return (
+                    <>
+                      <div className="glass-card bg-muted/20 p-2 rounded-lg border border-border/40 text-center">
+                        <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Worst Seq Scan</p>
+                        <p className="text-lg font-bold text-warning tabular-nums">
+                          {worstSeqPct !== undefined ? `${Number(worstSeqPct).toFixed(1)}%` : '—'}
+                        </p>
+                      </div>
+                      <div className="glass-card bg-muted/20 p-2 rounded-lg border border-border/40 text-center">
+                        <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Low Index Tables</p>
+                        <p className="text-lg font-bold text-foreground tabular-nums">{lowTables.length}</p>
+                      </div>
+                    </>
+                  )
+                })()}
               </div>
 
             </div>
 
-          </MonitoringCard>
-
-        </div>}
-
-      </section>
+          </MonitoringCard>}
 
 
-
-      {/* ── ROW 3: Bloat + Unused Indexes ── */}
-
-      <section>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 
           {/* TABLE BLOAT (Check ID: 3) */}
 
@@ -1582,7 +1423,7 @@ export function Monitoring() {
 
                           <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-destructive/60"></div>Dead: {t.dead_tuples ?? 0}</div>
 
-                          <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-success/60"></div>Live: {t.live_tuples ?? 0}</div>
+                          <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-primary/60"></div>Live: {t.live_tuples ?? 0}</div>
 
                         </div>
 
@@ -1598,7 +1439,7 @@ export function Monitoring() {
 
                     <p className="text-xs text-muted-foreground font-medium flex items-center gap-2">
 
-                      <span className="w-2 h-2 rounded-full bg-success"></span>
+                      <span className="w-2 h-2 rounded-full bg-primary"></span>
 
                       No bloated tables detected
 
@@ -1696,7 +1537,7 @@ export function Monitoring() {
 
                     <p className="text-xs text-muted-foreground font-medium flex items-center gap-2">
 
-                      <span className="w-2 h-2 rounded-full bg-success"></span>
+                      <span className="w-2 h-2 rounded-full bg-primary"></span>
 
                       No unused indexes detected
 
@@ -1712,15 +1553,7 @@ export function Monitoring() {
 
           </MonitoringCard>}
 
-        </div>
 
-      </section>
-
-      {/* ── ROW 4: Additional Metrics ── */}
-
-      <section>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 
           {/* TABLE COUNT (Check ID: 10) */}
 
@@ -1836,7 +1669,7 @@ export function Monitoring() {
 
                 </p>
 
-                <div className="text-4xl font-extrabold text-success tabular-nums drop-shadow-sm">
+                <div className="text-4xl font-extrabold text-primary tabular-nums drop-shadow-sm">
 
                   {isPartitionLoading ? (
 
@@ -1852,9 +1685,9 @@ export function Monitoring() {
 
               </div>
 
-              <div className="w-12 h-12 rounded-full bg-success/10 border border-success/20 flex items-center justify-center shadow-glow-sm">
+              <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shadow-glow-sm">
 
-                <Layers size={20} className="text-success" />
+                <Layers size={20} className="text-primary" />
 
               </div>
 

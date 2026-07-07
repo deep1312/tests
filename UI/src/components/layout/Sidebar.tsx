@@ -83,7 +83,7 @@ export function Sidebar() {
               {section.title}
             </p>
             <div className="space-y-0.5">
-              {section.items.map(({ path, label, icon: Icon, isLive }) => (
+              {section.items.map(({ path, label, icon: Icon }) => (
                 <Link
                   key={path}
                   to={path}
@@ -98,12 +98,7 @@ export function Sidebar() {
                   }`} />
                   <span className="flex-1">{label}</span>
 
-                  {isLive && !isActive(path) && (
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-success" />
-                    </span>
-                  )}
+
 
                   {isActive(path) && (
                     <ChevronRight className="w-3.5 h-3.5 opacity-60" />

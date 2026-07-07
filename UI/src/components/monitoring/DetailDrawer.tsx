@@ -144,7 +144,7 @@ function HealthCheckDetailsContainer({
             const connChartData = useMemo(() => {
               const buckets = (checkData as any)?._historicalBuckets
               if (Array.isArray(buckets) && buckets.length >= 2) {
-                return buckets.map((b: any) => ({
+                return [...buckets].reverse().map((b: any) => ({
                   time: formatInTZ(b.bucket, {
                     month: 'short', day: 'numeric',
                     hour: '2-digit', minute: '2-digit',
@@ -158,7 +158,7 @@ function HealthCheckDetailsContainer({
               }
               const runs = (checkData as any)?._runs
               if (Array.isArray(runs) && runs.length >= 2) {
-                return runs.map((r: any) => {
+                return [...runs].reverse().map((r: any) => {
                   const row = r?.raw_result?.rows?.[0] || r?.raw_result || r
                   return {
                     time: formatInTZ(r.collected_at || r.bucket, {
@@ -193,7 +193,7 @@ function HealthCheckDetailsContainer({
             return (
               <div className="space-y-3">
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                  <MetricCard title="Usage" value={`${rawRow.connection_pct ?? 0}%`} />
+                  <MetricCard title="Usage" value={maxConn > 0 ? `${((totalConn / maxConn) * 100).toFixed(1)}%` : `${rawRow.connection_pct ?? 0}%`} />
                   <MetricCard title="Total" value={totalConn} />
                   <MetricCard title="Max" value={maxConn} />
                   <MetricCard title="Active" value={rawRow.active_connections ?? 0} />
@@ -821,6 +821,7 @@ function renderBucketFields(bucket: any, checkId?: number) {
           <Field label="IdleTxn" value={bucket.idle_in_txn_connections ?? 0} />
           <Field label="Total" value={bucket.total_connections ?? 0} />
           <Field label="Max" value={bucket.max_connections ?? '—'} />
+          <Field label="Usage" value={bucket.max_connections && bucket.max_connections > 0 ? `${((bucket.total_connections || 0) / bucket.max_connections * 100).toFixed(1)}%` : `${bucket.connection_pct ?? 0}%`} />
         </div>
       )
     case 2:

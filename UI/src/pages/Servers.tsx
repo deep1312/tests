@@ -5,6 +5,7 @@ import { useMappings, useUpdateMapping, useChecks, Mapping } from '../api/checks
 import { LoadingSpinner } from '../components/shared/LoadingSpinner'
 import { ErrorBanner } from '../components/shared/ErrorBanner'
 import { EmptyState } from '../components/shared/EmptyState'
+import { Tooltip } from '../components/shared/Tooltip'
 import { useAuth } from '../hooks/useAuth'
 
 type TimeUnit = 'seconds' | 'minutes'
@@ -180,7 +181,7 @@ function FreqEditor({ mapping, checkName, defaultFreqSec, onSave, onToggleEnable
         onClick={() => onToggleEnabled(mapping.mapping_id, !mapping.is_enabled)}
         disabled={isSaving}
         className={`relative inline-flex h-4 w-7 items-center rounded-full transition-all duration-200 shrink-0 ${
-          mapping.is_enabled ? 'bg-success' : 'bg-muted-foreground/20'
+          mapping.is_enabled ? 'bg-primary' : 'bg-muted-foreground/20'
         }`}
         title={mapping.is_enabled ? 'Disable check' : 'Enable check'}
       >
@@ -257,6 +258,8 @@ interface ServerCardProps {
   checkNameMap: Map<number, string>
   checkDefaultFreqMap: Map<number, number | undefined>
   onError: (msg: string) => void
+  isExpanded: boolean
+  onToggleExpand: () => void
 }
 
 function ServerCard({
@@ -273,35 +276,35 @@ function ServerCard({
   onToggleMappingEnabled,
   checkNameMap,
   checkDefaultFreqMap,
-
+  isExpanded,
+  onToggleExpand,
 }: ServerCardProps) {
-  const [expanded, setExpanded] = useState(false)
 
   const { data: mappingsData, isLoading: mappingsLoading } = useMappings(
     s.server_id,
     undefined,
     100,
     0,
-    { enabled: expanded }
+    { enabled: isExpanded }
   )
   const mappings = mappingsData?.data ?? []
 
   return (
-    <div className={`glass-card-hover group flex flex-col relative transition-all duration-300 ${expanded ? 'z-50 ring-2 ring-primary/20 shadow-lg' : 'z-10 hover:z-20'}`}>
+    <div className={`glass-card-hover group flex flex-col relative transition-all duration-300 ${isExpanded ? 'z-50 ring-2 ring-primary/20 shadow-lg' : 'z-10 hover:z-20'}`}>
       {/* Card Body */}
       <div className="p-4 flex-1">
         {/* Header Row */}
         <div className="flex justify-between items-start mb-3">
           <div className="flex items-center gap-3 min-w-0">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${s.is_active ? 'bg-success/10' : 'bg-muted'}`}>
-              <Database className={`w-5 h-5 ${s.is_active ? 'text-success' : 'text-muted-foreground'}`} />
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${s.is_active ? 'bg-primary/10' : 'bg-muted'}`}>
+              <Database className={`w-5 h-5 ${s.is_active ? 'text-primary' : 'text-muted-foreground'}`} />
             </div>
             <div className="min-w-0">
               <h3 className="text-sm font-semibold text-foreground truncate">{s.server_label}</h3>
               <div className="flex items-center gap-1.5 mt-1">
                 {s.is_active ? (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-success/10 text-success text-[10px] font-semibold border border-success/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold border border-primary/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     Active
                   </span>
                 ) : (
@@ -333,11 +336,15 @@ function ServerCard({
         {/* Server Details */}
         <div className="space-y-2 mb-3">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground flex items-center gap-1.5"><Globe className="w-3.5 h-3.5" /> Endpoint</span>
+            <Tooltip content="Network address and port of the database server">
+              <span className="text-muted-foreground flex items-center gap-1.5 cursor-help"><Globe className="w-3.5 h-3.5" /> Endpoint</span>
+            </Tooltip>
             <span className="text-foreground font-mono font-medium">{s.server_ip}:{s.port}</span>
           </div>
           <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Environment</span>
+            <Tooltip content="Deployment environment type (e.g. prod, dev)">
+              <span className="text-muted-foreground flex items-center gap-1.5 cursor-help"><ShieldCheck className="w-3.5 h-3.5" /> Environment</span>
+            </Tooltip>
             <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${
               s.env_type === 'prod' ? 'bg-destructive/10 text-destructive border border-destructive/20' : 'bg-info/10 text-info border border-info/20'
             }`}>
@@ -345,7 +352,9 @@ function ServerCard({
             </span>
           </div>
           <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground flex items-center gap-1.5"><Activity className="w-3.5 h-3.5" /> Role</span>
+            <Tooltip content="Assigned role of this server in the architecture">
+              <span className="text-muted-foreground flex items-center gap-1.5 cursor-help"><Activity className="w-3.5 h-3.5" /> Role</span>
+            </Tooltip>
             <span className="text-foreground font-medium">{s.server_role || 'Standalone'}</span>
           </div>
         </div>
@@ -360,7 +369,7 @@ function ServerCard({
                   onClick={() => s.is_active ? onDeactivate(s.server_id) : onActivate(s.server_id)}
                   disabled={deactivate.isPending || activate.isPending}
                   className={`relative inline-flex h-5 w-9 items-center rounded-full transition-all duration-200 ${
-                    s.is_active ? 'bg-success' : 'bg-muted-foreground/20'
+                    s.is_active ? 'bg-primary' : 'bg-muted-foreground/20'
                   }`}
                 >
                   <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-card shadow-sm transition-transform duration-200 ${
@@ -372,7 +381,7 @@ function ServerCard({
                 </span>
               </>
             ) : (
-              <span className={`text-[10px] font-semibold uppercase tracking-wider ${s.is_active ? 'text-success' : 'text-muted-foreground'}`}>
+              <span className={`text-[10px] font-semibold uppercase tracking-wider ${s.is_active ? 'text-primary' : 'text-muted-foreground'}`}>
                 {s.is_active ? 'Active' : 'Inactive'}
               </span>
             )}
@@ -383,17 +392,17 @@ function ServerCard({
       {/* Expandable Frequencies Section */}
       <div className="relative mt-auto border-t border-border/50">
         <button
-          onClick={() => setExpanded(e => !e)}
-          className={`w-full flex items-center justify-between px-4 py-2.5 transition-all duration-200 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider ${expanded ? 'bg-muted/50' : 'bg-muted/30 hover:bg-muted/50'}`}
+          onClick={onToggleExpand}
+          className={`w-full flex items-center justify-between px-4 py-2.5 transition-all duration-200 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider ${isExpanded ? 'bg-muted/50' : 'bg-muted/30 hover:bg-muted/50'}`}
         >
           <span className="flex items-center gap-2">
             <Clock className="w-3.5 h-3.5" />
             Check Frequencies
           </span>
-          {expanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+          {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
         </button>
 
-        {expanded && (
+        {isExpanded && (
           <div className="absolute top-full left-0 w-full glass-card border-t-0 rounded-t-none rounded-b-2xl shadow-2xl z-50 animate-in fade-in slide-in-from-top-1 duration-200">
             <div className="bg-muted/30 px-4 py-3 max-h-64 overflow-y-auto rounded-b-2xl backdrop-blur-xl">
               {mappingsLoading ? (
@@ -467,6 +476,7 @@ export function Servers() {
   const [showForm, setShowForm] = useState(false)
   const [editing, setEditing] = useState<Server | null>(null)
   const [error, setError] = useState('')
+  const [activeAccordionId, setActiveAccordionId] = useState<number | null>(null)
   const limit = 20
 
   const { data, isLoading, isError } = useServers(undefined, undefined, undefined, limit, page * limit)
@@ -572,7 +582,7 @@ export function Servers() {
 
   const handleSaveMappingFreq = async (mappingId: number, customFrequencySec: number | null) => {
     try {
-      await updateMapping.mutateAsync({ mappingId, data: { custom_frequency_sec: customFrequencySec ?? undefined } })
+      await updateMapping.mutateAsync({ mappingId, data: { custom_frequency_sec: customFrequencySec } })
       setError('')
     } catch (e: any) {
       handleApiError(e)
@@ -661,6 +671,8 @@ export function Servers() {
                 checkNameMap={checkNameMap}
                 checkDefaultFreqMap={checkDefaultFreqMap}
                 onError={setError}
+                isExpanded={activeAccordionId === s.server_id}
+                onToggleExpand={() => setActiveAccordionId(activeAccordionId === s.server_id ? null : s.server_id)}
               />
             ))}
           </div>

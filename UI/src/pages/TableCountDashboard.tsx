@@ -588,7 +588,7 @@ export default function TableCountDashboard() {
                                   : '\u2014'}
                               </div>
                               <span className={`mt-0.5 inline-block px-2 py-0.5 rounded-full text-[8px] font-semibold uppercase leading-none ${
-                                isSuccess ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'
+                                isSuccess ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
                               }`}>
                                 {cell.status}
                               </span>
@@ -681,7 +681,7 @@ export default function TableCountDashboard() {
                           <td className="px-4 py-2 text-center">
                             <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-semibold ${
                               h.status === 'SUCCESS'
-                                ? 'bg-success/10 text-success'
+                                ? 'bg-primary/10 text-primary'
                                 : 'bg-destructive/10 text-destructive'
                             }`}>
                               {h.status}

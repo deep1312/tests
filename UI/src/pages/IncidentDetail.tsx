@@ -177,9 +177,9 @@ export function IncidentDetail() {
         <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold ${
           isOpen
             ? 'bg-destructive/10 text-destructive border-destructive/20'
-            : 'bg-success/10 text-success border-success/20'
+            : 'bg-primary/10 text-primary border-primary/20'
         }`}>
-          <span className={`w-2 h-2 rounded-full ${isOpen ? 'bg-destructive animate-pulse' : 'bg-success'}`} />
+          <span className={`w-2 h-2 rounded-full ${isOpen ? 'bg-destructive ' : 'bg-primary'}`} />
           {statusText}
         </span>
       </div>
@@ -222,8 +222,8 @@ export function IncidentDetail() {
         </div>
         <div className="glass-card p-4">
           <div className="flex items-center gap-2.5 mb-2">
-            <div className="w-7 h-7 rounded-lg bg-success/10 flex items-center justify-center">
-              <CalendarCheck className="w-3.5 h-3.5 text-success" />
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <CalendarCheck className="w-3.5 h-3.5 text-primary" />
             </div>
             <p className="text-xs text-muted-foreground font-medium">Ended</p>
           </div>
@@ -354,7 +354,7 @@ export function IncidentDetail() {
                     </td>
                     <td className="px-4 py-3 text-sm">
                       {a.acknowledged_at
-                        ? <span className="flex items-center gap-1.5 text-success text-xs font-medium"><CheckCircle className="w-3.5 h-3.5" />{formatInTZ(a.acknowledged_at)}</span>
+                        ? <span className="flex items-center gap-1.5 text-primary text-xs font-medium"><CheckCircle className="w-3.5 h-3.5" />{formatInTZ(a.acknowledged_at)}</span>
                         : <span className="text-muted-foreground text-xs">&mdash;</span>}
                     </td>
                   </tr>

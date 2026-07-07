@@ -180,7 +180,7 @@ export function Alerts() {
           <SummaryCard icon={Bell} label="Total Alerts" value={summary.total} iconBg="bg-info/10" iconColor="text-info" />
           <SummaryCard icon={AlertTriangle} label="Critical" value={summary.critical} iconBg="bg-destructive/10" iconColor="text-destructive" />
           <SummaryCard icon={Activity} label="Warning" value={summary.warning} iconBg="bg-warning/10" iconColor="text-warning" />
-          <SummaryCard icon={CheckCircle} label="Acknowledged" value={summary.acknowledged} iconBg="bg-success/10" iconColor="text-success" />
+          <SummaryCard icon={CheckCircle} label="Acknowledged" value={summary.acknowledged} iconBg="bg-primary/10" iconColor="text-primary" />
         </div>
       )}
 
@@ -242,7 +242,7 @@ export function Alerts() {
                       </td>
                       <td className="px-4 py-3 text-sm">
                         {a.acknowledged_at
-                          ? <span className="flex items-center gap-1.5 text-success text-xs font-medium"><CheckCircle className="w-3.5 h-3.5" />{formatInTZ(a.acknowledged_at)}</span>
+                          ? <span className="flex items-center gap-1.5 text-primary text-xs font-medium"><CheckCircle className="w-3.5 h-3.5" />{formatInTZ(a.acknowledged_at)}</span>
                           : <span className="text-muted-foreground text-xs">&mdash;</span>}
                       </td>
                       {role === 'admin' && (
@@ -251,7 +251,7 @@ export function Alerts() {
                             <button
                               onClick={(e) => { e.stopPropagation(); handleAck(a.alert_id, a.triggered_at) }}
                               disabled={acknowledge.isPending}
-                              className="px-3 py-1.5 rounded-xl bg-success/10 text-success text-xs font-semibold border border-success/20 hover:bg-success/20 transition-all duration-200 disabled:opacity-50"
+                              className="px-3 py-1.5 rounded-xl bg-primary/10 text-primary text-xs font-semibold border border-primary/20 hover:bg-primary/20 transition-all duration-200 disabled:opacity-50"
                             >
                               Acknowledge
                             </button>

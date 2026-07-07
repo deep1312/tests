@@ -260,11 +260,11 @@ export function Thresholds() {
                       <td className="px-4 py-3">
                         {role === 'admin' ? (
                           <button onClick={() => handleToggleActive(t)} className="transition-all duration-200">
-                            {t.is_active ? <ToggleRight className="w-5 h-5 text-success" /> : <ToggleLeft className="w-5 h-5 text-muted-foreground" />}
+                            {t.is_active ? <ToggleRight className="w-5 h-5 text-primary" /> : <ToggleLeft className="w-5 h-5 text-muted-foreground" />}
                           </button>
                         ) : (
-                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold ${t.is_active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${t.is_active ? 'bg-success' : 'bg-muted-foreground/30'}`} />
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold ${t.is_active ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${t.is_active ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
                             {t.is_active ? 'Yes' : 'No'}
                           </span>
                         )}

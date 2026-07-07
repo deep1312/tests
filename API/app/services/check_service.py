@@ -692,13 +692,14 @@ class CheckService:
         data: dict[str, Any] = {}
         changed_fields: dict[str, Any] = {}
 
-        if request.custom_frequency_sec is not None:
-            data["custom_frequency_sec"] = request.custom_frequency_sec
-            changed_fields["custom_frequency_sec"] = request.custom_frequency_sec
+        dumped = request.model_dump(exclude_unset=True)
+        if "custom_frequency_sec" in dumped:
+            data["custom_frequency_sec"] = dumped["custom_frequency_sec"]
+            changed_fields["custom_frequency_sec"] = dumped["custom_frequency_sec"]
 
-        if request.is_enabled is not None:
-            data["is_enabled"] = request.is_enabled
-            changed_fields["is_enabled"] = request.is_enabled
+        if "is_enabled" in dumped:
+            data["is_enabled"] = dumped["is_enabled"]
+            changed_fields["is_enabled"] = dumped["is_enabled"]
 
         row = await check_repo.update_mapping(conn, mapping_id=mapping_id, data=data)
 

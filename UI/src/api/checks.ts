@@ -19,7 +19,7 @@ export interface Mapping {
   mapping_id: number
   server_id: number
   check_id: number
-  custom_frequency_sec?: number
+  custom_frequency_sec?: number | null
   is_enabled: boolean
   consecutive_failures: number
   backoff_until?: string

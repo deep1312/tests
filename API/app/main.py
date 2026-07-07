@@ -33,6 +33,7 @@ from app.routers import (
     admin as admin_router,
     audit as audit_router,
     schema_tables as schema_tables_router,
+    settings as settings_router,
 )
 
 # ---------------------------------------------------------------------------
@@ -231,6 +232,11 @@ def create_app() -> FastAPI:
 
     app.include_router(
         schema_tables_router.router,
+        prefix=API_V1_PREFIX,
+    )
+
+    app.include_router(
+        settings_router.router,
         prefix=API_V1_PREFIX,
     )
 

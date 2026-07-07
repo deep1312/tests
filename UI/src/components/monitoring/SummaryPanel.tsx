@@ -39,7 +39,7 @@ export function SummaryPanel({
     }
     if (value >= 90) return 'text-red-700 bg-red-50 border-red-100'
     if (value >= 70) return 'text-amber-700 bg-amber-50 border-amber-100'
-    return 'text-green-700 bg-green-50 border-green-100'
+    return 'text-primary bg-primary/10 border-primary/20'
   }
 
   const showPlaceholder = !summary

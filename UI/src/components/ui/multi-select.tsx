@@ -17,6 +17,7 @@ interface MultiSelectProps {
   searchable?: boolean
   showSelectAll?: boolean
   className?: string
+  disabled?: boolean
 }
 
 export function MultiSelect({
@@ -27,6 +28,7 @@ export function MultiSelect({
   searchable = false,
   showSelectAll = false,
   className = '',
+  disabled = false,
 }: MultiSelectProps) {
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
@@ -62,6 +64,7 @@ export function MultiSelect({
       <Button
         variant="outline"
         size="sm"
+        disabled={disabled}
         onClick={() => { setOpen(!open); if (!open) setSearch('') }}
         className="text-xs font-semibold gap-2 min-w-[130px] justify-between"
       >

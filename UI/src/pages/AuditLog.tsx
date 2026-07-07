@@ -7,7 +7,7 @@ import { FileText, Search } from 'lucide-react'
 import { formatInTZ } from '../utils/timezone'
 
 const ACTION_COLORS: Record<string, string> = {
-  CREATE: 'bg-success/10 text-success border-success/20',
+  CREATE: 'bg-primary/10 text-primary border-primary/20',
   UPDATE: 'bg-info/10 text-info border-info/20',
   DELETE: 'bg-destructive/10 text-destructive border-destructive/20',
   CREDENTIAL_ROTATION: 'bg-primary/10 text-primary border-primary/20',

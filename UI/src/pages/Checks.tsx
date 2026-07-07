@@ -264,13 +264,12 @@ export function Checks() {
                         {role === 'admin' ? (
                           <button
                             onClick={() => updateCheck.mutateAsync({ checkId: c.check_id, data: { is_active: !c.is_active, version: c.version } })}
-                            className={`relative inline-flex h-5 w-9 items-center rounded-full transition-all duration-200 ${c.is_active ? 'bg-success' : 'bg-muted-foreground/20'}`}
+                            className={`relative inline-flex h-5 w-9 items-center rounded-full transition-all duration-200 ${c.is_active ? 'bg-primary' : 'bg-muted-foreground/20'}`}
                           >
                             <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-card shadow-sm transition-transform duration-200 ${c.is_active ? 'translate-x-[18px]' : 'translate-x-[3px]'}`} />
                           </button>
                         ) : (
-                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold ${c.is_active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${c.is_active ? 'bg-success' : 'bg-muted-foreground/30'}`} />
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold ${c.is_active ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`}>
                             {c.is_active ? 'Active' : 'Inactive'}
                           </span>
                         )}
